@@ -1,0 +1,197 @@
+section.slider {
+  position: absolute;
+  width: 90%;
+  height: 70vh;
+  background: black;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%);
+  overflow: hidden;
+  border-radius: 20px;
+  padding: 0;
+  box-shadow: 5px 5px 20px black;
+}
+
+.slider-content {
+  width: 400%;
+  height: 100%;
+  display: flex;
+}
+
+.slider-content input,
+.img-mobile {
+  display: none;
+}
+
+.slider-box {
+  width: 25%;
+  height: auto;
+  position: relative;
+  text-align: center;
+  transition: all 1s ease;
+}
+
+.nav-manual,
+.nav-auto {
+  position: absolute;
+  width: 100%;
+  bottom: 5%;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-manual .manual-btn,
+.nav-auto div {
+  border: 1px solid #ff0054;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.nav-manual .manual-btn:not(:last-child),
+.nav-auto div:not(:last-child) {
+  margin-right: 10px;
+}
+
+.nav-manual .manual-btn:hover {
+  background-color: #ff0054;
+}
+
+@media (max-width: 1035px) {
+  section.slider {
+    min-height: 60%;
+  }
+}
+
+.first-background {
+  background-image: url(../img/site/background-slide-1.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+}
+
+@media (max-width: 735px) {
+  section.slider {
+    min-height: 40%;
+  }
+}
+
+#radio1:checked ~ .nav-manual .manual-btn:nth-child(1),
+#radio2:checked ~ .nav-manual .manual-btn:nth-child(2),
+#radio3:checked ~ .nav-manual .manual-btn:nth-child(3) {
+  background-color: #ff0054;
+}
+
+/*~ = when happen this will happen this*/
+
+#radio1:checked ~ .first {
+  margin-left: 0%;
+}
+#radio2:checked ~ .first {
+  margin-left: 25%;
+}
+#radio3:checked ~ .first {
+  margin-left: 50%;
+}
+
+/*slider text / content */
+
+div.slider-text {
+  position: relative;
+  color: white;
+  text-align: left;
+  top: 50%;
+  transform: translate(0, -50%);
+  padding: 30px;
+  margin-right: 45%;
+}
+
+div.slider-text h1,
+h4,
+span {
+  padding: 10px;
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 100;
+}
+
+div.slider-text h1 span {
+  color: yellow;
+}
+
+div.slider-text h1 {
+  font-size: 50pt;
+  margin-left: 20px;
+}
+
+.animation-mario {
+  position: relative;
+  top: 30%;
+  transform: translate(0, -50%);
+  height: 300px;
+}
+
+.animation-mario img {
+  position: relative;
+  width: 45px;
+}
+
+.animation-mario img.mario {
+  float: left;
+  top: 42%;
+  transform: translate(0, -50%);
+  transition: all 5s;
+}
+
+.animation-mario img.blockCoin {
+  float: right;
+  right: 20%;
+  transition: all 1s;
+}
+
+.animation-mario img.moeda {
+  float: right;
+  right: 17%;
+  z-index: -1;
+  transition: all 1s;
+}
+/* content below */
+
+div.content-below {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+div.content-below div.text {
+  position: relative;
+  float: right;
+  top: 18%;
+  right: 10%;
+  background-color: rgb(200, 199, 199);
+  padding: 30px;
+  height: 70%;
+  border-radius: 20px;
+  box-shadow: 10px 10px 20px;
+}
+
+div.content-below div.text h1 {
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 100;
+  font-size: 20pt;
+}
+
+div.content-below img.arcade {
+  position: relative;
+  top: 50%;
+  transform: translate(0, -50%);
+  left: 30%;
+}
+
+@media screen and (max-width: 1245px) {
+  div.content-below {
+  }
+}
