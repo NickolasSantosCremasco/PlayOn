@@ -1,0 +1,15 @@
+footer {
+  position: relative;
+  top: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  height: 100px;
+}
+
+footer div {
+  color: white;
+  padding: 10px;
+  margin: 50px;
+}

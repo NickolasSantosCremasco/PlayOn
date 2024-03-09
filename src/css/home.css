@@ -158,40 +158,63 @@ div.slider-text h1 {
 /* content below */
 
 div.content-below {
-  position: absolute;
-  top: 100%;
+  position: relative;
+  top: 110vh;
   width: 100%;
   height: 100vh;
   display: flex;
   justify-content: space-between;
 }
 
+div.container-text {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  display: flex;
+}
+
+div.container h2 {
+  width: 40px;
+}
+
 div.content-below div.text {
   position: relative;
   float: right;
-  top: 18%;
   right: 10%;
-  background-color: rgb(200, 199, 199);
   padding: 30px;
   height: 70%;
   border-radius: 20px;
-  box-shadow: 10px 10px 20px;
+  max-width: 500px;
+  text-align: justify;
 }
 
+div.text h1,
+p {
+  padding: 10px;
+}
+
+div.text p {
+  font-size: large;
+}
 div.content-below div.text h1 {
   font-family: "Press Start 2P", system-ui;
   font-weight: 100;
   font-size: 20pt;
+  color: green;
 }
 
-div.content-below img.arcade {
-  position: relative;
-  top: 50%;
-  transform: translate(0, -50%);
-  left: 30%;
+/* Scrool Animation */
+
+.hidden {
+  opacity: 0;
+  filter: blur(15px);
+  transition: all 1s;
+  transform: translateX(-100%);
 }
 
-@media screen and (max-width: 1245px) {
-  div.content-below {
-  }
+.show {
+  opacity: 1;
+  filter: blur(0);
+  transition: all 1s;
+  transform: translateX(0);
 }

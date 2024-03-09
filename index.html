@@ -20,6 +20,7 @@
 
     <link rel="stylesheet" href="src/css/navbar.css">
     <link rel="stylesheet" href="src/css/home.css">
+    <link rel="stylesheet" href="src/css/footer.css">
 
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
 
@@ -36,8 +37,6 @@
             <li><a href="index.html">Inicial</a></li>
             <li><a href="src/html/about.html">Sobre nós</a></li>
             <li><a href="src/html/games.html">Games</a></li>
-            <li><a href="src/html/creation.html">Criação</a></li>
-            <li><a href="src/html/contact.html">Contato</a></li>
         </ul>
 
         <div class="bx bx-menu" id="menu-icon" onclick="menuShow()"></div>
@@ -68,7 +67,7 @@
 
                 <div class="animation-mario">
                     <img src="src/img/assets/MarioParado.png" alt="" class="mario" id="mario">
-                    <img src="src/img/assets/blockCoin.png" alt="" class="blockCoin" id="blockCoin">.
+                    <img src="src/img/assets/blockCoin.png" alt="" class="blockCoin" id="blockCoin" onclick="point()">
                 </div>
 
             </div>
@@ -98,18 +97,30 @@
 
     <div class="content-below">
 
-        <div class="hidden">
-            <img src="src/img/site/arcade.png" class="arcade" alt="">
-        </div>
-        <div class="hidden text">
-            <h1>O que foi o Arcade</h1>
-            <p></p>
-        </div>
+        <div class="hidden container-text">
 
+            <div class="hidden ">
+                <h2>Relembre o arcarde, jogue o que você mais sente falta!</h2>
+            </div>
+            <div class="hidden text">
+
+                <h3>Bem-vindo à PlayOn, onde a paixão pelos games encontra a nostalgia dos arcades! Somos uma empresa
+                    dedicada a trazer de volta a emoção atemporal dos jogos clássicos para os tempos modernos.</h3>
+            </div>
+        </div>
     </div>
 
 
-    <footer>bom dia</footer>
+    <footer>
+        <div>
+            <h4>Play On</h4>
+        </div>
+        <div>
+            <h4>Produzido por Playon</h4>
+        </div>
+
+    </footer>
+    <script src="src/js/scrool.js"></script>
     <script src="src/js/scripts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
 </body>
