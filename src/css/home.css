@@ -166,41 +166,70 @@ div.content-below {
   justify-content: space-between;
 }
 
-div.container-text {
+div.container-video {
   position: relative;
-  left: 50%;
-  transform: translate(-50%);
+  top: 1%;
+  display: flex;
+  width: 50%;
+  height: 50%;
+  left: 5%;
+  margin-top: 50px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+div.container-video .video {
+  position: absolute;
+  filter: blur(5px) saturate(1.5) hue-rotate(10deg);
+  width: 100%;
+}
+div.container-video div {
+  width: 400px;
+  color: white;
+}
+
+div.container-video .left {
+  text-align: right;
+  font-size: 20pt;
+}
+
+div.container-video .right {
+  font-size: 15pt;
+}
+
+div.container-video .right,
+.left {
+  padding: 20px;
+}
+
+div.container-video .line {
+  position: absolute;
+  bottom: 0;
+  width: 10px;
+  height: 10px;
+}
+
+/*Start Snake*/
+
+div.content-below div.snake {
+  position: absolute;
+  z-index: -10;
+  background-color: red;
+  float: right;
+  height: 100%;
+  width: 100%;
   display: flex;
 }
 
-div.container h2 {
-  width: 40px;
-}
-
-div.content-below div.text {
+.block {
   position: relative;
-  float: right;
-  right: 10%;
-  padding: 30px;
-  height: 70%;
-  border-radius: 20px;
-  max-width: 500px;
-  text-align: justify;
-}
-
-div.text h1,
-p {
-  padding: 10px;
-}
-
-div.text p {
-  font-size: large;
-}
-div.content-below div.text h1 {
-  font-family: "Press Start 2P", system-ui;
-  font-weight: 100;
-  font-size: 20pt;
-  color: green;
+  top: 20px;
+  width: 20px;
+  height: 20px;
+  background-color: black;
+  margin: 0 2px;
 }
 
 /* Scrool Animation */

@@ -79,3 +79,29 @@ function andarMario() {
 andarMario();
 
 changeFrames();
+
+/* End Animation Mario */
+
+/* Start Container Video  */
+
+var line = document.querySelector(".line");
+setTimeout(() => {
+  anime({
+    targets: line,
+    translateY: -180,
+    rotate: "5turn",
+    easing: "easeInOutQuad",
+    backgroundColor: "#FFF",
+    duration: 500,
+  });
+  setTimeout(() => {
+    anime({
+      targets: line,
+      scaleY: 16,
+      borderRadius: ["0%", "5%"],
+      backgroundColor: "#00bfff",
+      duration: 1000,
+      easing: "easeInOutQuad",
+    });
+  }, 1500);
+}, 500);
