@@ -105,3 +105,24 @@ setTimeout(() => {
     });
   }, 1500);
 }, 500);
+
+/* Snake */
+
+let snake = document.querySelectorAll(".block");
+
+anime({
+  targets: snake,
+  translateX: 800,
+  duration: 1000,
+});
+
+setTimeout(() => {
+  anime({
+    targets: snake,
+    translateY: 100,
+    duration:1000,
+    update: function () {
+      
+    }
+  });
+}, 1000);

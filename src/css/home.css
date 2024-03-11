@@ -168,7 +168,7 @@ div.content-below {
 
 div.container-video {
   position: relative;
-  top: 1%;
+  top: -10%;
   display: flex;
   width: 50%;
   height: 50%;
@@ -178,6 +178,7 @@ div.container-video {
   align-items: center;
   border-radius: 20px;
   overflow: hidden;
+  border: 5px solid rgb(241, 241, 241);
 }
 
 div.container-video .video {
@@ -211,25 +212,10 @@ div.container-video .line {
   height: 10px;
 }
 
-/*Start Snake*/
-
-div.content-below div.snake {
-  position: absolute;
-  z-index: -10;
-  background-color: red;
-  float: right;
-  height: 100%;
-  width: 100%;
-  display: flex;
-}
-
-.block {
+div.arcade img {
   position: relative;
-  top: 20px;
-  width: 20px;
-  height: 20px;
-  background-color: black;
-  margin: 0 2px;
+  width: 480px;
+  bottom: 11%;
 }
 
 /* Scrool Animation */
