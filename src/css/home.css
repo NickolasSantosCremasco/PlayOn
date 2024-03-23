@@ -159,9 +159,13 @@ div.slider-text h1 {
 /*Slider 2*/
 div.slider-box .asteroids {
   position: relative;
+  background: url(../img/site/background-stars.png) center no-repeat;
+  background-size: cover;
+
   width: 100%;
   height: 100%;
   right: 200%;
+  display: flex;
 }
 
 div.slider-box .asteroids img {
@@ -192,6 +196,32 @@ div.slider-box .asteroids img {
   width: 80px;
   top: 80%;
   right: 5%;
+}
+
+.text-asteroids {
+  float: left;
+  width: 50%;
+  height: 100%;
+}
+
+div.slider-box .asteroids .text {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  font-size: 20pt;
+  color: white;
+  letter-spacing: 10px;
+  line-height: 2em;
+}
+
+div.slider-box .asteroids .text span.span-arcade {
+  font-family: "Courier New", Courier, monospace;
+  background-image: linear-gradient(to top, white, aqua);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
 }
 @keyframes asteroidsRotate {
   0% {
