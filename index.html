@@ -17,6 +17,7 @@
 
     <!--Remixicons-->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="src/img/site/Logo.png" type="image/x-icon">
 
     <link rel="stylesheet" href="src/css/navbar.css">
     <link rel="stylesheet" href="src/css/home.css">
@@ -30,6 +31,7 @@
 <body>
     <header>
         <a href="index.html">
+            <img src="src/img/site/Logo.png" class="logo" alt="">
 
         </a>
 
@@ -42,80 +44,92 @@
         <div class="bx bx-menu" id="menu-icon" onclick="menuShow()"></div>
 
     </header>
+    <main>
+        <section class="slider hidden">
+            <div class="slider-content">
 
-    <section class="slider hidden">
-        <div class="slider-content">
+                <input type="radio" name="btn-radio" id="radio1">
+                <input type="radio" name="btn-radio" id="radio2">
+                <input type="radio" name="btn-radio" id="radio3">
 
-            <input type="radio" name="btn-radio" id="radio1">
-            <input type="radio" name="btn-radio" id="radio2">
-            <input type="radio" name="btn-radio" id="radio3">
+                <div class="slider-box first first-background">
 
-            <div class="slider-box first first-background">
+                    <div class="slider-text">
+                        <h4>Fan Games</h4>
+                        <h1 class="playon">Play <span>ON</span></h1>
+                        <p class="textplayon">Entregamos uma experiência de jogo inigualável, combinando nostalgia com a
+                            emoção
+                            dos
+                            jogos modernos. Seja você um veterano dos fliperamas ou um novo entusiasta, o
+                            <span>PlayOn</span> é
+                            o
+                            seu playground digital, repleto de diversão e desafios.
+                        </p>
+                    </div>
 
-                <div class="slider-text">
-                    <h4>Fan Games</h4>
-                    <h1 class="playon">Play <span>ON</span></h1>
-                    <p class="textplayon">Entregamos uma experiência de jogo inigualável, combinando nostalgia com a
-                        emoção
-                        dos
-                        jogos modernos. Seja você um veterano dos fliperamas ou um novo entusiasta, o
-                        <span>PlayOn</span> é
-                        o
-                        seu playground digital, repleto de diversão e desafios.
-                    </p>
+                    <div class="animation-mario">
+                        <img src="src/img/assets/MarioParado.png" alt="" class="mario" id="mario">
+                        <img src="src/img/assets/blockCoin.png" alt="" class="blockCoin" id="blockCoin"
+                            onclick="point()">
+                    </div>
+
                 </div>
 
-                <div class="animation-mario">
-                    <img src="src/img/assets/MarioParado.png" alt="" class="mario" id="mario">
-                    <img src="src/img/assets/blockCoin.png" alt="" class="blockCoin" id="blockCoin" onclick="point()">
+                <div class="slider-box">
+                    <div class="asteroids">
+                        <div class="ship-box-animation">
+                            <img src="src/img/assets/meteorito.png" class="meteorite1" alt="Meteorite 1">
+                            <img src="src/img/assets/meteorito2.png" class="meteorite2" alt="Meteorite 2">
+                            <img src="src/img/site/plane.png" class="spaceship" alt="spaceship">
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="slider-box">
                 </div>
 
+                <div class="nav-auto">
+                    <div class="auto-btn1"></div>
+                    <div class="auto-btn2"></div>
+                    <div class="auto-btn3"></div>
+                </div>
+                <div class="nav-manual">
+                    <label for="radio1" class="manual-btn"></label>
+                    <label for="radio2" class="manual-btn"></label>
+                    <label for="radio3" class="manual-btn"></label>
+                </div>
+            </div>
+        </section>
+
+
+        <div class="content-below">
+
+            <div class="hidden container-video">
+
+                <video src="src/video/gameplay_video.mp4" autoplay muted loop class="video"></video>
+
+                <div class="hidden left">
+                    <h2>Relembre o arcarde, jogue o que você mais sente falta!</h2>
+                </div>
+
+                <div class="hidden line"></div>
+                <div class="hidden right">
+                    <p>Bem-vindo à PlayOn, onde a paixão pelos games encontra a nostalgia dos arcades! Somos uma empresa
+                        dedicada a trazer de volta a emoção atemporal dos jogos clássicos para os tempos modernos.</p>
+                </div>
             </div>
 
-            <div class="slider-box">
-                <img src="" alt="Slide 2">
-                <img class="img-mobile" src="" alt=" Slide 2">
-            </div>
-            <div class="slider-box">
-                <img src="" alt="Slide 3">
-                <img class="img-mobile" src="" alt=" Slide 3">
-            </div>
-
-            <div class="nav-auto">
-                <div class="auto-btn1"></div>
-                <div class="auto-btn2"></div>
-                <div class="auto-btn3"></div>
-            </div>
-            <div class="nav-manual">
-                <label for="radio1" class="manual-btn"></label>
-                <label for="radio2" class="manual-btn"></label>
-                <label for="radio3" class="manual-btn"></label>
-            </div>
-        </div>
-    </section>
-
-
-    <div class="content-below">
-
-        <div class="hidden container-video">
-
-            <video src="src/video/gameplay_video.mp4" autoplay muted loop class="video"></video>
-
-            <div class="hidden left">
-                <h2>Relembre o arcarde, jogue o que você mais sente falta!</h2>
-            </div>
-
-            <div class="hidden line"></div>
-            <div class="hidden right">
-                <p>Bem-vindo à PlayOn, onde a paixão pelos games encontra a nostalgia dos arcades! Somos uma empresa
-                    dedicada a trazer de volta a emoção atemporal dos jogos clássicos para os tempos modernos.</p>
+            <div class="arcade hidden">
+                <img src="src/img/site/maquina-de-fliperama.gif" alt="">
             </div>
         </div>
 
-        <div class="arcade hidden">
-            <img src="src/img/site/maquina-de-fliperama.gif" alt="">
+        <div class="content_2">
+            <img src="src/img/site/icons8-space-fighter-48.png" class="plane" alt="">
         </div>
-    </div>
+    </main>
+
 
 
 
@@ -125,7 +139,7 @@
             <h4>Play On</h4>
         </div>
         <div>
-            <h4>Produzido por Playon</h4>
+            <h4>Produzido por Playon &copy;</h4>
         </div>
 
     </footer>

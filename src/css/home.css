@@ -155,13 +155,65 @@ div.slider-text h1 {
   z-index: -1;
   transition: all 1s;
 }
+
+/*Slider 2*/
+div.slider-box .asteroids {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  right: 200%;
+}
+
+div.slider-box .asteroids img {
+  position: relative;
+}
+
+.ship-box-animation {
+  float: right;
+  height: 100%;
+  width: 50%;
+}
+
+.ship-box-animation img.meteorite1 {
+  width: 100px;
+  top: 10%;
+  right: 20%;
+  animation: asteroidsRotate infinite 20s;
+}
+.ship-box-animation img.meteorite2 {
+  width: 80px;
+  top: 10%;
+  left: 20%;
+  animation: asteroidsRotate infinite 20s;
+}
+
+.ship-box-animation img.spaceship {
+  transform: translate(-50%, -50%);
+  width: 80px;
+  top: 80%;
+  right: 5%;
+}
+@keyframes asteroidsRotate {
+  0% {
+    rotate: 0deg;
+  }
+
+  50% {
+    rotate: 180deg;
+  }
+
+  100% {
+    rotate: 0deg;
+  }
+}
+
 /* content below */
 
 div.content-below {
   position: relative;
   top: 110vh;
   width: 100%;
-  height: 100vh;
+  height: 80vh;
   display: flex;
   justify-content: space-between;
 }
@@ -171,7 +223,7 @@ div.container-video {
   top: -10%;
   display: flex;
   width: 50%;
-  height: 50%;
+  height: 65%;
   left: 5%;
   margin-top: 50px;
   justify-content: center;
@@ -218,6 +270,21 @@ div.arcade img {
   bottom: 11%;
 }
 
+/*content_2 */
+
+div.content_2 {
+  position: relative;
+  top: 700px;
+  width: 100%;
+  height: 100vh;
+
+  margin-bottom: 10%;
+}
+
+div.content_2 img.plane {
+  rotate: 90deg;
+  width: 70px;
+}
 /* Scrool Animation */
 
 .hidden {
