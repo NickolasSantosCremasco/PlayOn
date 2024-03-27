@@ -77,52 +77,70 @@ function andarMario() {
 }
 
 andarMario();
-
 changeFrames();
 
 /* End Animation Mario */
 
+/* Plane animation */
+
+function plane() {
+  let spaceship = document.getElementById("plane");
+  anime({
+    targets: spaceship,
+    translateX: [
+      { value: 200, duration: 1500 },
+      { value: -100, duration: 2500 },
+      { value: 90, duration: 3000 },
+      { value: -100 },
+    ], // Define os pontos de partida e chegada
+    translateY: [
+      { value: 20, duration: 1000 },
+      { value: -20, duration: 1500 },
+      { value: 20 },
+      { value: -20 },
+      { value: 20 },
+    ],
+    direction: "alternate", 
+    loop: true,
+    duration: 10000, 
+    easing: "easeInOutSine",
+  });
+}
+
+plane();
+
+/* End Animation Plane */
+
+/* Start animation Meteorite */
+
+
+
+/* End Animation Meteorite */
+
 /* Start Container Video  */
 
-var line = document.querySelector(".line");
-setTimeout(() => {
-  anime({
-    targets: line,
-    translateY: -180,
-    rotate: "5turn",
-    easing: "easeInOutQuad",
-    backgroundColor: "#FFF",
-    duration: 500,
-  });
+function block() {
+  var line = document.querySelector(".line");
   setTimeout(() => {
     anime({
       targets: line,
-      scaleY: 16,
-      borderRadius: ["0%", "5%"],
-      backgroundColor: "#00bfff",
-      duration: 1000,
+      translateY: -180,
+      rotate: "5turn",
       easing: "easeInOutQuad",
+      backgroundColor: "#FFF",
+      duration: 500,
     });
-  }, 1500);
-}, 500);
+    setTimeout(() => {
+      anime({
+        targets: line,
+        scaleY: 16,
+        borderRadius: ["0%", "5%"],
+        backgroundColor: "#00bfff",
+        duration: 1000,
+        easing: "easeInOutQuad",
+      });
+    }, 1500);
+  }, 500);
+}
 
-/* Snake */
-
-let snake = document.querySelectorAll(".block");
-
-anime({
-  targets: snake,
-  translateX: 800,
-  duration: 1000,
-});
-
-setTimeout(() => {
-  anime({
-    targets: snake,
-    translateY: 100,
-    duration:1000,
-    update: function () {
-      
-    }
-  });
-}, 1000);
+block();
