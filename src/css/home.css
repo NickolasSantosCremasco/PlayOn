@@ -392,9 +392,14 @@ div.content_2 {
 div.box-container .content {
   position: relative;
   display: flex;
-  margin: 10px;
-  width: 100%;
-  top: 100px;
+  margin-bottom: 10px;
+  width: 90%;
+  height: 350px;
+  top: 10px;
+  border-radius: 50px;
+  background-color: red;
+  left: 50%;
+  transform: translate(-50%);
 }
 
 div.box-container div.past .text-arcade {
@@ -413,13 +418,65 @@ div.box-container div.past .text-arcade p {
 div.box-container div.past .title {
   float: right;
   width: 50%;
+  font-size: 20pt;
 }
 
 div.box-container div.past .title h1 {
   position: relative;
   top: 50%;
-  left: 50%;
+  left: 40%;
   transform: translate(-20%, -50%);
+}
+
+div.arcade-celebrities {
+  position: relative;
+  top: 50%;
+  width: 100%;
+  height: 200px;
+  background-color: red;
+}
+
+div.arcade-celebrities .title {
+  position: relative;
+  width: 50%;
+  font-size: 15pt;
+  left: 50%;
+  transform: translate(-80%, 50%);
+}
+
+div.box-container div.arcade-celebrities .characters-cards {
+  display: flex;
+  width: 50%;
+  gap: 60px;
+}
+
+div.arcade-celebrities .characters-cards .card {
+  position: relative;
+  top: 100px;
+  right: 10%;
+  width: 200px;
+  height: 140px;
+  background-color: black;
+  border-radius: 10px;
+  transition: all 0.5s;
+}
+
+div.arcade-celebrities .characters-cards .card:hover {
+  height: 250px;
+  width: 300px;
+}
+
+div.arcade-celebrities .characters-cards .character {
+  position: relative;
+  width: 50%;
+}
+
+div.arcade-celebrities .characters-cards .character img {
+  position: relative;
+  left: 100%;
+  top: 60px;
+  width: 80px;
+  transform: translate(-50%, -50%);
 }
 
 /* Scrool Animation */
