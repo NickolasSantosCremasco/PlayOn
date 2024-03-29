@@ -24,10 +24,6 @@ var cont = 1;
 
 document.getElementById("radio1").checked = true;
 
-setInterval(() => {
-  nextImg();
-}, 10000);
-
 function nextImg() {
   cont++;
   if (cont > 3) {
@@ -36,6 +32,12 @@ function nextImg() {
 
   document.getElementById("radio" + cont).checked = true;
 }
+
+setInterval(() => {
+  nextImg();
+}, 10000);
+
+
 
 /* Animation Mario */
 

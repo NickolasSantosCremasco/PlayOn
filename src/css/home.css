@@ -2,6 +2,11 @@
   font-family: "arcade";
   src: url(../fonts/arcade_ya/ARCADE_I.TTF) format("truetype");
 }
+
+@font-face {
+  font-family: "straider";
+  src: url(../fonts/straider/Straider.ttf) format("truetype");
+}
 /*
 fonts types
 - opentype 
@@ -128,6 +133,7 @@ span {
   padding: 10px;
   font-family: "Press Start 2P", system-ui;
   font-weight: 100;
+  text-wrap: nowrap;
 }
 
 div.slider-text h1 span {
@@ -222,6 +228,7 @@ div.ship-box-animation .meteorites {
   float: left;
   width: 50%;
   height: 100%;
+  text-wrap: nowrap;
 }
 
 div.slider-box .asteroids .text {
@@ -283,13 +290,18 @@ div.race .text-race {
   position: relative;
   width: 50%;
   color: white;
+  text-wrap: nowrap;
 }
 
 div.race .text-race h1 {
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 500;
   position: relative;
   top: 50%;
   transform: translate(0, -50%);
   padding: 50px;
+  font-size: 15pt;
+  line-height: 2em;
 }
 /* content below */
 
