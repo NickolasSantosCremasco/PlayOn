@@ -44,15 +44,15 @@ let coin = document.querySelector("#moeda");
 let blockCoin = document.querySelector("#blockCoin");
 
 let frames = [
-  "src/img/assets/MarioCaminhando1.png",
-  "src/img/assets/MarioCaminhando2.png",
-  "src/img/assets/MarioCaminhando3.png",
-  "src/img/assets/MarioCaminhando4.png",
+  "src/img/assets/Mario/MarioCaminhando1.png",
+  "src/img/assets/Mario/MarioCaminhando2.png",
+  "src/img/assets/Mario/MarioCaminhando3.png",
+  "src/img/assets/Mario/MarioCaminhando4.png",
 ];
 
 let currentFrame = 0;
 
-function changeFrames(timestamp) {
+function changeFrames() {
   mario.src = frames[currentFrame];
   currentFrame = (currentFrame + 1) % frames.length;
   requestAnimationFrame(changeFrames);
@@ -100,9 +100,9 @@ function plane() {
       { value: -20 },
       { value: 20 },
     ],
-    direction: "alternate", 
+    direction: "alternate",
     loop: true,
-    duration: 10000, 
+    duration: 10000,
     easing: "easeInOutSine",
   });
 }
@@ -110,12 +110,6 @@ function plane() {
 plane();
 
 /* End Animation Plane */
-
-/* Start animation Meteorite */
-
-
-
-/* End Animation Meteorite */
 
 /* Start Container Video  */
 
