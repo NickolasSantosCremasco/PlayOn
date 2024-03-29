@@ -291,6 +291,7 @@ div.race .text-race {
   width: 50%;
   color: white;
   text-wrap: nowrap;
+  float: left;
 }
 
 div.race .text-race h1 {
@@ -302,6 +303,17 @@ div.race .text-race h1 {
   padding: 50px;
   font-size: 15pt;
   line-height: 2em;
+}
+
+div.race .animation-car {
+  position: relative;
+  float: right;
+  width: 50%;
+}
+
+div.race .animation-car img {
+  width: 100%;
+  height: 100%;
 }
 /* content below */
 
@@ -375,6 +387,39 @@ div.content_2 {
   height: 100vh;
 
   margin-bottom: 10%;
+}
+
+div.box-container .content {
+  position: relative;
+  display: flex;
+  margin: 10px;
+  width: 100%;
+  top: 100px;
+}
+
+div.box-container div.past .text-arcade {
+  position: relative;
+  width: 50%;
+  text-align: center;
+}
+
+div.box-container div.past .text-arcade p {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-40%, -50%);
+}
+
+div.box-container div.past .title {
+  float: right;
+  width: 50%;
+}
+
+div.box-container div.past .title h1 {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-20%, -50%);
 }
 
 /* Scrool Animation */
