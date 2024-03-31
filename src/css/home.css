@@ -16,6 +16,12 @@ fonts types
 - svg
 */
 
+body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
 section.slider {
   position: absolute;
   width: 90%;
@@ -424,15 +430,13 @@ div.content_2 {
   width: 220px;
   height: 200px;
   font-family: sans-serif;
-  transition: all 0.8s ease;
+  transition: all 0.1s ease;
+  border-radius: 16px;
 }
 
 .card:hover {
-  transform: scale(1.2);
-}
-
-.card:hover ~ .card {
-  transform: scale(0.8);
+  transform: scale(1.15);
+  box-shadow: 10px 10px 50px black;
 }
 
 .title {

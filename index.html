@@ -160,6 +160,7 @@
                         <div class="card">
                             <div class="card-inner">
                                 <div class="card-front">
+                                    <h3>01</h3>
                                     <div class="character">
                                         <img src="src/img/assets/Asteroids/spaceship.png" alt="">
                                     </div>
@@ -172,6 +173,7 @@
                         <div class="card">
                             <div class="card-inner">
                                 <div class="card-front">
+                                    <h3>02</h3>
                                     <div class="character">
                                         <img src="src/img/assets/DonkeyKong/DonkeyParado.png" alt="">
                                     </div>
@@ -188,6 +190,7 @@
                         <div class="card">
                             <div class="card-inner">
                                 <div class="card-front">
+                                    <h3>03</h3>
                                     <div class="character">
                                         <img src="src/img/site/Mario-hd.png" alt="">
                                     </div>
@@ -199,6 +202,7 @@
                         <div class="card">
                             <div class="card-inner">
                                 <div class="card-front">
+                                    <h3>04</h3>
                                     <div class="character">
                                         <img src="src/img/assets/Car/Carro Parado.png" alt="">
                                     </div>
@@ -212,6 +216,7 @@
                         <div class="card">
                             <div class="card-inner">
                                 <div class="card-front">
+                                    <h3>05</h3>
                                     <div class="character">
                                         <img src="src/img/site/pac-man-hd.png" alt="">
                                     </div>
@@ -228,8 +233,9 @@
                         <div class="card">
                             <div class="card-inner">
                                 <div class="card-front">
+                                    <h3>06</h3>
                                     <div class="character">
-                                        <img src="src/img/site/Mario-hd.png" alt="">
+                                        <img src="src/img/assets/SpaceInvaders/SpaceInvaders.png" alt="">
                                     </div>
                                     <p>Mario</p>
                                 </div>
@@ -243,11 +249,13 @@
                         <div class="card">
                             <div class="card-inner">
                                 <div class="card-front">
+                                    <h3>07</h3>
                                     <div class="character">
-                                        <img src="src/img/assets/Asteroids/spaceship.png" alt="">
+                                        <img src="src/img/assets/Sonic/Sonic-hd.png" alt="">
                                     </div>
-                                    <p>Asteroids</p>
+                                    <p>Sonic</p>
                                 </div>
+
                             </div>
                         </div>
 
@@ -277,7 +285,25 @@
     </footer>
     <script src="src/js/scrool.js"></script>
     <script src="src/js/scripts.js"></script>
+
+    <!--Anime JS-->
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+
+    <!--Vanila-tilt-->
+    <script type="text/javascript" src="src/js/vanilla-tilt.js"></script>
+
+
+    <script>
+
+        VanillaTilt.init(document.querySelectorAll(".card"), {
+            max: 25,
+            speed: 400,
+
+        });
+
+
+
+    </script>
 </body>
 
 </html>
