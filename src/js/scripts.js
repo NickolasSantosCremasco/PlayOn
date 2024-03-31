@@ -37,8 +37,6 @@ setInterval(() => {
   nextImg();
 }, 10000);
 
-
-
 /* Animation Mario */
 
 let mario = document.querySelector("#mario");
