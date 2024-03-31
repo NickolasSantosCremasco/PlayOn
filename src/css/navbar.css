@@ -14,7 +14,7 @@ body {
 /*Navbar*/
 header {
   position: fixed;
-  top: 5%;
+  top: 3%;
   z-index: 1000;
   width: 90%;
   display: flex;

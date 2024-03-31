@@ -402,17 +402,8 @@ div.content_2 {
   top: 10px;
   min-width: 80%;
   max-height: 100%;
-  background-color: rgb(0, 0, 0, 0.2);
-  border-radius: 10px;
-}
-
-.box-container::before,
-.box-container::after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  width: calc(90% + 30px);
-  height: calc(100% + 30px);
+  background-color: #1a1a1e;
+  border-radius: 40px;
 }
 
 .characters-cards {
@@ -452,6 +443,36 @@ div.content_2 {
   height: 100%;
   text-align: center;
   transition: transform 0.8s;
+  border: 1px solid black;
+  box-shadow: 20px 20px 50px black;
+  border-radius: 10px;
+}
+
+.card-desapear {
+  opacity: 0;
+  transition: all 0.5s;
+}
+
+.card-inner:hover .card-desapear {
+  box-shadow: 0;
+  opacity: 1;
+  transition: all 1s;
+}
+
+.card-inner h3 {
+  position: absolute;
+  right: 20px;
+  top: -10px;
+  font-size: 5em;
+  z-index: -1;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.card-inner p {
+  color: white;
+  font-weight: 400;
+  font-size: 1.2em;
+  text-transform: uppercase;
 }
 
 .card-front {
@@ -464,12 +485,9 @@ div.content_2 {
   height: 100%;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  border: 1px solid rgb(0, 0, 0);
+  border-top: 1px solid white;
+  border-left: 1px solid white;
   border-radius: 1rem;
-}
-
-.card-front {
-  background-image: linear-gradient(to bottom right, #870000, #17080370);
 }
 
 .character img {
@@ -489,4 +507,15 @@ div.content_2 {
   filter: blur(0);
   transition: all 1s;
   transform: translateX(0);
+}
+.characters-cards .hidden :nth-child(2) {
+  transition-delay: 400ms;
+}
+
+.characters-cards .hidden :nth-child(3) {
+  transition-delay: 700ms;
+}
+
+.characters-cards .hidden :nth-child(4) {
+  transition-delay: 1000ms;
 }
