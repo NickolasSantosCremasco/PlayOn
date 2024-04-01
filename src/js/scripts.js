@@ -138,3 +138,51 @@ function block() {
 }
 
 block();
+
+/* Content 2 */
+
+/* Cards */
+
+function backgroundCards() {
+  let mario = document.querySelector("#marioHd");
+  let sonic = document.querySelector("#sonic");
+  let kong = document.querySelector("#kong");
+  let ryu = document.querySelector("#ryu");
+  let spaceinvaders = document.querySelector("#spaceInvaders");
+  let pacMan = document.querySelector("#pacMan");
+  let topGear = document.querySelector("#topGear");
+
+  mario.addEventListener("mouseover", backgroundMario);
+  sonic.addEventListener("mouseover", backgroundSonic);
+  kong.addEventListener("mouseover", backgroundKong);
+  ryu.addEventListener("mouseover", backgroundRyu);
+  spaceinvaders.addEventListener("mouseover", backgroundSpaceInvaders);
+  pacMan.addEventListener("mouseover", backgroundPacMan);
+  topGear.addEventListener("mouseover", backgroundTopGear);
+
+  const background = document.querySelector("#backgroundVideo");
+
+  function resetBackground() {
+    background.src = "";
+  }
+
+  function backgroundMario() {}
+
+  function backgroundSonic() {}
+
+  function backgroundKong() {}
+
+  function backgroundRyu() {
+    background.src = "src/video/cards-video/streetFighter.mp4";
+
+    ryu.addEventListener("mouseout", resetBackground);
+  }
+
+  function backgroundSpaceInvaders() {}
+
+  function backgroundPacMan() {}
+
+  function backgroundTopGear() {}
+}
+
+backgroundCards();

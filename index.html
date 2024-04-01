@@ -153,11 +153,13 @@
         <div class="content_2">
             <div class="box-container hidden">
 
+                <video src="" id="backgroundVideo" autoplay muted ></video>
+
                 <div class="arcade-celebrities">
 
                     <div class="characters-cards hidden">
 
-                        <div class="card">
+                        <div class="card" id="spaceInvaders">
                             <div class="card-inner">
                                 <div class="card-desapear">
                                     <div class="card-front">
@@ -171,7 +173,7 @@
                             </div>
                         </div>
 
-                        <div class="card">
+                        <div class="card" id="kong">
                             <div class="card-inner">
                                 <div class="card-desapear">
                                     <div class="card-front">
@@ -189,7 +191,7 @@
                     <div class="characters-cards hidden">
 
 
-                        <div class="card">
+                        <div class="card" id="marioHd">
                             <div class="card-inner">
                                 <div class="card-desapear">
                                     <div class="card-front">
@@ -203,7 +205,7 @@
                             </div>
                         </div>
 
-                        <div class="card">
+                        <div class="card" id="topGear">
                             <div class="card-inner">
                                 <div class="card-desapear">
                                     <div class="card-front">
@@ -219,7 +221,7 @@
 
 
 
-                        <div class="card">
+                        <div class="card" id="pacMan">
                             <div class="card-inner">
                                 <div class="card-desapear">
                                     <div class="card-front">
@@ -237,7 +239,7 @@
                     </div>
                     <div class="characters-cards hidden">
 
-                        <div class="card">
+                        <div class="card" id="ryu">
                             <div class="card-inner">
                                 <div class="card-desapear">
                                     <div class="card-front">
@@ -257,7 +259,7 @@
 
 
                         <div class="card">
-                            <div class="card-inner">
+                            <div class="card-inner" id="sonic">
                                 <div class="card-desapear">
                                     <div class="card-front">
                                         <h3>07</h3>
@@ -276,6 +278,8 @@
 
 
                 </div>
+
+
 
             </div>
         </div>
@@ -310,6 +314,7 @@
         VanillaTilt.init(document.querySelectorAll(".card"), {
             max: 25,
             speed: 400,
+            glare: true
 
         });
 
