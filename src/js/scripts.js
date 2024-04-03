@@ -163,26 +163,68 @@ function backgroundCards() {
   const background = document.querySelector("#backgroundVideo");
 
   function resetBackground() {
-    background.src = "";
+    background.style.transform = "translateX(-100%)";
+
+    if (background.style.transform == "translate(-100%)") {
+      background.src = "";
+    }
   }
 
-  function backgroundMario() {}
+  function backgroundMario() {
+    background.src = "src/video/cards-video/Super-Mario.mp4";
+    background.style.transition = "all 1s ease";
+    background.style.transform = "translate(-50%,-50%)";
 
-  function backgroundSonic() {}
+    mario.addEventListener("mouseout", resetBackground);
+  }
 
-  function backgroundKong() {}
+  function backgroundSonic() {
+    background.src = "src/video/cards-video/Sonic.mp4";
+    background.style.transition = "all 1s ease";
+    background.style.transform = "translateX(0)";
+
+    sonic.addEventListener("mouseout", resetBackground);
+  }
+
+  function backgroundKong() {
+    background.src = "src/video/cards-video/Donkey-Kong.mp4";
+    background.style.transition = "all 1s ease";
+    background.style.transform = "translateX(0)";
+
+    kong.addEventListener("mouseout", resetBackground);
+  }
 
   function backgroundRyu() {
     background.src = "src/video/cards-video/streetFighter.mp4";
+    background.style.transition = "all 1s ease";
+    background.style.transform = "translateX(0)";
 
     ryu.addEventListener("mouseout", resetBackground);
   }
 
-  function backgroundSpaceInvaders() {}
+  function backgroundSpaceInvaders() {
+    background.src = "src/video/cards-video/Space-Invaders.mp4";
+    background.style.transition = "all 1s ease";
+    background.style.transform = "translateX(0)";
 
-  function backgroundPacMan() {}
+    spaceinvaders.addEventListener("mouseout", resetBackground);
+  }
 
-  function backgroundTopGear() {}
+  function backgroundPacMan() {
+    background.src = "src/video/cards-video/Pac-Man.mp4";
+    background.style.transition = "all 1s ease";
+    background.style.transform = "translateX(0)";
+
+    pacMan.addEventListener("mouseout", resetBackground);
+  }
+
+  function backgroundTopGear() {
+    background.src = "src/video/cards-video/Top-Gear.mp4";
+    background.style.transition = "all 1s ease";
+    background.style.transform = "translateX(0)";
+
+    topGear.addEventListener("mouseout", resetBackground);
+  }
 }
 
 backgroundCards();
