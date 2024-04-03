@@ -380,8 +380,8 @@ div.container-video .line {
 
 div.arcade img {
   position: relative;
-  width: 480px;
-  bottom: 11%;
+  width: 580px;
+  bottom: 20%;
 }
 
 /*content_2 */
@@ -414,6 +414,7 @@ div.content_2 {
   z-index: -1000;
   transform: translateX(-100%);
   translate: all 0.5s;
+ 
 }
 
 .characters-cards {

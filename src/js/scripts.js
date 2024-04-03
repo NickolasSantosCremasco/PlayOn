@@ -139,6 +139,22 @@ function block() {
 
 block();
 
+/* Start Frame animation Arcade */
+
+function animationArcade() {
+  let frames = [
+    "src/img/assets/fliperama/Fliperama1.png",
+    "src/img/assets/fliperama/Fliperama2.png",
+    "src/img/assets/fliperama/Fliperama3.png",
+    "src/img/assets/fliperama/Fliperama4.png",
+    "src/img/assets/fliperama/Fliperama5.png",
+    "src/img/assets/fliperama/Fliperama6.png",
+    "src/img/assets/fliperama/Fliperama7.png",
+    "src/img/assets/fliperama/Fliperama8.png",
+    "src/img/assets/fliperama/Fliperama9.png",
+  ];
+}
+
 /* Content 2 */
 
 /* Cards */
@@ -164,7 +180,8 @@ function backgroundCards() {
 
   function resetBackground() {
     background.style.transform = "translateX(-100%)";
-
+    background.style.opacity = "0";
+    background.style.filter = "blur(20px)";
     if (background.style.transform == "translate(-100%)") {
       background.src = "";
     }
@@ -173,7 +190,11 @@ function backgroundCards() {
   function backgroundMario() {
     background.src = "src/video/cards-video/Super-Mario.mp4";
     background.style.transition = "all 1s ease";
-    background.style.transform = "translate(-50%,-50%)";
+    background.style.left = "50%";
+    background.style.transform = "translate(-50%)";
+    background.style.opacity = "1";
+    background.style.filter = "blur(0)";
+    
 
     mario.addEventListener("mouseout", resetBackground);
   }
@@ -181,7 +202,10 @@ function backgroundCards() {
   function backgroundSonic() {
     background.src = "src/video/cards-video/Sonic.mp4";
     background.style.transition = "all 1s ease";
-    background.style.transform = "translateX(0)";
+    background.style.left = "50%";
+    background.style.transform = "translate(-50%)";
+    background.style.opacity = "1";
+    background.style.filter = "blur(0)";
 
     sonic.addEventListener("mouseout", resetBackground);
   }
@@ -189,7 +213,10 @@ function backgroundCards() {
   function backgroundKong() {
     background.src = "src/video/cards-video/Donkey-Kong.mp4";
     background.style.transition = "all 1s ease";
-    background.style.transform = "translateX(0)";
+    background.style.left = "50%";
+    background.style.transform = "translate(-50%)";
+    background.style.opacity = "1";
+    background.style.filter = "blur(0)";
 
     kong.addEventListener("mouseout", resetBackground);
   }
@@ -197,7 +224,10 @@ function backgroundCards() {
   function backgroundRyu() {
     background.src = "src/video/cards-video/streetFighter.mp4";
     background.style.transition = "all 1s ease";
-    background.style.transform = "translateX(0)";
+    background.style.left = "50%";
+    background.style.transform = "translate(-50%)";
+    background.style.opacity = "1";
+    background.style.filter = "blur(0)";
 
     ryu.addEventListener("mouseout", resetBackground);
   }
@@ -205,7 +235,10 @@ function backgroundCards() {
   function backgroundSpaceInvaders() {
     background.src = "src/video/cards-video/Space-Invaders.mp4";
     background.style.transition = "all 1s ease";
-    background.style.transform = "translateX(0)";
+    background.style.left = "50%";
+    background.style.transform = "translate(-50%)";
+    background.style.opacity = "1";
+    background.style.filter = "blur(0)";
 
     spaceinvaders.addEventListener("mouseout", resetBackground);
   }
@@ -213,7 +246,10 @@ function backgroundCards() {
   function backgroundPacMan() {
     background.src = "src/video/cards-video/Pac-Man.mp4";
     background.style.transition = "all 1s ease";
-    background.style.transform = "translateX(0)";
+    background.style.left = "50%";
+    background.style.transform = "translate(-50%)";
+    background.style.opacity = "1";
+    background.style.filter = "blur(0)";
 
     pacMan.addEventListener("mouseout", resetBackground);
   }
@@ -221,7 +257,10 @@ function backgroundCards() {
   function backgroundTopGear() {
     background.src = "src/video/cards-video/Top-Gear.mp4";
     background.style.transition = "all 1s ease";
-    background.style.transform = "translateX(0)";
+    background.style.left = "50%";
+    background.style.transform = "translate(-50%)";
+    background.style.opacity = "1";
+    background.style.filter = "blur(0)";
 
     topGear.addEventListener("mouseout", resetBackground);
   }
