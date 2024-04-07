@@ -414,7 +414,6 @@ div.content_2 {
   z-index: -1000;
   transform: translateX(-100%);
   translate: all 0.5s;
- 
 }
 
 .characters-cards {
@@ -485,6 +484,10 @@ div.content_2 {
   font-weight: 400;
   font-size: 1.2em;
   text-transform: uppercase;
+  position: absolute;
+  left: 50%;
+  top: 80%;
+  transform: translate(-50%);
 }
 
 .card-front {

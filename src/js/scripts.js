@@ -50,11 +50,11 @@ let frames = [
   "src/img/assets/Mario/MarioCaminhando4.png",
 ];
 
-let currentFrame = 0;
+let currentFrameRyu = 0;
 
 function changeFrames() {
-  mario.src = frames[currentFrame];
-  currentFrame = (currentFrame + 1) % frames.length;
+  mario.src = frames[currentFrameRyu];
+  currentFrame = (currentFrameRyu + 1) % frames.length;
   requestAnimationFrame(changeFrames);
 }
 
@@ -142,6 +142,7 @@ block();
 /* Start Frame animation Arcade */
 
 function animationArcade() {
+  let arcade = document.querySelector("#homeArcade");
   let frames = [
     "src/img/assets/fliperama/Fliperama1.png",
     "src/img/assets/fliperama/Fliperama2.png",
@@ -153,7 +154,17 @@ function animationArcade() {
     "src/img/assets/fliperama/Fliperama8.png",
     "src/img/assets/fliperama/Fliperama9.png",
   ];
+
+  function changeFrames() {
+    frameDelay = 1000;
+    currentFrame = (currentFrame + 1) % frames.length;
+    arcade.src = frames[currentFrame];
+    setTimeout(changeFrames, frameDelay);
+  }
+  changeFrames();
 }
+
+animationArcade();
 
 /* Content 2 */
 
@@ -194,7 +205,6 @@ function backgroundCards() {
     background.style.transform = "translate(-50%)";
     background.style.opacity = "1";
     background.style.filter = "blur(0)";
-    
 
     mario.addEventListener("mouseout", resetBackground);
   }
@@ -230,6 +240,42 @@ function backgroundCards() {
     background.style.filter = "blur(0)";
 
     ryu.addEventListener("mouseout", resetBackground);
+
+    function animationRyu() {
+      let framesRyu = [
+        "src/img/assets/Ryu/RyuParado1.png",
+        "src/img/assets/Ryu/RyuParado2.png",
+        "src/img/assets/Ryu/RyuParado3.png",
+        "src/img/assets/Ryu/RyuParado4.png",
+        "src/img/assets/Ryu/RyuParado5.png",
+      ];
+
+      let currentFrame = 0;
+      let imgRyu = document.querySelector("#imgRyu");
+      let frameDelay = 200;
+
+      function changeRyuFrames() {
+        currentFrame = (currentFrame + 1) % framesRyu.length;
+        imgRyu.src = framesRyu[currentFrame];
+
+        if (currentFrame == 3) {
+          imgRyu.style.transform = "translateY(-10%)";
+          imgRyu.style.transition = "all 1s";
+        } else {
+          imgRyu.style.transform = "translateY(0)";
+        }
+
+        setTimeout(changeRyuFrames, frameDelay);
+
+        function resetImg() {
+          imgRyu.src = "src/img/assets/Ryu/RyuParado1.png";
+        }
+
+        imgRyu.addEventListener("mouseout", resetImg);
+      }
+      changeRyuFrames();
+    }
+    animationRyu();
   }
 
   function backgroundSpaceInvaders() {
