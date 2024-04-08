@@ -142,6 +142,7 @@ block();
 /* Start Frame animation Arcade */
 
 function animationArcade() {
+  let currentFrame = 0;
   let arcade = document.querySelector("#homeArcade");
   let frames = [
     "src/img/assets/fliperama/Fliperama1.png",
@@ -239,7 +240,15 @@ function backgroundCards() {
     background.style.opacity = "1";
     background.style.filter = "blur(0)";
 
+    let MouseOverOneTime = false;
+
     ryu.addEventListener("mouseout", resetBackground);
+    ryu.addEventListener("mouseover", function () {
+      if (MouseOverOneTime == false) {
+        MouseOverOneTime = true;
+        animationRyu();
+      }
+    });
 
     function animationRyu() {
       let framesRyu = [
@@ -275,7 +284,6 @@ function backgroundCards() {
       }
       changeRyuFrames();
     }
-    animationRyu();
   }
 
   function backgroundSpaceInvaders() {
@@ -308,7 +316,39 @@ function backgroundCards() {
     background.style.opacity = "1";
     background.style.filter = "blur(0)";
 
+   
+
     topGear.addEventListener("mouseout", resetBackground);
+    ryu.addEventListener("mouseover", function () {
+      if (MouseOverOneTime == false) {
+        MouseOverOneTime = true;
+        animationRyu();
+      }
+    });
+
+    function animationTopGear() {
+      let framesCar = [
+        "src/img/assets/Car/CarroMeiaCurvaDireita.png",
+        "src/img/assets/Car/CarroCurvaDireita.png",
+        "src/img/assets/Car/CarroMeiaCurvaDireita.png",
+        "src/img/assets/Car/CarroParado.png",
+        "src/img/assets/Car/CarroMeiaCurvaEsquerda.png",
+        "src/img/assets/Car/CarroCurvaEsquerda.png",
+        "src/img/assets/Car/CarroMeiaCurvaEsquerda.png",
+        "src/img/assets/Car/CarroParado.png"
+      ];
+      let currentFrame = 0;
+      let imgCar = document.querySelector("#imgTopGear");
+      let animate = false;
+      function changeCarFrames() {
+        currentFrame = (currentFrame + 1) % framesCar.length;
+        imgCar.src = framesCar[currentFrame];
+        let frameDelay = 200;
+        setTimeout(changeCarFrames, frameDelay);
+      }
+      changeCarFrames();
+    }
+    animationTopGear();
   }
 }
 
