@@ -50,11 +50,11 @@ let frames = [
   "src/img/assets/Mario/MarioCaminhando4.png",
 ];
 
-let currentFrameRyu = 0;
+let currentFrame = 0;
 
 function changeFrames() {
-  mario.src = frames[currentFrameRyu];
-  currentFrame = (currentFrameRyu + 1) % frames.length;
+  mario.src = frames[currentFrame];
+  currentFrame = (currentFrame + 1) % frames.length;
   requestAnimationFrame(changeFrames);
 }
 
@@ -240,50 +240,7 @@ function backgroundCards() {
     background.style.opacity = "1";
     background.style.filter = "blur(0)";
 
-    let MouseOverOneTime = false;
-
     ryu.addEventListener("mouseout", resetBackground);
-    ryu.addEventListener("mouseover", function () {
-      if (MouseOverOneTime == false) {
-        MouseOverOneTime = true;
-        animationRyu();
-      }
-    });
-
-    function animationRyu() {
-      let framesRyu = [
-        "src/img/assets/Ryu/RyuParado1.png",
-        "src/img/assets/Ryu/RyuParado2.png",
-        "src/img/assets/Ryu/RyuParado3.png",
-        "src/img/assets/Ryu/RyuParado4.png",
-        "src/img/assets/Ryu/RyuParado5.png",
-      ];
-
-      let currentFrame = 0;
-      let imgRyu = document.querySelector("#imgRyu");
-      let frameDelay = 200;
-
-      function changeRyuFrames() {
-        currentFrame = (currentFrame + 1) % framesRyu.length;
-        imgRyu.src = framesRyu[currentFrame];
-
-        if (currentFrame == 3) {
-          imgRyu.style.transform = "translateY(-10%)";
-          imgRyu.style.transition = "all 1s";
-        } else {
-          imgRyu.style.transform = "translateY(0)";
-        }
-
-        setTimeout(changeRyuFrames, frameDelay);
-
-        function resetImg() {
-          imgRyu.src = "src/img/assets/Ryu/RyuParado1.png";
-        }
-
-        imgRyu.addEventListener("mouseout", resetImg);
-      }
-      changeRyuFrames();
-    }
   }
 
   function backgroundSpaceInvaders() {
@@ -316,40 +273,62 @@ function backgroundCards() {
     background.style.opacity = "1";
     background.style.filter = "blur(0)";
 
-   
-
     topGear.addEventListener("mouseout", resetBackground);
-    ryu.addEventListener("mouseover", function () {
-      if (MouseOverOneTime == false) {
-        MouseOverOneTime = true;
-        animationRyu();
-      }
-    });
-
-    function animationTopGear() {
-      let framesCar = [
-        "src/img/assets/Car/CarroMeiaCurvaDireita.png",
-        "src/img/assets/Car/CarroCurvaDireita.png",
-        "src/img/assets/Car/CarroMeiaCurvaDireita.png",
-        "src/img/assets/Car/CarroParado.png",
-        "src/img/assets/Car/CarroMeiaCurvaEsquerda.png",
-        "src/img/assets/Car/CarroCurvaEsquerda.png",
-        "src/img/assets/Car/CarroMeiaCurvaEsquerda.png",
-        "src/img/assets/Car/CarroParado.png"
-      ];
-      let currentFrame = 0;
-      let imgCar = document.querySelector("#imgTopGear");
-      let animate = false;
-      function changeCarFrames() {
-        currentFrame = (currentFrame + 1) % framesCar.length;
-        imgCar.src = framesCar[currentFrame];
-        let frameDelay = 200;
-        setTimeout(changeCarFrames, frameDelay);
-      }
-      changeCarFrames();
-    }
-    animationTopGear();
   }
 }
 
 backgroundCards();
+
+/* Animation Cards Assets */
+
+function animationRyu() {
+  let framesRyu = [
+    "src/img/assets/Ryu/RyuParado1.png",
+    "src/img/assets/Ryu/RyuParado2.png",
+    "src/img/assets/Ryu/RyuParado3.png",
+    "src/img/assets/Ryu/RyuParado4.png",
+    "src/img/assets/Ryu/RyuParado5.png",
+  ];
+
+  let currentFrame = 0;
+  let imgRyu = document.querySelector("#imgRyu");
+  let frameDelay = 100;
+
+  function changeRyuFrames() {
+    currentFrame = (currentFrame + 1) % framesRyu.length;
+    imgRyu.src = framesRyu[currentFrame];
+    if (currentFrame == 3) {
+      imgRyu.style.transform = "translateY(-10%)";
+      imgRyu.style.transition = "all 1s";
+    } else {
+      imgRyu.style.transform = "translateY(0)";
+    }
+    setTimeout(changeRyuFrames, frameDelay);
+  }
+  changeRyuFrames();
+}
+animationRyu();
+
+function animationTopGear() {
+  let framesCar = [
+    "src/img/assets/Car/CarroMeiaCurvaDireita.png",
+    "src/img/assets/Car/CarroCurvaDireita.png",
+    "src/img/assets/Car/CarroMeiaCurvaDireita.png",
+    "src/img/assets/Car/CarroParado.png",
+    "src/img/assets/Car/CarroMeiaCurvaEsquerda.png",
+    "src/img/assets/Car/CarroCurvaEsquerda.png",
+    "src/img/assets/Car/CarroMeiaCurvaEsquerda.png",
+    "src/img/assets/Car/CarroParado.png",
+  ];
+  let currentFrame = 0;
+  let imgCar = document.querySelector("#imgTopGear");
+
+  function changeCarFrames() {
+    currentFrame = (currentFrame + 1) % framesCar.length;
+    imgCar.src = framesCar[currentFrame];
+    let frameDelay = 200;
+    setTimeout(changeCarFrames, frameDelay);
+  }
+  changeCarFrames();
+}
+animationTopGear();

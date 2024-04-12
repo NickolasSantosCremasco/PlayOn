@@ -401,22 +401,28 @@ div.content_2 {
   background-image: url();
   top: 10px;
   min-width: 75%;
-  max-height: 90%;
+  max-height: 80%;
   background-color: #1a1a1e;
   border-radius: 40px;
 }
 
 .box-container div.titleCelebrities {
   position: absolute;
-  top: -80px;
-  left: 20px;
+  background-color: black;
+  width: 500px;
+  height:100px;
+  top: -130px;
+  border-radius: 50px;
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .box-container div.titleCelebrities h1 {
   font-family: "Press Start 2P", system-ui;
   font-weight: 100;
   text-transform: uppercase;
+  color: white;
 }
 
 div.titleCelebrities div {
@@ -449,7 +455,7 @@ div.titleCelebrities div {
 .card {
   background-color: transparent;
   width: 220px;
-  height: 180px;
+  height: 150px;
   font-family: sans-serif;
   transition: all 0.1s ease;
   border-radius: 18px;
