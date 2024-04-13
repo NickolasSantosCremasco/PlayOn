@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="shortcut icon" href="../img/site/Logo.png" type="image/x-icon">
+
     <!--Fonts: Press Start 2D , Open Sans, -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,7 +21,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="../css/navbar.css">
-    <link rel="stylesheet" href="src/css/home.css">
+    <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/about.css">
 
 
@@ -27,7 +29,7 @@
 </head>
 
 <body>
-    <header>
+    <header class="navbar">
         <a href="../../index.html">
             <img src="../img/site/Logo.png" class="logo" alt="">
         </a>
@@ -43,11 +45,43 @@
 
     </header>
 
+    <div class="container">
+        <div class="text-about">
+            <div class="content-about">
+                <div class="hidden">
+                    <h3>Produzido por PlayOn</h3>
+                </div>
+                <div class="hidden">
+                    <h1>Sobre Nós</h1>
+                </div>
+                <div class="hidden">
+                    <p>PLAYON é uma empresa que tem como compromisso entender <br> e entreter nossos visitantes a partir da criação de jogos clássicos. <br> Relembrarmos da nostalgia e como podemos reconstrui-la.
+                    <br>
+                    <br>
+                    <p>Nos especializamos na construção de jogos e iremos mostrar.</p>
+                </div>
+            </div>
+        </div>
+
+        <main class="gameboy">
+            <div class="gameboy-body">
+                <header class="gameboy-head"></header>
+                <section class="screen"></section>
+                <section class="actions">
+                    <div class="directions"></div>
+                    <div class="buttons"></div>
+                    <div class="pause-play"></div>
+                </section>
+            </div>
+        </main>
+    </div>
 
 
 
 
-    <script src="src/js/scripts.js"></script>
+
+    <script src="../js/about.js"></script>
+    <script src="../js/scrool.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
 </body>
 

@@ -12,7 +12,7 @@ body {
 }
 
 /*Navbar*/
-header {
+header.navbar {
   position: fixed;
   top: 3%;
   z-index: 1000;
