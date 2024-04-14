@@ -62,6 +62,14 @@ div.content-about p {
 
 /*GameBoy*/
 
+button {
+    outline: 0 !important;
+    cursor: pointer;
+}
+
+button:focus {
+    box-shadow: inset 0 0 !important;
+}
 .gameboy {
     width: 50%;
     height: 100vh;
@@ -75,10 +83,10 @@ div.content-about p {
     top: 20px;
     background-color:var(--blue);
     width: 320px;
-    height: 480px;
+    height: 540px;
     border-radius: 20px 20px 50px;
-    border: 5px solid var(--stroke );
-    box-shadow: inset 6px 0 rgba(255,255,255,.7), inset -10px 0 rgba(0,0,0,0.2);
+    border: 6px solid var(--stroke );
+    box-shadow: inset 10px 0 rgba(255,255,255,.7), inset -10px 0 rgba(0,0,0,0.2);
     
 }
 
@@ -90,9 +98,9 @@ div.content-about p {
     
 }
 
-.gameboy-head:after, .gameboy-head:before {
+.gameboy-head:before, .gameboy-head:after {
     content:"";
-    height: 100%;
+    height: 7%;
     width: 6px;
     background-color: var(--stroke);
     position:absolute;
@@ -105,9 +113,201 @@ div.content-about p {
 .screen {
     width: 246px;
     background-color: var(--light-brown);
+    margin: 30px 0 0 30px;
+    border: 6px solid var(--stroke);
+    padding: 30px;
+    border-radius: 10px 10px 30px;
+    position: relative;
+    overflow: hidden;
 }
 
+.screen .glass {
+    width: 100%;
+    height: 160px;
+    background-color: var(--green);
+    border: 6px solid var(--stroke);
+    box-shadow: inset 6px 6px rgba(0,0,0,.2);
 
+    
+}
+
+.glass:after, .glass:before{
+    content: "";
+    height: 200%;
+    width: 30px;
+    background-color: rgba(255,255,255,0.4);
+    position: absolute;
+    transform: rotate(45deg);
+    top: -80px;
+  
+}
+
+.glass::after {right: -20px; width: 50px !important;}
+
+.screen span {
+width: 10px;
+height: 10px;
+background-color: var(--red);
+position: absolute;
+left: 10px;
+border-radius: 50%;
+border: 2px solid var(--stroke);
+top: 50%;
+margin-top: -10px;
+
+}
+
+.screen:after, .screen:before {
+    content: "";
+    height: 3px;
+    position: absolute;
+    top: 12px;
+    background-color: var(--stroke);
+}
+
+.screen:before {
+    width: 100px;
+    left: 10px;
+}
+
+.screen:after {
+    width: 30px;
+    right: 10px;
+}
+
+.actions {
+    padding: 20px 14px 0;
+}
+
+.directions {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 6px solid var(--stroke);
+    background-color: var(--gray);
+    position: relative;
+    display: flex;
+    float: left;
+}
+
+.directions button {
+    border: 6px solid var(--stroke);
+    background-color: var(--light-brown);
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    z-index: 9;
+}
+
+.arrow-left {
+    border-right: none !important;
+    box-shadow: inset 0 4px #fff, inset 0 -4px rgba(0,0,0,0.2);
+    top: 50%;
+    margin-top: -15px;
+    left: 13.5px;
+}
+
+.arrow-top {
+    border-bottom: none !important;
+    box-shadow: inset 0 4px #fff;
+    left: 50%;
+    margin-left: -15px;
+    top: 13.5px;
+
+}
+
+.arrow-right {
+    border-left: none !important;
+    box-shadow: inset 0 4px #fff, inset 0 -4px rgba(0,0,0,.2);
+    top: 50%;
+    margin-top: -15px;
+    right: 13.5px;
+
+}
+
+.arrow-bottom {
+    border-top: none !important;
+    box-shadow: inset 0 -4px rgba(0,0,0,.2);
+    left: 50%;
+    margin-left: -15px;
+    bottom: 13.5px;
+}
+
+.diretions:after {
+    content: "";
+    width: 30px;
+    height: 30px;
+    background-color: var(--light-brown);
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin: -15px;
+    z-index: 1;
+}
+
+.buttons {
+    border: 6px solid var(--stroke);
+    padding: 8px 3px;
+    background-color: var(--gray);
+    border-radius: 100px;
+    float: right;
+    position: relative;
+    transform: rotate(-20deg);
+    top: 30px;
+}
+
+.buttons button {
+    background-color: var(--red);
+    border: 6px solid var(--stroke);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    box-shadow: inset 4px 0 rgba(255,255,255,.7), inset -4px 0 rgba(0,0,0,.2);
+    margin: 0 5px;
+}
+
+.start-reset {
+    list-style: none;
+    text-align: center;
+    width: 100%;
+    float: left;
+}
+
+.start-reset li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.start-reset li button {
+    border: 6px solid var(--stroke);
+    background-color: var(--light-brown);
+    width: 20px;
+    height: 50px;
+    padding: 0;
+    border-radius: 10px;
+    box-shadow: inset 3px 0 #fff, 3px 0 rgba(0,0,0,.2);
+    transform: rotate(60deg);
+    position: relative;
+    left: -25px;
+    top: -10px;
+}
+
+.points {
+    text-align: center;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+
+.points span {
+    font-size: 25px;
+    line-height: 0px;
+    letter-spacing: 3px;
+    margin-top: -3px;
+    display: block;
+    color: var(--stroke);
+}
 
 /*Transition Content*/
 
