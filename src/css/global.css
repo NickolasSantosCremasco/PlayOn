@@ -5,3 +5,26 @@
     list-style: none;
     box-sizing: border-box;
 }
+
+@font-face {
+    font-family: "arcade";
+    src: url(../fonts/arcade_ya/ARCADE_I.TTF) format("truetype");
+  }
+  
+  @font-face {
+    font-family: "straider";
+    src: url(../fonts/straider/Straider.ttf) format("truetype");
+  }
+
+  @font-face {
+    font-family: "SuperMario";
+    src: url(../fonts/mario_luigi_2/MarioLuigi2.ttf) format("truetype");
+  }
+  /*
+  fonts types
+  - opentype 
+  - truetype
+  - embedded-opentype
+  - truetype-aat (Apple Advanced Typografy)
+  - svg
+  */

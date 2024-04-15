@@ -1,17 +1,6 @@
 /* Navbar */
 
-function menuShow() {
-  let menuMobile = document.querySelector("#menu-icon");
-  let navlist = document.querySelector(".navlist");
-  if (navlist.classList.contains("open")) {
-    navlist.classList.remove("open");
-    menuMobile.classList.add("bx-x");
-    menuMobile.classList.remove("bx-x");
-  } else {
-    navlist.classList.add("open");
-    menuMobile.classList.add("bx-x");
-  }
-}
+
 
 /* End Navbar */
 
