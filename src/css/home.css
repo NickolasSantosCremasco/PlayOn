@@ -4,6 +4,8 @@ body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  background: url(https://www.pontoxtecidos.com.br/static/567/sku/tricoline-estampada-100-algodao-infantil-video-game-retro-2767-var02-1661972703446.png)  center ;
+  background-size: cover;
 }
 
 section.slider {

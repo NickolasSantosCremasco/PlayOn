@@ -80,7 +80,7 @@ button:focus {
 
 .gameboy-body {
     position: relative;
-    top: 20px;
+    top:65px;
     background-color:var(--blue);
     width: 320px;
     height: 540px;
