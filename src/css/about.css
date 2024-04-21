@@ -4,8 +4,6 @@ div.container {
     min-width: 100vw;
     height: 100vh;
     display: flex;
-   
-    
 
 }
 
@@ -13,16 +11,17 @@ div.text-about {
     position: relative;
     width: 55%;
     height: 100%;
-
-  
 }
 
 div.content-about {
     position: relative;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-30%,-65%);
+}
 
+.content-about div {
+    margin-top: 10px;
 }
 
 div.content-about h3 {
@@ -31,19 +30,43 @@ div.content-about h3 {
 }
 
 div.content-about h1 {
-    font-size: 50pt;
+    position: relative;
+    font-size: 100pt;
+    font-family: "gamer";
+    left: 10px;
 }
-
-
 
 div.content-about p {
     position: relative;
     top: 20px;
     line-height: 30px;
     font-size: 15pt;
-    left: 10px;
+    
+
 }
 
+.btn-about {
+    position: relative;
+    margin-top: 40px;
+    max-width: 500px;
+    padding: 15px;
+    background-color:  #008542;
+    box-shadow: inset 5px 0 rgb(21 108 0 / 50%), inset -4px 0 rgb(100 253 31 / 50%), inset 0 5px rgb(100 253 31 / 99%), inset 0 -5px rgb(21 108 0 / 50%);
+    text-align: center;
+    border: 3px solid black;
+    transition: all .1s;
+    letter-spacing: .6px;
+    cursor: pointer;
+    
+    
+    
+}
+
+
+
+.btn-about:hover {
+    transform: scale(1.05);
+}
 
 
 /*End About Us*/
@@ -337,3 +360,11 @@ margin-top: -10px;
     transition-delay: 1000ms;
   }
   
+
+  /* Animations */
+
+  @keyframes bounce {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}

@@ -4,8 +4,7 @@ body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  background: url(https://www.pontoxtecidos.com.br/static/567/sku/tricoline-estampada-100-algodao-infantil-video-game-retro-2767-var02-1661972703446.png)  center ;
-  background-size: cover;
+ 
 }
 
 section.slider {
@@ -123,7 +122,7 @@ div.slider-text h1,
 h4,
 span {
   padding: 10px;
-  font-family: "SuperMario";
+  font-family: "Press Start 2P", system-ui;
   font-weight: 100;
   text-wrap: nowrap;
   text-transform: uppercase;
@@ -134,9 +133,9 @@ div.slider-text h1 span {
 }
 
 div.slider-text h1 {
-  font-size: 80pt;
+  font-size: 50pt;
   margin-left: 20px;
-  color: rgb(0, 179, 255);
+  color: rgb(255, 0, 0);
 }
 
 .animation-mario {
