@@ -1,7 +1,9 @@
 /*About Us*/
-
-div.container {
-    min-width: 100vw;
+body {
+    min-height: 200vh;
+}
+.container {
+    width: 100vw;
     height: 100vh;
     display: flex;
 
@@ -18,6 +20,7 @@ div.content-about {
     top: 55%;
     left: 50%;
     transform: translate(-30%,-65%);
+    
 }
 
 .content-about div {
@@ -336,20 +339,45 @@ margin-top: -10px;
 
 /*Cards*/
 
+
+
+.container:nth-child(3) {
+    background-image: url(https://img.freepik.com/fotos-premium/fundo-de-jogos-de-arcade-dos-anos-80-nostalgico-retro-dos-anos-80_962764-95575.jpg);
+    position: relative;
+    background-size: cover;
+    background-position:center;
+    background-repeat: no-repeat;  
+   width: 90%;
+   height: 80vh;
+    left: 50%;
+    top: 100px;
+    transform: translate(-50%);
+    border-radius: 30px;
+    box-shadow: 1px 1px 10px black;
+
+
+
+}
+
+
 .card-container {
     width: 100vw;
-    height: 100vh;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: 40px;
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    border-radius: 30px;    
     
 }
 
 .card {
-    width: 280px;
+    width: 250px;
     height: 300px;
     perspective: 1000px;
+    
 
 }
 
@@ -362,10 +390,9 @@ margin-top: -10px;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 10px;
-    border: 3px solid black;
     transition: all .5s;
     text-align: center;
+    box-shadow: inset 0px 4px rgb(34, 240, 2), inset -4px 0 rgba(34, 240, 2, .5), inset 4px 0 rgba(255,255,255,.7), inset 0 -4px rgba(0,0,0,.5);
     
 }
 
@@ -373,19 +400,124 @@ margin-top: -10px;
     background-color: #008542;
     transform: rotateY(0deg);
     padding: 10px;
-}
-
-.behind {
-    background-color: red;
-    transform: rotateY(180deg);
     
 }
+
+.front h3 {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 10px;
+    background-color: rgba(0,0,0,.2);
+    color: white;
+    font-size: 10pt;
+    font-weight: 100;
+    font-family: 'Press Start 2P';
+
+}
+
+.front h1 {
+    font-weight: 500;
+    font-size: 17.5pt;
+    padding: 10px;
+    text-transform: uppercase;
+    font-family: 'SuperMario';
+    text-shadow: 1px 1px 7px black;
+}
+
+#nayara {
+    background: url(https://i.pinimg.com/564x/08/05/f3/0805f3f1a598a89383a57a74fc8bcc69.jpg) no-repeat center;
+    background-size: cover;
+    color: white;
+
+}
+
+#bruno {
+
+    background: url(https://files.meiobit.com/wp-content/uploads/2021/08/Sonic-The-Hedgehog-1060x596.png) no-repeat center;
+    background-size: cover;
+    color: white;
+    
+
+}
+
+#bruno h1 {
+    font-family: "sonic";
+    color:white;
+}
+
+#allana {
+    background: url(https://rodasdadiversao.files.wordpress.com/2014/12/fundo-pacman.jpg) no-repeat center;
+    background-size: cover;
+    color: white;
+
+}
+
+#allana h1 {
+    font-family: 'pacMan';
+    
+}
+
+#nickolas {
+
+    background: url(https://upload.wikimedia.org/wikipedia/pt/4/46/Street_Fighter_II_%28arcade%29_screenshot.png) no-repeat right;
+    background-size: cover;  
+    color: rgb(255, 255, 255);
+}
+
+.back {
+    background-color: rgb(26, 26, 26);
+    transform: rotateY(180deg); 
+    
+}
+
+.back .imgFace {
+    width: 100%;
+    height: 50%;
+ 
+}
+
+.back .imgFace img {
+    position: relative;
+    bottom: 10px;
+    width: 150px;
+
+}
+
+.back .name {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    top: 20px;
+    width: 90%;
+    height: 30%;
+    background-color:rgba(0,0,0,.5);
+    
+}
+
+.name h1 {
+    position: relative;
+    bottom: 3px;
+    font-size: 30pt;
+    color: white;
+    font-weight: 100;
+    font-family: 'gamer';
+    text-transform: uppercase;
+    
+}
+
+.name img {
+    width: 50px;
+}
+
+
 
 .card:hover .front {
     transform: rotateY(-180deg);
 }
 
-.card:hover .behind {
+.card:hover .back {
     transform: rotateY(0deg);
 }
 
@@ -406,16 +538,16 @@ margin-top: -10px;
     transition: all 1s;
     transform: translateX(0);
   }
-  .characters-cards .hidden :nth-child(2) {
+  .c2 {
+    transition-delay: 200ms;
+  }
+  
+  .c3 {
     transition-delay: 400ms;
   }
   
-  .characters-cards .hidden :nth-child(3) {
-    transition-delay: 700ms;
-  }
-  
-  .characters-cards .hidden :nth-child(4) {
-    transition-delay: 1000ms;
+  .c4   {
+    transition-delay: 600ms;
   }
   
 

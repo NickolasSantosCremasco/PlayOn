@@ -27,6 +27,21 @@
     src: url(../fonts/gamer_2/Gamer.ttf) format("truetype");
   }
 
+  @font-face {
+    font-family: "sonic";
+    src: url(../fonts/nise-sega-sonic/NiseSegaSonic.TTF) format("truetype");
+  }
+
+  @font-face {
+    font-family: "pacMan";
+    src: url(../fonts/pacfont/PAC-FONT.TTF) format('truetype');
+  }
+
+  @font-face {
+    font-family: "StreetFighter";
+    src: url(../fonts/street_fighter/Street\ Fighter.ttf) format("truetype");
+  }
+
   html {
     scroll-behavior: smooth;
   }
