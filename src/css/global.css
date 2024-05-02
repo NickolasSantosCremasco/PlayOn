@@ -6,6 +6,10 @@
     box-sizing: border-box;
     
 }
+@font-face {
+  font-family: "topGear";
+  src: url(../fonts/topGear/Helvetica\ Neue\ 67\ Medium\ Condensed\ Oblique.otf) format("opentype");
+}
 
 @font-face {
     font-family: "arcade";

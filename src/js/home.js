@@ -100,6 +100,33 @@ plane();
 
 /* End Animation Plane */
 
+/* Star Animation Slide-Car */
+
+function animationCar() {
+  let littleCar = document.querySelector('#littleCar');
+  anime({
+    targets: littleCar,
+    translateX: [
+      { value: -400, duration: 3000 },
+      { value: 90, duration: 3500 },
+      { value: -300, duration:4000 },
+    ], // Define os pontos de partida e chegada
+    translateY: [
+      { value: 20, duration: 1000 },
+      { value: -20, duration: 1500 },
+      { value: 20 },
+      { value: -20 },
+      { value: 20 },
+    ],
+    direction: "alternate",
+    loop: true,
+    duration: 10000,
+    easing: "easeInOutSine",
+  });
+}
+
+animationCar();
+
 /* Start Container Video  */
 
 function block() {

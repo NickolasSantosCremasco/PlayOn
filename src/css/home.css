@@ -307,6 +307,14 @@ div.race .animation-car img {
   width: 100%;
   height: 100%;
 }
+
+div.race #littleCar {
+  position: relative;
+  bottom: 200px;
+  left: 160px;
+}
+
+
 /* content below */
 
 div.content-below {
@@ -390,16 +398,18 @@ div.content_2 {
   min-width: 75%;
   max-height: 80%;
   background-color: #1a1a1e;
-  border-radius: 40px;
+  border: 5px solid rgb(128, 128, 128);
+  box-shadow: inset 5px 0 rgb(0, 0, 0), inset 0 5px rgb(0, 0, 0), inset -5px 0 rgb(0, 0, 0), inset 0 -5px rgb(0, 0, 0);
+  border-radius: 10px;
 }
 
 .box-container div.titleCelebrities {
   position: absolute;
-  background-color: black;
+  color: black;
   width: 500px;
   height:100px;
   top: -130px;
-  border-radius: 50px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -408,8 +418,8 @@ div.content_2 {
 .box-container div.titleCelebrities h1 {
   font-family: "Press Start 2P", system-ui;
   font-weight: 100;
-  text-transform: uppercase;
-  color: white;
+  
+  font-size: 30pt;
 }
 
 div.titleCelebrities div {
@@ -516,6 +526,7 @@ div.titleCelebrities div {
   border-top: 1px solid white;
   border-left: 1px solid white;
   border-radius: 1rem;
+  text-wrap: nowrap;
 }
 
 .character img {
