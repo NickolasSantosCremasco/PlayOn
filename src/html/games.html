@@ -45,15 +45,77 @@
 
     </header>
 
-    <div class="main-container">
-        <img src="../img/site/Img-games-removebg-preview.png" alt="">
-    </div>
+    <main class="main-container">
+        <section class="animationGamer">
+
+            <h2 class="text" id="textGames">Jogos Indies PlayOn &copy;</h2>
+
+        </section>
+        <section class="LinkGames">
+            <div class="game">
+                oi
+
+            </div>
+            <div class="game">
+                oi
+            </div>
+        </section>
+    </main>
     
 
 
     <script src="../js/games.js"></script>
     <script src="../js/global.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+    <script>
+        const textGames = document.querySelector('#textGames');
+        textGames.innerHTML = textGames.textContent.replace(/\S/g, "<span>$&</span>");
+
+        anime.timeline({
+            loop:true
+        })
+
+        .add({
+            targets: '#textGames span',
+            translateY:[-600, 0], 
+            scale:[10,1],
+            opacity:[0,1],
+            easing: "easeOutExpo",
+            duration:2500,
+            delay:anime.stagger(100)
+             //Delay em cada elemento span
+        })
+
+        .add({
+            targets: '#textGames span',
+            translateX:[0,-600], 
+            scale:[1,1],
+            opacity:[1,0],
+            easing: "easeOutExpo",
+            duration:3500,
+            delay:anime.stagger(100) //Delay em cada elemento span
+        })
+
+        .add({
+            targets: '#textGames span',
+            translateX:[1000, 0], 
+            scale:[1,1],
+            opacity:[0,1],
+            easing: "easeOutExpo",
+            duration:2000,
+            delay:anime.stagger(100) //Delay em cada elemento span
+        })
+
+        .add({
+            targets: '#textGames span',
+            translateX:[0, -1000], 
+            scale:[1,1],
+            opacity:[1,1],
+            easing: "easeOutExpo",
+            duration:1000,
+            delay:anime.stagger(100) //Delay em cada elemento span
+        })
+    </script>
 </body>
 
 </html>

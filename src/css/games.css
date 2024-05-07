@@ -1,8 +1,59 @@
 
 .main-container {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+  
+   
+}
+
+section {   
+    position: relative;
+    top: 55px;
+    width: 45%;
+    height: 75vh;
+    margin: 10px;
+    text-align: center;
+
+}
+
+section.animationGamer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30pt;
+   
+    
+}
+
+#textGames span {
+    font-family: 'gamer';
+    font-size: 120pt;
+    display: inline-block;
+
+}
+
+
+section.LinkGames {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+}
+.game {
+    width: 95%;
+    height: 50%;
+    border-radius: 20px;
+    background-color: red;
+    transition: all 1s;
+  
+}
+
+.game:hover {
+    transform: scale(1.05);
+    box-shadow: 1px 1px 10px black;
 }
