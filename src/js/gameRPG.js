@@ -1,3 +1,19 @@
+//canvas background
+
+const canvas = document.querySelector('#canvas')
+canvas.height = window.innerHeight
+canvas.width = window.innerWidth
+ctx = canvas.getContext('2d');
+let height = (window.innerHeight*50)/100
+let width = (window.innerWidth*50)/100
+
+ctx.fillRect(height,600,window.innerWidth-100,innerHeight-100)
+
+
+
+
+
+//movement character
 
 var dx; //Direction x
 var dy; //Direction Y
@@ -22,13 +38,29 @@ function inicia() {
 function keyDown() {
     var tecla = event.key; // GetArrowNumber
     if (tecla== "ArrowLeft" ) { //Left
-        dx=-1;
+        if (dx >= window.innerWidth || dx < window.innerWidth) {
+            dx=0
+        } else {
+            dx=-1;
+        }
     } else if (tecla == "ArrowUp") { //Up
-        dy=-1;
+        if (dy > window.innerHeight || dy < window.innerHeight) {
+            dy=0
+        } else {
+            dy=-1;
+        }
     } else if (tecla == "ArrowRight") { //right
-        dx=1;
+        if (dx > window.innerWidth || dx > window.innerWidth) {
+            dx=0
+        } else {
+            dx=1;
+        }
     } else if (tecla == "ArrowDown") { //bottom
-        dy=1;
+        if (dy > window.innerHeight || dy < window.innerHeight) {
+            dy = 0
+        } else {
+            dy=1;
+        }
     }
 }
 function keyUp() {
