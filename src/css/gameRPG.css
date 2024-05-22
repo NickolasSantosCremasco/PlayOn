@@ -5,6 +5,12 @@ body {
 canvas {
     display: block;
     background-color: #87CEEB;
-    width: 100vw;
-    height: 100vh;
+ 
+}
+
+#dv1 {
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    position: absolute;
 }

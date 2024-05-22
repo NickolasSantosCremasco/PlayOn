@@ -533,6 +533,13 @@ div.titleCelebrities div {
   width: 100px;
   transform: translateZ(20px);
 }
+
+#ImgMario {
+  position: relative;
+  right: 20px;
+  bottom: 20px;
+  width: 150px;
+}
 /* Scrool Animation */
 
 .hidden {

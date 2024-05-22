@@ -1,114 +1,58 @@
-let canvasEl = document.querySelector('#canvas');
-let ctx = canvasEl.getContext('2d');
 
-canvasEl.width = window.innerWidth;
-canvasEl.height = window.innerHeight;
+var dx; //Direction x
+var dy; //Direction Y
+var px; //position x
+var py; //position y
+var vel; //speed
+var obj; // Which obj will move
+var tmp; //timer
 
-const tileSize = 32
+function inicia() {
+    dx=0;
+    dy=0;
+    px=0;
+    py=0;
+    vel=10;
+    obj=document.querySelector('#dv1')
+    document.addEventListener('keydown', keyDown) // happen when the key is press
+    document.addEventListener('keyup', keyUp) // happen when the key is realesed
+    tmp=setInterval(enterFrame, 20); //20 movement interval
+}
 
-const map = [
-    [1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 2, 2, 2, 2, 2, 2, 1],
-    [1, 2, 3, 3, 3, 3, 2, 1],
-    [1, 2, 3, 1, 1, 3, 2, 1],
-    [1, 2, 3, 1, 1, 3, 2, 1],
-    [1, 2, 3, 3, 3, 3, 2, 1],
-    [1, 2, 2, 2, 2, 2, 2, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1]
-]
+function keyDown() {
+    var tecla = event.key; // GetArrowNumber
+    if (tecla== "ArrowLeft" ) { //Left
+        dx=-1;
+    } else if (tecla == "ArrowUp") { //Up
+        dy=-1;
+    } else if (tecla == "ArrowRight") { //right
+        dx=1;
+    } else if (tecla == "ArrowDown") { //bottom
+        dy=1;
+    }
+}
+function keyUp() {
+    var tecla = event.key; 
+    if (tecla=="ArrowLeft" ) { 
+        dx=0;
+    } else if (tecla =="ArrowUp" ) { 
+        dy=0;
+    } else if (tecla == "ArrowRight" ) { 
+        dx=0;
+    } else if (tecla == "ArrowDown" ) { 
+        dy=0;
+    }
+}
 
-const images = {}
-const loadImages = () => {
-    const sources = {
-        1: '../img/assets/Car/CarroMeiaCurvaDireita.png',
-        2: '../img/assets/Car/CarroMeiaCurvaDireita.png',
-        3: '../img/assets/Car/CarroMeiaCurvaDireita.png',
-    };
+function enterFrame() {
+    px += dx*vel;
+    py += dy*vel;
+    obj.style.left=px+'px'
+    obj.style.top=py+'px'
 
-
-    let loadedImages = 0;
-    const numImages = Object.keys(sources).length;
-
-    return new Promise((resolve) => {
-        for (const key in sources) {
-            images[key] = new Image();
-            images[key].src = sources[key];
-            images[key].onload = () => {
-                if (++loadedImages >= numImages) {
-                    resolve();
-                }
-            };
-        };
-    });
 
 }
-const drawnMap = () => {
-    for (let row = 0; row < map.length; row++) {
-        for (let col = 0; col < map[row].length;col++) {
-            const tile = map[row][col];
-            if (images[tile]) {
-                ctx.drawImage(images[tile], col * tileSize, row * tileSize, tileSize, tileSize);
-            }
-        }
-    }
-};
-
-//Character
-
-const player = {
-    x: 2 * tileSize,
-    y: 2 * tileSize,
-    width: tileSize,
-    height: tileSize,
-    color: '#FF0000'
-};
-
-const drawPlayer = () => {
-
-    ctx.fillStyle = player.color;
-    ctx.fillRect(player.x, player.y, player.width, player.height);
-    drawnMap();
-    drawPlayer();
- };
-
- document.addEventListener('keydown', (event) => {
-    const speed = tileSize;
-    switch (event.key) {
-        case 'ArrowUp':
-            player.y -= speed;
-            break
-        case 'ArrowDown':
-            player.y += speed;
-            break
-        case 'ArrowLeft':
-            player.x -= speed;
-            break
-        case 'ArrowRight':
-            player.x += speed;
-            break
-    }
-    updateGame();
- });
-
- function updateGame() {
-    ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
-    drawnMap();
-    drawPlayer();
- }
-
- loadImages().then(() => {
-    updateGame()
- })
 
 
 
-
-
-
-
-
-
-
-
-
-
+window.addEventListener('load',inicia);
