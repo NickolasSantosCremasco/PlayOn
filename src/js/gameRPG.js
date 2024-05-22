@@ -38,29 +38,15 @@ function inicia() {
 function keyDown() {
     var tecla = event.key; // GetArrowNumber
     if (tecla== "ArrowLeft" ) { //Left
-        if (dx >= window.innerWidth || dx < window.innerWidth) {
-            dx=0
-        } else {
-            dx=-1;
-        }
+        dx=-1;       
     } else if (tecla == "ArrowUp") { //Up
-        if (dy > window.innerHeight || dy < window.innerHeight) {
-            dy=0
-        } else {
-            dy=-1;
-        }
+        dy=-1;
+        
     } else if (tecla == "ArrowRight") { //right
-        if (dx > window.innerWidth || dx > window.innerWidth) {
-            dx=0
-        } else {
-            dx=1;
-        }
+        dx=1;
+        
     } else if (tecla == "ArrowDown") { //bottom
-        if (dy > window.innerHeight || dy < window.innerHeight) {
-            dy = 0
-        } else {
-            dy=1;
-        }
+        dy=1;    
     }
 }
 function keyUp() {
@@ -76,12 +62,27 @@ function keyUp() {
     }
 }
 
+//px = posição X,
 function enterFrame() {
-    px += dx*vel;
-    py += dy*vel;
+    var nextPx = px + dx * vel; //positionX + directionX * Speed
+    var nextPy = py + dy * vel;
+    if (nextPx < 0) {
+        nextPx = 0;
+    } else if (nextPx + obj.offsetWidth > window.innerWidth) {
+        nextPx = window.innerWidth - obj.offsetWidth;
+    }
+
+    if (nextPy < 0) {
+        nextPy = 0;
+    } else if (nextPy + obj.offsetWidth > window.innerHeight) { // can't be bigger than PC screen
+        nextPy = window.innerHeight - obj.offsetHeight;
+    }
+
+    px = nextPx;
+    py = nextPy;
+   
     obj.style.left=px+'px'
     obj.style.top=py+'px'
-
 
 }
 
