@@ -180,12 +180,12 @@ function animationArcade() {
   }
   changeFrames();
 }
-
 animationArcade();
 
 /* Content 2 */
 
 /* Cards */
+/* Animation Cards Assets */
 
 function backgroundCards() {
   let mario = document.querySelector("#marioHd");
@@ -292,10 +292,7 @@ function backgroundCards() {
     topGear.addEventListener("mouseout", resetBackground);
   }
 }
-
 backgroundCards();
-
-/* Animation Cards Assets */
 
 function animationRyu() {
   let framesRyu = [
