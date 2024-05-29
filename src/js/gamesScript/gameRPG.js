@@ -88,7 +88,7 @@ function enterFrame() {
 function drawMap() {
     //Game Sprites
     const WoodSprite = new Image()
-    WoodSprite.src = '../img/assets/gameRPG/spriteChao.jpeg'
+    WoodSprite.src = '../../img/assets/gameRPG/spriteChao.jpeg'
     
     //Drawing the Game
     WoodSprite.onload = () => {

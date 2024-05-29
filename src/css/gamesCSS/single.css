@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: "Pixelify Sans", sans-serif;
+    background: rgba(82, 30, 6, 0.911);
+}
+
+h2, h3 {
+    margin-top: -5px;
+    text-align: center;
+    font-size: 25pt;
+}
+
+#tela-escura{
+    width: 100%;
+    height: 100%;
+    opacity: 0.95;
+    position: absolute;
+    background-color: black;
+    color: white;
+    display: none;
+    padding-top: 300px;
+}
+
+.container{
+    margin: 0 auto;
+    max-width: 250px;
+    max-height: 350px;
+    padding: 70px;
+    border-radius: 10px;
+    background-color: rgb(214, 142, 48);
+    border: 3px solid black;
+    box-shadow: 0px 0px 15px 0px black;
+}
+
+.grid{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
+
+.celula{
+    width: 75px;
+    height: 65px;
+    font-size: 30pt;
+    margin: 4px 2px;
+    font-weight: 300;
+    padding-top: 10px;
+    border-radius: 3px;
+    text-align: center;
+    background-color: rgb(170, 99, 32);
+}
