@@ -571,6 +571,28 @@ margin-top: -10px;
 
 /*End-Cards*/
 
+/*Footer*/ 
+
+footer {
+    position:relative;
+    width: 100vw;
+    height: 100px;
+    background-color: black;
+    bottom: -30vh;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer h1 {
+    font-family: "Press Start 2P";
+    font-weight: 500;
+    font-size: 12pt;
+    margin: 100px;
+ 
+}
+
 /*Transition Content*/
 
 .hidden {
