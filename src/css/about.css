@@ -434,6 +434,10 @@ margin-top: -10px;
 
 }
 
+#nayara h1 {
+    font-size: 20pt;
+}
+
 #bruno {
 
     background: url(https://files.meiobit.com/wp-content/uploads/2021/08/Sonic-The-Hedgehog-1060x596.png) no-repeat center;
@@ -446,6 +450,7 @@ margin-top: -10px;
 #bruno h1 {
     font-family: "sonic";
     color:white;
+    font-size: 20pt;
 }
 
 #allana {
@@ -457,6 +462,7 @@ margin-top: -10px;
 
 #allana h1 {
     font-family: 'pacMan';
+    font-size: 20pt;
     
 }
 
@@ -464,7 +470,47 @@ margin-top: -10px;
 
     background: url(https://upload.wikimedia.org/wikipedia/pt/4/46/Street_Fighter_II_%28arcade%29_screenshot.png) no-repeat right;
     background-size: cover;  
+    color:white;
+}
+
+#nickolas h1 {
+    font-size: 20pt;
     color: rgb(255, 255, 255);
+   
+}
+
+#pedro {
+    background: url(../img/site/bgDonkeyKong.jpg);
+    background-size: cover;
+    background-position: center;
+    color: white ;
+}
+
+#pedro h1 {
+    font-family: "DonkeyKong";
+    font-size: 30pt;
+    letter-spacing: 3px;
+}
+
+#maria {
+    background: url(https://i.pinimg.com/originals/de/f4/de/def4de12a99961d3913a98418bfe78e7.jpg);
+    background-size: cover;
+    color: white;
+}
+
+#maria h1 {
+    font-size: 20pt;
+}
+
+#castiel {
+    background: url(https://urbanarts.vteximg.com.br/arquivos/ids/4783344/quadro-space-invaders-atari.jpg?v=637201623548230000);
+    background-size: cover;
+    color: white;
+}
+
+#castiel h1 {
+    font-family: "arcade";
+    font-size: 18pt;
 }
 
 .back {
