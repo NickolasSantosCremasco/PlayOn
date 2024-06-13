@@ -40,3 +40,7 @@ h2{
     background-color: rgb(170, 99, 32);
 }
 
+button .single, .multiplayer {
+    text-decoration: none;
+}
+

@@ -32,6 +32,7 @@ section.animationGamer {
     font-family: 'gamer';
     font-size: 120pt;
     display: inline-block;
+    font-weight: 100;
 
 }
 
@@ -56,6 +57,7 @@ section.LinkGames {
 .game:hover {
     animation: upDown 1s infinite;
     box-shadow: 1px 1px 10px black;
+    transform: scale(1.1);
 }
 
 .game:nth-child(1) {
@@ -70,16 +72,3 @@ section.LinkGames {
     height: 100%;
 }
 
-@keyframes upDown {
-    0% {
-        transform: scale(1) ;
-
-    }
-    50% {
-        transform: scale(1.05);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}

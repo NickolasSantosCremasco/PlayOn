@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+}
+
+canvas {
+    display: block;
+    overflow: hidden;
+    background-color: rgb(0, 153, 255);
+}
+
+#hero {
+    width: 50px;
+    height: 100px; 
+    position: absolute;
+}
+
+.gameOver {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    background-color: white;
+    border: 1px solid black;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    border-radius: 10px;
+    
+}
+
+button {
+    font-size: 20pt;
+    padding: 20px;
+}
+img {
+    position: relative;
+    right: 25px;
+    top: 20px;
+    width: 100px; 
+    rotate: 90deg;
+}
+
+.pontuation {
+    position: absolute;
+    top: 0;
+    margin: 50px;
+    font-size: 25pt;
+}
