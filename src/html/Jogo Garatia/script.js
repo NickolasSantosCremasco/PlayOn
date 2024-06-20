@@ -29,7 +29,9 @@ const TryAgainButton = document.querySelector('#tryAgain');
 const gameOverScreen = document.querySelector('.gameOver');
 const obj = document.querySelector('#hero');
 const point = document.querySelector('#score');
-const obstacles = []
+const obstacles = [];
+const highscore = document.querySelector('#highscore');
+
 
 
 
@@ -37,7 +39,7 @@ const obstacles = []
 function init() {
     document.addEventListener('keydown', keyDown);
     document.addEventListener('keyup', keyUp);
-    Punctuation();
+    StartPunctuation();
     setInterval(enterFrame, 20); // initialize the enterframe, all game
     TryAgainButton.addEventListener('click', () => {
         gameOver = false
@@ -48,13 +50,14 @@ function init() {
         dy = 0;
         obstacles.length = 0;
         game.point = 0;
-        score.innerHTML = `Pontuação: ${game.point}`
-        
+        highscore.innerHTML = `Pontuação: ${game.point}`
+        StartPunctuation();
+
     }) 
 }
 
-//Game Punctuation
-function Punctuation () {
+//Game StartPunctuation
+function StartPunctuation () {
     score.innerHTML = `Pontuação: ${game.point}`
     scoreInterval = setInterval(() => {
         game.pontua()
@@ -62,7 +65,10 @@ function Punctuation () {
     }, 3000);
 }
 
-
+// End Punctuation
+function stopPunctuation() {
+    clearInterval(scoreInterval)
+}
 
 
 // draw the game, include the line and background
@@ -206,27 +212,18 @@ function enterFrame() {
         if (checkCollision()) {
             gameOverScreen.style.display = 'flex';
             gameOver = true; 
-            
-           
+            stopPunctuation();
         }
+      
     }
 }
 
 
 // Restart the game after game over
-function restartGame() {
-    gameOver = false;
-    gameOverScreen.style.display = 'none';
-    px = 743;
-    py = window.innerHeight / 2;
-    dx = 0;
-    dy = 0;
-    obstacles.length = 0; // remove todos os obtáculos 
-  
-}
 
 
-// Inicia o movimento da faixa
+
+// begin line movement  
 setInterval(moveLine, 20);
 
 setInterval(updateObstacles, 20)
