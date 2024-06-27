@@ -55,3 +55,11 @@ img {
     margin: 50px;
     font-size: 25pt;
 }
+
+.velocimeter {
+    position: absolute;   
+    top: 0;  
+    margin: 50px;
+    left: 70%;
+    font-size:25pt  ;
+}

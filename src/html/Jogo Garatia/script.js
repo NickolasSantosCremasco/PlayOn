@@ -22,6 +22,9 @@ var px = 743;
 var py = window.innerHeight / 2;
 let movementOffset = 0; // line movement variable
 let gameOver = false;
+let speed = 50
+const maxSpeed = 100
+const minSpeed = 40
 const game = new Game(); // initialize the class
 
 // HTML Elements
@@ -31,6 +34,9 @@ const obj = document.querySelector('#hero');
 const point = document.querySelector('#score');
 const obstacles = [];
 const highscore = document.querySelector('#highscore');
+const velocimeter = document.querySelector('#speed');
+const speedIncrement = 1;
+velocimeter.innerHTML = 'Velocidade: 50Km/h'
 
 
 
@@ -108,8 +114,17 @@ function keyDown(event) {
         dx = 1;
     } else if (tecla === 'ArrowUp') {
         dy = -1;
+        if (speed < maxSpeed && !gameOver) { // velocimetro cresce
+            speed += speedIncrement
+            updateSpeedometer();
+        }
     } else if (tecla === 'ArrowDown') {
         dy = 1;
+        if (speed > minSpeed && !gameOver) {
+            speed -= speedIncrement
+            updateSpeedometer();
+
+        }
     }
 }
 
@@ -123,7 +138,9 @@ function keyUp(event) {
     }
 }
 
-
+function updateSpeedometer (){
+    velocimeter.innerHTML = `Velocidade: ${speed}Km/h`
+}
 // character position uptade
 // posição do personagem
 function updatePosition() {
@@ -161,7 +178,7 @@ function moveLine() {
 //add randonly obstacles
 function addObstacles (){
      
-    if(Math.random() < 0.1) { // chance to add a new obstacle in the screen
+    if(Math.random() < 0.045) { // chance to add a new obstacle in the screen
         let obstacleWidth = 50;
         let obstacleHeight = 100;
         let obstacleX = Math.random() * (window.innerWidth -1000 - obstacleWidth) + 500;
@@ -211,6 +228,7 @@ function enterFrame() {
         drawScene(); // desenha o mapa
         updateObstacles(); // faz os obstaculos se mexerem
         addObstacles(); /// adiciona os obstaculos
+        
         gameOverScreen.style.display = 'none'; // a tela de game over fica invisivel
         if (checkCollision()) { // caso haja colisão
             gameOverScreen.style.display = 'flex'; // game over aparecerá
@@ -220,11 +238,7 @@ function enterFrame() {
       
     }
 }
-
-
 // Restart the game after game over
-
-
 
 // begin line movement  
 setInterval(moveLine, 20); // intervalo de 20 centésimos para cada linha central se movimentar
