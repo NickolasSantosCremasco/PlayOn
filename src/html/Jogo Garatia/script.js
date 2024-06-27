@@ -37,13 +37,16 @@ const highscore = document.querySelector('#highscore');
 
 // initialize the game
 function init() {
-    document.addEventListener('keydown', keyDown);
-    document.addEventListener('keyup', keyUp);
+    document.addEventListener('keydown', keyDown); // eventos de teclas apertadas
+    document.addEventListener('keyup', keyUp); // eventos de teclas soltas
     StartPunctuation();
-    setInterval(enterFrame, 20); // initialize the enterframe, all game
-    TryAgainButton.addEventListener('click', () => {
+    setInterval(enterFrame, 20); 
+    // initialize the enterframe, all game
+    // inicializando o jogo
+    TryAgainButton.addEventListener('click', () => { // botão de reiniciar
         gameOver = false
         gameOverScreen.style.display = 'none'
+        // restaurando a posição do personagem para a inicial
         px = 743;
         py = window.innerHeight / 2
         dx = 0;
@@ -66,18 +69,21 @@ function StartPunctuation () {
 }
 
 // End Punctuation
+// fim da pountuação
 function stopPunctuation() {
     clearInterval(scoreInterval)
 }
 
 
 // draw the game, include the line and background
+// desenhando o jogo, incluindo a faixa central e o background da rua
 function drawScene() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = 'gray';
     ctx.fillRect(500, 0, window.innerWidth - 1000, window.innerHeight);
     
     // line moving
+    // movimento da faixa central de cima para baixo
     var lineHeight = 100;
     var lineWidth = 20;
     ctx.fillStyle = 'white';
@@ -86,16 +92,10 @@ function drawScene() {
     }
 
     // Drawn obstacles 
+    // desenhando obstaculos
     for (let i = 0; i < obstacles.length; i++) {
         ctx.fillStyle = 'red';
         ctx.fillRect(obstacles[i].x, obstacles[i].y, obstacles[i].width, obstacles[i].height)
-    }
-
-    //drawn game over
-    if(gameOver) {
-        ctx.fillStyle = 'black';
-        ctx.font = '43px serif';
-        ctx.fillText('Game Over', canvas.width/2 -100, canvas.height / 2);
     }
 }
 
@@ -124,26 +124,28 @@ function keyUp(event) {
 }
 
 
-// upgrade the character position
+// character position uptade
+// posição do personagem
 function updatePosition() {
-    var nextPx = px + dx * vel;
-    var nextPy = py + dy * vel;
+    var nextPx = px + dx * vel; // posição sendo atualizada de acordo com a velocidade para a horizontal
+    var nextPy = py + dy * vel; // posição sendo atualizada de acordo com a velocidade para a vertical
 
-    if (nextPx < 500) {
+    if (nextPx < 500) { // definido borda lateral esquerda
         nextPx = 500;
-    } else if (nextPx + obj.offsetWidth > window.innerWidth - 500) {
+    } else if (nextPx + obj.offsetWidth > window.innerWidth - 500) { //definindo borda lateral direita
         nextPx = window.innerWidth - 500 - obj.offsetWidth;
     }
 
-    if (nextPy < 10) {
+    if (nextPy < 10) { // definindo borda vertical de cima
         nextPy = 10;
-    } else if (nextPy + obj.offsetHeight > window.innerHeight - 10) {
+    } else if (nextPy + obj.offsetHeight > window.innerHeight - 10) { // definindo borda lateral de baixo
         nextPy = window.innerHeight - 10 - obj.offsetHeight;
     }
 
     px = nextPx;
     py = nextPy;
 
+    // mudando as posições na tela
     obj.style.left = px + 'px';
     obj.style.top = py + 'px';
 }
@@ -159,7 +161,7 @@ function moveLine() {
 //add randonly obstacles
 function addObstacles (){
      
-    if(Math.random() < 0.02) { // chance to add a new obstacle in the screen
+    if(Math.random() < 0.1) { // chance to add a new obstacle in the screen
         let obstacleWidth = 50;
         let obstacleHeight = 100;
         let obstacleX = Math.random() * (window.innerWidth -1000 - obstacleWidth) + 500;
@@ -191,28 +193,29 @@ function updateObstacles() {
 
 // Check the colission between hero and the obstacles
 function checkCollision() {
-    for (let i = 0; i < obstacles.length; i++) {
-        if (px < obstacles[i].x + obstacles[i].width &&
-            px + obj.offsetWidth > obstacles[i].x &&
-            py < obstacles[i].y + obstacles[i].height &&
-            py + obj.offsetHeight > obstacles[i].y) {
-                return true
-        }
+    for (let i = 0; i < obstacles.length; i++) { // para cada obstaculo criado faça
+        if (px < obstacles[i].x + obstacles[i].width && // se a posição do personagem for menor que a posição horizontal do obstaculo
+            px + obj.offsetWidth > obstacles[i].x && // se a posição horizontal + a largura do objeto for maior que a posição horizontal do objeto
+            py < obstacles[i].y + obstacles[i].height && // se a posição do personagem for menor que a posição vertical do obstaculo
+            py + obj.offsetHeight > obstacles[i].y)  // e a posição vertical + o tamanho do objeto for maior que a posição horizontal do objeto
+            { 
+                return true // retornará verdadeiro para colisão
+            }
     }
     return false
 }
-// updtade the screen
+// função central do jogo
 function enterFrame() {
-    if (!gameOver) {
-        updatePosition();
-        drawScene();
-        updateObstacles();
-        addObstacles();
-        gameOverScreen.style.display = 'none';
-        if (checkCollision()) {
-            gameOverScreen.style.display = 'flex';
-            gameOver = true; 
-            stopPunctuation();
+    if (!gameOver) { // verifica se a variável game over é diferente de true
+        updatePosition(); // muda a posição do personagem
+        drawScene(); // desenha o mapa
+        updateObstacles(); // faz os obstaculos se mexerem
+        addObstacles(); /// adiciona os obstaculos
+        gameOverScreen.style.display = 'none'; // a tela de game over fica invisivel
+        if (checkCollision()) { // caso haja colisão
+            gameOverScreen.style.display = 'flex'; // game over aparecerá
+            gameOver = true; // game over voltará true e as funções acima pararão de serem executadas
+            stopPunctuation(); // pontuação para de incrementar
         }
       
     }
@@ -224,8 +227,8 @@ function enterFrame() {
 
 
 // begin line movement  
-setInterval(moveLine, 20);
+setInterval(moveLine, 20); // intervalo de 20 centésimos para cada linha central se movimentar
 
-setInterval(updateObstacles, 20)
+setInterval(updateObstacles, 20) // intervalo de 20 centésimos para cada obstaculo se movimentar
 
-window.addEventListener('load', init);   
+window.addEventListener('load', init); // quando a tela for iniciada no navegador o jogo inicializará  
