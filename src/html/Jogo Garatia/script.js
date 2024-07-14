@@ -1,4 +1,4 @@
-// Game Class
+// classe Game
 class Game {
     constructor() {
         this.point = 0
@@ -8,26 +8,27 @@ class Game {
     }
 }
 
-// Main Canva Default
+// Canvas central
 const canvas = document.querySelector('#canvas');
 canvas.height = window.innerHeight;
 canvas.width = window.innerWidth;
 const ctx = canvas.getContext('2d');
 
-//control variables
+//Variaveis de controle
 var dx = 0;
 var dy = 0;
 var vel = 5;
 var px = 743;
 var py = window.innerHeight / 2;
-let movementOffset = 0; // line movement variable
+let movementOffset = 0; // variavel do movimento da linha
 let gameOver = false;
 let speed = 50
 const maxSpeed = 100
-const minSpeed = 40
-const game = new Game(); // initialize the class
+const minSpeed = 4
+const speedIncrement = 1;
+const game = new Game(); // inicializando a classe Game
 
-// HTML Elements
+// Elementos HTML
 const TryAgainButton = document.querySelector('#tryAgain');
 const gameOverScreen = document.querySelector('.gameOver');
 const obj = document.querySelector('#hero');
@@ -35,13 +36,15 @@ const point = document.querySelector('#score');
 const obstacles = [];
 const highscore = document.querySelector('#highscore');
 const velocimeter = document.querySelector('#speed');
-const speedIncrement = 1;
-velocimeter.innerHTML = 'Velocidade: 50Km/h'
+const FinalScore = document.querySelector('#FinalScore');
+velocimeter.innerHTML = 'Velocidade: 50Km/h';
+const obstaclesImage = new Image();
+obstaclesImage.src = 'img/carroAzul.png'
 
 
 
 
-// initialize the game
+// jogo sendo inicializado
 function init() {
     document.addEventListener('keydown', keyDown); // eventos de teclas apertadas
     document.addEventListener('keyup', keyUp); // eventos de teclas soltas
@@ -65,7 +68,7 @@ function init() {
     }) 
 }
 
-//Game StartPunctuation
+//Iniciando a pontuação do jogo
 function StartPunctuation () {
     score.innerHTML = `Pontuação: ${game.point}`
     scoreInterval = setInterval(() => {
@@ -74,21 +77,19 @@ function StartPunctuation () {
     }, 3000);
 }
 
-// End Punctuation
 // fim da pountuação
 function stopPunctuation() {
     clearInterval(scoreInterval)
+    FinalScore.innerHTML = `Pontuação Final: ${game.point}`
 }
 
 
-// draw the game, include the line and background
 // desenhando o jogo, incluindo a faixa central e o background da rua
 function drawScene() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = 'gray';
     ctx.fillRect(500, 0, window.innerWidth - 1000, window.innerHeight);
     
-    // line moving
     // movimento da faixa central de cima para baixo
     var lineHeight = 100;
     var lineWidth = 20;
@@ -97,15 +98,13 @@ function drawScene() {
         ctx.fillRect(window.innerWidth / 2 - 10, (i + movementOffset) % (canvas.height + lineHeight * 2), lineWidth, lineHeight);
     }
 
-    // Drawn obstacles 
     // desenhando obstaculos
     for (let i = 0; i < obstacles.length; i++) {
-        ctx.fillStyle = 'red';
-        ctx.fillRect(obstacles[i].x, obstacles[i].y, obstacles[i].width, obstacles[i].height)
+        ctx.drawImage(obstaclesImage, zaobstacles[i].x, obstacles[i].y, obstacles[i].width, obstacles[i].height)
     }
 }
 
-// detect press keys
+// detectando quando as teclas são pressionadas
 function keyDown(event) {
     var tecla = event.key;
     if (tecla === 'ArrowLeft') {
@@ -114,11 +113,11 @@ function keyDown(event) {
         dx = 1;
     } else if (tecla === 'ArrowUp') {
         dy = -1;
-        if (speed < maxSpeed && !gameOver) { // velocimetro cresce
+        if (speed < maxSpeed && !gameOver) { // velocímetro aumenta quando ArrowUp é pressionado
             speed += speedIncrement
             updateSpeedometer();
         }
-    } else if (tecla === 'ArrowDown') {
+    } else if (tecla === 'ArrowDown') { // velocímetro diminuiu quando ArrowDown é pressionado
         dy = 1;
         if (speed > minSpeed && !gameOver) {
             speed -= speedIncrement
@@ -128,7 +127,7 @@ function keyDown(event) {
     }
 }
 
-// detect release keys
+// detectando quando a tecla for solta
 function keyUp(event) {
     var tecla = event.key;
     if (tecla === 'ArrowLeft' || tecla === 'ArrowRight') {
@@ -138,10 +137,10 @@ function keyUp(event) {
     }
 }
 
+// Velocímetro
 function updateSpeedometer (){
     velocimeter.innerHTML = `Velocidade: ${speed}Km/h`
 }
-// character position uptade
 // posição do personagem
 function updatePosition() {
     var nextPx = px + dx * vel; // posição sendo atualizada de acordo com a velocidade para a horizontal
@@ -158,16 +157,14 @@ function updatePosition() {
     } else if (nextPy + obj.offsetHeight > window.innerHeight - 10) { // definindo borda lateral de baixo
         nextPy = window.innerHeight - 10 - obj.offsetHeight;
     }
-
     px = nextPx;
     py = nextPy;
-
     // mudando as posições na tela
     obj.style.left = px + 'px';
     obj.style.top = py + 'px';
 }
 
-// function to move the line
+// função para mover a linha central
 function moveLine() {
     movementOffset += 5;
     if (movementOffset >= 200) {
@@ -175,15 +172,14 @@ function moveLine() {
     }
 }
 
-//add randonly obstacles
-function addObstacles (){
-     
-    if(Math.random() < 0.045) { // chance to add a new obstacle in the screen
+//adicionar obstaculos aleatoriamente
+function addObstacles (){  
+    if(Math.random() < 0.045) { // chance de adicionar um obstaculo aleatoriamente para a tela
         let obstacleWidth = 50;
         let obstacleHeight = 100;
         let obstacleX = Math.random() * (window.innerWidth -1000 - obstacleWidth) + 500;
         let obstacleY = -obstacleHeight;
-        let obstacleSpeed = Math.random() * 5 + 2; //speed between 2 to 7 px/s
+        let obstacleSpeed = Math.random() * 5 + 1; //velocidade do obstaculo entre 1 a 6 px/s
         obstacles.src = 'img/carroAzul.png'
         obstacles.push({
             x:obstacleX,
@@ -195,9 +191,9 @@ function addObstacles (){
     }
 }
 
-//Obstacles movement
+//Movimento dos obstaculos
 function updateObstacles() {
-    //Obstacles moving of min Py to max Py
+    //obstaculos se movendo do Px Maximo até o Px mínimo
     for(let i = 0; i < obstacles.length; i++) {
         obstacles[i].y += obstacles[i].speed;
         if (obstacles[i].y > canvas.height) {
@@ -208,7 +204,7 @@ function updateObstacles() {
 
 }
 
-// Check the colission between hero and the obstacles
+// checando colisão entre personagem e obstaculo
 function checkCollision() {
     for (let i = 0; i < obstacles.length; i++) { // para cada obstaculo criado faça
         if (px < obstacles[i].x + obstacles[i].width && // se a posição do personagem for menor que a posição horizontal do obstaculo
@@ -228,7 +224,6 @@ function enterFrame() {
         drawScene(); // desenha o mapa
         updateObstacles(); // faz os obstaculos se mexerem
         addObstacles(); /// adiciona os obstaculos
-        
         gameOverScreen.style.display = 'none'; // a tela de game over fica invisivel
         if (checkCollision()) { // caso haja colisão
             gameOverScreen.style.display = 'flex'; // game over aparecerá
@@ -238,9 +233,9 @@ function enterFrame() {
       
     }
 }
-// Restart the game after game over
+// reiniciando o jogo depois do game over
 
-// begin line movement  
+// chamando a função mover a linha para ser realizada em um intervalo de tempo
 setInterval(moveLine, 20); // intervalo de 20 centésimos para cada linha central se movimentar
 
 setInterval(updateObstacles, 20) // intervalo de 20 centésimos para cada obstaculo se movimentar
