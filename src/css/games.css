@@ -1,4 +1,8 @@
-
+body {
+    background: url(../img/site/FundoSobreNos.avif) no-repeat;
+    background-position: top;
+    background-size: cover;
+}
 .main-container {
     width: 100vw;
     min-height: 100vh;
@@ -33,6 +37,7 @@ section.animationGamer {
     font-size: 120pt;
     display: inline-block;
     font-weight: 100;
+    color: white;
 
 }
 
@@ -49,7 +54,7 @@ section.LinkGames {
     width: 95%;
     height: 50%;
     border-radius: 20px;
-    background-color: red;
+    background-color: white;
     transition: all 1s;
   
 }

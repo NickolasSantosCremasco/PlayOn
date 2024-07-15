@@ -1,6 +1,10 @@
 /*About Us*/
 body {
     min-height: 200vh;
+    background: url(../img/site/FundoSobreNos.gif) no-repeat fixed ;
+    background-position: top;
+    background-size: cover;
+    
 }
 .container {
     width: 100vw;
@@ -20,6 +24,7 @@ div.content-about {
     top: 55%;
     left: 50%;
     transform: translate(-30%,-65%);
+    color: white;
     
 }
 
@@ -37,6 +42,7 @@ div.content-about h1 {
     font-size: 100pt;
     font-family: "gamer";
     left: 10px;
+    text-shadow: 8px 8px 1px black;
 }
 
 div.content-about p {

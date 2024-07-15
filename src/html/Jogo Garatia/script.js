@@ -100,7 +100,7 @@ function drawScene() {
 
     // desenhando obstaculos
     for (let i = 0; i < obstacles.length; i++) {
-        ctx.drawImage(obstaclesImage, zaobstacles[i].x, obstacles[i].y, obstacles[i].width, obstacles[i].height)
+        ctx.drawImage(obstaclesImage, obstacles[i].x, obstacles[i].y, obstacles[i].width, obstacles[i].height)
     }
 }
 

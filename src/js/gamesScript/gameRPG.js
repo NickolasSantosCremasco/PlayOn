@@ -4,6 +4,7 @@ const canvas = document.querySelector('#canvas');
 canvas.height = window.innerHeight;
 canvas.width = window.innerWidth;
 ctx = canvas.getContext('2d');
+character = ['../img/assets/AssetsPersonagemJogo/']
 
 ctx.fillRect(50, 50, window.innerWidth-140, window.innerHeight-100);
 
@@ -38,6 +39,7 @@ function keyDown() {
         dx=-1;       
     } else if (tecla == "ArrowRight") { //right
         dx=1;
+
         
     } else if (tecla == "ArrowUp") {
         dy=-1

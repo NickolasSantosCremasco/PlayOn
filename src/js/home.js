@@ -26,49 +26,6 @@ setInterval(() => {
   nextImg();
 }, 10000);
 
-/* Animation Mario */
-
-let mario = document.querySelector("#mario");
-let coin = document.querySelector("#moeda");
-let blockCoin = document.querySelector("#blockCoin");
-
-let frames = [
-  "src/img/assets/Mario/MarioCaminhando1.png",
-  "src/img/assets/Mario/MarioCaminhando2.png",
-  "src/img/assets/Mario/MarioCaminhando3.png",
-  "src/img/assets/Mario/MarioCaminhando4.png",
-];
-
-let currentFrame = 0;
-
-function changeFrames() {
-  mario.src = frames[currentFrame];
-  currentFrame = (currentFrame + 1) % frames.length;
-  requestAnimationFrame(changeFrames);
-}
-
-anime({
-  targets: mario,
-  translateY: 0,
-  translateX: 0,
-  easing: "easeInOutQuad",
-  duration: 1,
-});
-function andarMario() {
-  anime({
-    targets: mario,
-    translateY: 0,
-    translateX: 1500,
-    easing: "easeInOutQuad",
-    duration: 1,
-    loop: true,
-  });
-}
-
-andarMario();
-changeFrames();
-
-/* End Animation Mario */
 
 /* Plane animation */
 

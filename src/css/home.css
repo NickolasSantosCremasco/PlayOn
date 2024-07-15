@@ -136,11 +136,12 @@ div.slider-text h1 {
   font-size: 50pt;
   margin-left: 20px;
   color: white;
-  text-shadow: 1px 1px 5  px black;
+  text-shadow: 1px 1px 5px black;
 }
 
 div.slider-text p {
-  line-height: 25px;
+  margin-top: 10px;
+  line-height: 30px;
   text-align: justify;
   font-size: 17pt;
 }
