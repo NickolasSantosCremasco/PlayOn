@@ -9,9 +9,13 @@ canvas {
 }
 
 #dv1 {
-    width: 50px;
+    width: 65px;
     height: 100px;
-    background-color: red;
+ 
     position: absolute;
+  
     
+    background-repeat: no-repeat;
+    background-size: cover;
+
 }
