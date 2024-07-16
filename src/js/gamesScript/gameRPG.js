@@ -30,6 +30,7 @@ let isMoving = false
 let currentFrame = 0
 let moveInterval;
 
+//animação de movimento do personagem
 function toggleMovement(images) {
     if (isMoving) return; // Se o personagem estiver já estiver em movimento, saia da função
     isMoving = true; // Personagem em movimento
@@ -39,6 +40,7 @@ function toggleMovement(images) {
     }, 200);
 }
 
+//para a animação de movimento assim que a tecla é solta
 function stopMovement() {
     clearInterval(moveInterval)
     isMoving = false;
@@ -60,7 +62,20 @@ var tmp; //timer
 obj=document.querySelector('#dv1')
 obj.style.backgroundImage ='url("../../img/assets/AssetsPersonagemJogo/ParadoFrente.jpg")';
 
-function inicia() {
+// OBJETOS INTERAGÍVEIS
+//Lixo 
+function drawLixo() {
+    const lixoPos = {x:900, y:300}
+    const lixoSize = {width:100, height: 100}
+    const lixoImage = new Image();
+    lixoImage.src = '../../img/assets/AssetsObjetosJogo/lixo.png'
+    lixoImage.onload = () => {
+        ctx.drawImage(lixoImage,lixoPos.x, lixoPos.y, lixoSize.width, lixoSize.height )
+    }
+} 
+
+
+function begin() {
     dx=0;
     dy=0;
     px=50;
@@ -88,6 +103,8 @@ function keyDown() {
         toggleMovement(PersonagemAndandoBaixo)
     }
 }
+
+
 function keyUp() {
     var tecla = event.key; 
     if (tecla=="ArrowLeft" ) { //se soltar a tecla ela irá ficar em 0 e não se moverá, segue-se o mesmo raciocínio abaixo
@@ -131,9 +148,7 @@ function enterFrame() {
     py = nextPy
     px = nextPx;
     obj.style.left=px+'px'
-    obj.style.top=py+'px'
-   
-    
+    obj.style.top=py+'px'   
 }
 
 //Desenhando o mapa do jogo
@@ -151,17 +166,8 @@ function drawMap() {
             }
         }     
     }
-    
-
-    
+    drawLixo()
 }
 
-
-
 //Quando a tela for carregada o jogo se inicia
-window.addEventListener('load',inicia);
-
-
-
-
-  
+window.addEventListener('load',begin);
