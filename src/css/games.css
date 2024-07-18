@@ -1,7 +1,9 @@
 body {
-    background: url(https://i.pinimg.com/originals/43/1c/e5/431ce5d15aab86f66a91ec9a07c9114f.gif) no-repeat;
+    background: url(https://i.pinimg.com/originals/43/1c/e5/431ce5d15aab86f66a91ec9a07c9114f.gif) no-repeat fixed;
     background-position: center;
     background-size: cover;
+    min-height: 160vh;
+
 }
 .main-container {
     width: 100vw;
@@ -77,3 +79,22 @@ section.LinkGames {
     height: 100%;
 }
 
+.mainGame {
+    position: absolute;
+    top: 99%;
+    background-color: white;
+    height: 50%;
+    width: 50%;
+    border-radius: 20px;
+    transition: all 1s;
+}
+
+.mainGame:hover {
+   
+    transform: scale(1.1);
+}
+
+.gameDown {
+    width: 100%;
+    height: 100%;
+}

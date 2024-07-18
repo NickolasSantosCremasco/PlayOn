@@ -39,7 +39,7 @@ const velocimeter = document.querySelector('#speed');
 const FinalScore = document.querySelector('#FinalScore');
 velocimeter.innerHTML = 'Velocidade: 50Km/h';
 const obstaclesImage = new Image();
-obstaclesImage.src = 'img/carroAzul.png'
+obstaclesImage.src = '../../img/assets/imgJogoCarro/carroAzul.png' 
 
 
 
@@ -180,7 +180,7 @@ function addObstacles (){
         let obstacleX = Math.random() * (window.innerWidth -1000 - obstacleWidth) + 500;
         let obstacleY = -obstacleHeight;
         let obstacleSpeed = Math.random() * 5 + 1; //velocidade do obstaculo entre 1 a 6 px/s
-        obstacles.src = 'img/carroAzul.png'
+        obstacles.src = '../../img/assets/imgJogoCarro/carroAzul.png' 
         obstacles.push({
             x:obstacleX,
             y: obstacleY, 
