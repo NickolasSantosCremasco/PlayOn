@@ -1,0 +1,78 @@
+@media (max-width:1050px) {
+    div.slider-text h1 {
+        font-size: 28pt;
+    }
+
+    div.slider-text p {
+        font-size: 13pt;
+        
+    }
+
+    div.slider-text h4 {
+        font-size: 14pt;
+    }
+
+  
+}
+
+@media (max-width:1111px ) {
+    div.slider-box .race {
+        right: 500%;
+    }
+    div.race .text-race h1 {
+        font-size: 12pt;
+    }
+    div.container-video {
+        height: 50%;
+    }
+
+    div.container-video .left {
+        font-size: 14pt;
+    }
+    div.container-video .right {
+        font-size: 11pt;
+    }
+
+    div.container-video .line {
+        top: 320px;
+    }
+}
+
+
+@media (max-width:970px) {
+    div.slider-box .race {
+        right: 490%;
+    }
+   div.arcade img {
+    left: 50px;
+    width: 490px;
+   }
+}
+
+@media (max-width:940px) {
+    div.slider-box .race {
+        right: 470%;
+    }
+
+    
+}
+
+@media (max-width:870px) {
+    div.container-video {
+        height: 45%;
+    }
+    div.arcade img {
+        margin-top: 50px;
+        width: 400px;
+    }
+    div.card {
+        width: 170px;
+        
+    }
+}
+
+@media (max-width:660px) {
+    div.card {
+        width: 130px;
+    }
+}

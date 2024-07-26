@@ -146,38 +146,6 @@ div.slider-text p {
   font-size: 17pt;
 }
 
-.animation-mario {
-  position: relative;
-  top: 30%;
-  transform: translate(0, -50%);
-  height: 300px;
-}
-
-.animation-mario img {
-  position: relative;
-  width: 45px;
-}
-
-.animation-mario img.mario {
-  float: left;
-  top: 42%;
-  transform: translate(0, -50%);
-  transition: all 5s;
-}
-
-.animation-mario img.blockCoin {
-  float: right;
-  right: 20%;
-  transition: all 1s;
-}
-
-.animation-mario img.moeda {
-  float: right;
-  right: 17%;
-  z-index: -1;
-  transition: all 1s;
-}
-
 /*Slider 2*/
 div.slider-box .asteroids {
   position: relative;
@@ -401,7 +369,7 @@ div.content_2 {
 .box-container {
   position: relative;
   background-image: url();
-  top: 10px;
+  top: -20px;
   min-width: 75%;
   max-height: 80%;
   background-color: #1a1a1e;

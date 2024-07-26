@@ -47,7 +47,6 @@ function stopMovement() {
     currentFrame = 0
 }
 
-ctx.fillRect(50, 50, window.innerWidth-140, window.innerHeight-100);
 
 //movimento do personagem
 var dy;
