@@ -58,6 +58,7 @@ section.LinkGames {
     border-radius: 20px;
     background-color: white;
     transition: all 1s;
+    border: 2px solid white;
   
 }
 
@@ -73,6 +74,11 @@ section.LinkGames {
     background-size: contain;
 }
 
+.game:nth-child(2) {
+    background: url(https://i.pinimg.com/564x/02/f7/85/02f785fd6ea9fea1f7ecf41a7162d72c.jpg) no-repeat;
+    background-position: center;
+    background-size: cover;
+}
 
 .linkGames {
     width: 100%;
