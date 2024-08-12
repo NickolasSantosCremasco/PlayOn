@@ -53,22 +53,64 @@
     div.slider-box .race {
         right: 470%;
     }
-
     
 }
 
 @media (max-width:870px) {
     div.container-video {
         height: 45%;
+        display: flex;
+        flex-wrap: wrap;
+        left: 50%;
+        transform: translate(-50%);
+        width: 80%;
+        height: 50%;
+    }
+
+    div.container-video .left {
+        text-align: center;
+    }
+
+    div.container-video .right {
+        font-size: 12pt;
+        text-align: center;
+    }
+    div.container-video .line {
+        display: none;
+    }
+    div.container-video .responsiveLine {
+        display: block;
+        position:absolute;
+        width: 60%;
+        height: 8px;
+        background-color: white;
+    }
+    div.content-below {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    div.arcade {
+        width: 100%;
     }
     div.arcade img {
+    
+        left: 50%;
+        transform: translate(-50%);
         margin-top: 50px;
-        width: 400px;
+        width: 500px;
     }
     div.card {
         width: 170px;
         
     }
+
+    div.box-container {
+        top: 150px;
+
+    }
+
+
 }
 
 @media (max-width:660px) {
