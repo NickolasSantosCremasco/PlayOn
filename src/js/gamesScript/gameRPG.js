@@ -62,18 +62,29 @@ obj.style.backgroundImage ='url("../../img/assets/AssetsPersonagemJogo/ParadoFre
 
 // OBJETOS INTERAGÍVEIS
 //Lixo 
-const lixoPos = {x:window.innerWidth-500, y:window.innerHeight-500}
+const lixoPos = {x:(window.innerWidth*75)/100, y:(window.innerHeight*30)/100}
 const lixoSize = {width:100, height: 100}
 //Cama
-const camaPos = {x:window.innerWidth-1350, y:window.innerHeight-600}
+const camaPos = {x:(window.innerWidth*16)/100, y:(window.innerHeight*25)/100}
 const camaSize = {width:80, height:130}
 // tapete
-const tapetePos = {x:window.innerWidth-1440, y:window.innerHeight-650}
+const tapetePos = {x:(window.innerWidth*10)/100, y:(window.innerHeight*18)/100}
 const tapeteSize = {width:250, height:250}
 //porta
-const portaPos = {x:window.innerWidth-900, y:window.innerHeight-250}
+const portaPos = {x:(window.innerWidth*42)/100, y:(window.innerHeight*64)/100}
 const portaSize = {width:240, height:240}
+
+const lixeiraPos = {x:(window.innerWidth*53)/100, y:(window.innerHeight*77)/100}
+const lixeiraSize = {width:150, height:150}
 let currentObject = null
+
+function drawLixeira () {
+    const lixeiraImage = new Image();
+    lixeiraImage.src = '../../img/assets/AssetsObjetosJogo/lixeira.png'
+    lixeiraImage.onload = () => {
+        ctx.drawImage(lixeiraImage, lixeiraPos.x, lixeiraPos.y, lixeiraSize.width, lixeiraSize.height);
+    }
+}
 
 function drawPorta () {
     const portaImage = new Image();
@@ -110,7 +121,9 @@ function drawObjects() {
     drawTapete();
     drawLixo();
     drawCama();
+    drawLixeira();
     drawPorta();
+
    
 }
 
@@ -235,6 +248,8 @@ function checkColissionWithObjects() {
         return 'lixo'
     } else if (px < camaPos.x + camaSize.width && px + obj.offsetWidth > camaPos.x && py < camaPos.y + camaSize.height && py + obj.offsetHeight > camaPos.y) {
         return 'cama'
+    } else if (px < lixeiraPos.x + lixeiraSize.width && px + obj.offsetWidth > lixeiraPos.x && py < lixeiraPos.y + lixeiraSize.height && py + obj.offsetHeight > lixeiraPos.y) {
+        return 'lixeira'
     }
     return null
 }
@@ -258,6 +273,14 @@ function startLoading() {
                             ctx.drawImage(camaImage, camaPos.x, camaPos.y, camaSize.width, camaSize.height)
                         };
                     } // a Cama desaparece
+                } else if (currentObject === 'lixeira') {
+                    drawLixeira = () => {
+                        const lixeiraImage = new Image();
+                        lixeiraImage.src = '../../img/assets/AssetsObjetosJogo/lixeiraSuja.png'
+                        lixeiraImage.onload = () => {
+                            ctx.drawImage(lixeiraImage, lixeiraPos.x, lixeiraPos.y-15, lixeiraSize.width-10, lixeiraSize.height-10)
+                        }
+                    }
                 }
                 drawMap() // redesenha o mapa acima do lixo desaparecido
             }
