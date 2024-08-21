@@ -31,17 +31,22 @@ const game = new Game(); // inicializando a classe Game
 // Elementos HTML
 const TryAgainButton = document.querySelector('#tryAgain');
 const gameOverScreen = document.querySelector('.gameOver');
-const obj = document.querySelector('#hero');
+const obj = document.querySelector('#hero'); //personagem/carro
 const point = document.querySelector('#score');
 const obstacles = [];
 const highscore = document.querySelector('#highscore');
 const velocimeter = document.querySelector('#speed');
 const FinalScore = document.querySelector('#FinalScore');
-velocimeter.innerHTML = 'Velocidade: 50Km/h';
 const obstaclesImage = new Image();
+velocimeter.innerHTML = 'Velocidade: 50Km/h';
 obstaclesImage.src = '../../img/assets/imgJogoCarro/carroAzul.png' 
 
-
+//arvores
+const treesSprites = [
+    {src:'../../img/assets/imgJogoCarro/Arvore1.png', x: (canvas.width*80)/100, y: -150, width:100, height: 150, speed:5},
+    {src:'../../img/assets/imgJogoCarro/Arvore2.png', x: (canvas.width*10)/100, y: -150, width:100, height: 150, speed:3},
+    {src:'../../img/assets/imgJogoCarro/Arvore3.png', x: (canvas.width*20)/100, y: -150, width:100, height: 150, speed:6}
+]
 
 
 // jogo sendo inicializado
@@ -102,6 +107,28 @@ function drawScene() {
     for (let i = 0; i < obstacles.length; i++) {
         ctx.drawImage(obstaclesImage, obstacles[i].x, obstacles[i].y, obstacles[i].width, obstacles[i].height)
     }
+}
+
+const treeImages = treesSprites.map(sprite => {
+    const img = new Image();
+    img.src = sprite.src
+    return img;
+})
+
+function drawTrees () {
+    treesSprites.forEach((tree, index) => {
+        const treeImage = treeImages[index]; // usar a imagem carregada
+        ctx.drawImage(treeImage, tree.x, tree.y, tree.width, tree.height);
+    })
+}
+
+function updateTrees () {
+    treesSprites.forEach(tree => {
+        tree.y += tree.speed;
+        if (tree.y > canvas.height) {
+            tree.y = -tree.height;
+        }
+    })
 }
 
 // detectando quando as teclas são pressionadas
@@ -224,6 +251,8 @@ function enterFrame() {
         drawScene(); // desenha o mapa
         updateObstacles(); // faz os obstaculos se mexerem
         addObstacles(); /// adiciona os obstaculos
+        updateTrees()
+        drawTrees(); // desenhar arvores
         gameOverScreen.style.display = 'none'; // a tela de game over fica invisivel
         if (checkCollision()) { // caso haja colisão
             gameOverScreen.style.display = 'flex'; // game over aparecerá
