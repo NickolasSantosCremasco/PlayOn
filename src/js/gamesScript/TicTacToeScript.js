@@ -13,57 +13,57 @@ const COMBINACOES = [
     [2,5,8],
     [0,4,8],
     [2,4,6]
-];
+]; //todas as combinações possíveis do jogo da velha
 
-document.addEventListener("click", (event) => {
-    if(event.target.matches(".celula")) {
-        jogar(event.target.id);
+document.addEventListener("click", (event) => { //quando o clique acontecer no document
+    if(event.target.matches(".celula")) { //se o alvo for determinada celula das quais ele apertou
+        jogar(event.target.id); // jogar recebe o id da célula clicada
     }
 });
 
-function jogar(id) {
-    const celula = document.getElementById(id);
-    turno = checarTurno ? JOGADOR_X : JOGADOR_O;
-    celula.textContent = turno;
-    celula.classList.add(turno);
-    checarVencedor(turno);
+function jogar(id) { //função para o jogo ocorrer, ou seja marcar a célula clicada
+    const celula = document.getElementById(id); //ira pegar o id da célula que foi clicada
+    turno = checarTurno ? JOGADOR_X : JOGADOR_O; // verifica de quem é o turno do Jogador X ou do O
+    celula.textContent = turno; //se for do jogador x irá escrever na tela X se for do O ira escrever O
+    celula.classList.add(turno);// adicionará a celula uma classe chamada turno
+    checarVencedor(turno); //checa 
 }
 
-function checarVencedor(turno) {
-    const vencedor = COMBINACOES.some((comb) => {
-        return comb.every((index) => {
-            return celulas[index].classList.contains(turno);
+function checarVencedor(turno) { // função para verificar se houve ganhador após a celula ser marcada
+    const vencedor = COMBINACOES.some((comb) => { // colocará como vencedor aquele que as satisfaça uma das combinações
+        return comb.every((index) => { //para cada index
+            return celulas[index].classList.contains(turno); //retorne aquelas que tem classe turno
         })
     });
 
-    if (vencedor){
+    if (vencedor){ //se existir vencedor o jogo encerra
         encerrarJogo(turno);
-    } else if (checarEmpate()) {
+    } else if (checarEmpate()) { //se não, verifica se há empate no jogo, se sim encerra.
         encerrarJogo();
-    } else {
+    } else { //se não, ele troca checar o turno para passar a vez para o outro usuário
         checarTurno = !checarTurno;
     }
 }
 
-function checarEmpate() {
+function checarEmpate() { //função que verifica se há empate
     let x = 0;
     let o = 0;
 
-    for (index in celulas) {
-        if(!isNaN(index)) {
-            if(celulas[index].classList.contains(JOGADOR_X)) {
+    for (index in celulas) { //para cada celula dentro de celulas faça
+        if(!isNaN(index)) { //se index for diferente de not a number
+            if(celulas[index].classList.contains(JOGADOR_X)) { //se o index dentro da célula for igual ao 'jogador X' o x++ sera realizado
                 x++;
             }
     
-            if(celulas[index].classList.contains(JOGADOR_O)) {
+            if(celulas[index].classList.contains(JOGADOR_O)) { //se o index dentro de célula for igual ao 'jogador O' o o++ sera realizado
                 o++;
             }
         }
     }
 
-    return x + o === 9 ? true : false;
+    return x + o === 9 ? true : false; //se o número de incrementações no O junto do número de incrementações no X for igual a 9 significa que temos um empate
 }
-function encerrarJogo(vencedor = null) {
+function encerrarJogo(vencedor = null) { //função que encerra o jogo
     const telaEscura = document.getElementById("tela-escura");
     const h2 = document.createElement("h2");
     const h3 = document.createElement("h3");

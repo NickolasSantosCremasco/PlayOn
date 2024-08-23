@@ -203,7 +203,7 @@ function moveLine() {
 function addObstacles (){  
     if(Math.random() < 0.045) { // chance de adicionar um obstaculo aleatoriamente para a tela
         let obstacleWidth = 50;
-        let obstacleHeight = 100;
+        let obstacleHeight = 90;
         let obstacleX = Math.random() * (window.innerWidth -1000 - obstacleWidth) + 500;
         let obstacleY = -obstacleHeight;
         let obstacleSpeed = Math.random() * 5 + 1; //velocidade do obstaculo entre 1 a 6 px/s
