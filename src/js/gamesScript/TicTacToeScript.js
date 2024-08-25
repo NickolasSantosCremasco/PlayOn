@@ -38,9 +38,9 @@ function checarVencedor(turno) { // função para verificar se houve ganhador ap
 
     if (vencedor){ //se existir vencedor o jogo encerra
         encerrarJogo(turno);
-    } else if (checarEmpate()) { //se não, verifica se há empate no jogo, se sim encerra.
-        encerrarJogo();
-    } else { //se não, ele troca checar o turno para passar a vez para o outro usuário
+    } else if (checarEmpate()) { //se não, verifica se há empate no jogo
+        encerrarJogo(); // se sim encerra.
+    } else { //se não, ele passa a vez para o outro usuário
         checarTurno = !checarTurno;
     }
 }
@@ -64,27 +64,32 @@ function checarEmpate() { //função que verifica se há empate
     return x + o === 9 ? true : false; //se o número de incrementações no O junto do número de incrementações no X for igual a 9 significa que temos um empate
 }
 function encerrarJogo(vencedor = null) { //função que encerra o jogo
-    const telaEscura = document.getElementById("tela-escura");
-    const h2 = document.createElement("h2");
-    const h3 = document.createElement("h3");
-    let menssagem = null;
+    const telaEscura = document.getElementById("tela-escura"); // seleciona a tag que tiver tela-escura no id
+    const h2 = document.createElement("h2"); //cria um elemento h2
+    const h3 = document.createElement("h3"); //cria um elemento h3
+    let menssagem = null; 
 
-    telaEscura.style.display = "block";
-    telaEscura.appendChild(h2);
-    telaEscura.appendChild(h3);
+    telaEscura.style.display = "block"; //display block na tela escura que aparecerá na tela
+    telaEscura.appendChild(h2); //h2 será adicionado como filho/dentro da telaEscura
+    telaEscura.appendChild(h3); //h3 será adicionado como filho/dentro da telaEscura
 
-    if (vencedor) {
-        h2.innerHTML = `O player <span>${vencedor}</span> venceu` ;
-    } else {
-        h2.innerHTML = "Empatou";
+    if (vencedor) { // se houver vencedor no jogo
+        if (vencedor === 'X') {
+            h2.innerHTML = `O player 1 <span>${vencedor}</span> venceu` ; //nome do usuário X vencedor
+        } else {
+            h2.innerHTML = `O player 2 <span>${vencedor}</span> venceu` ; //nome do usuário O vencedor
+        }
+        
+    } else { //se houver empate
+        h2.innerHTML = "Empatou"; //exibe "empatou" na tela
     }
 
-    let contador = 3;
+    let contador = 3; // contador para reiniciar o jogo
     setInterval(() => {
-        h3.innerHTML = `Reiniciando em ${contador--}`;
+        h3.innerHTML = `Reiniciando em ${contador--}`; //contador iniciará para reiniciar o jogo
     }, 1000);
 
-    setTimeout(() => location.reload(), 4000);
+    setTimeout(() => location.reload(), 4000); //o site recarregará após 4 segundos
 
 }
 
