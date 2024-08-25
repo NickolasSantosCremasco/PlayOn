@@ -4,6 +4,9 @@ let checarTurno = true;
 const JOGADOR_X = "X";
 const JOGADOR_O = "O";
 
+let personagem1 = document.querySelector('#personagem1')
+let personagem2 = document.querySelector('#personagem2')
+
 const COMBINACOES = [
     [0,1,2],
     [3,4,5],
@@ -24,6 +27,20 @@ document.addEventListener("click", (event) => { //quando o clique acontecer no d
 function jogar(id) { //função para o jogo ocorrer, ou seja marcar a célula clicada
     const celula = document.getElementById(id); //ira pegar o id da célula que foi clicada
     turno = checarTurno ? JOGADOR_X : JOGADOR_O; // verifica de quem é o turno do Jogador X ou do O
+    if (turno === JOGADOR_X) {
+        personagem1.src = '../../img/site/PersonagemFeliz.png' 
+        var transicaoDePersonagem1 = setTimeout(() => {
+            personagem1.src = '../../img/site/PersonagemParado.png' 
+        }, 1000);
+    } 
+    
+    if (turno === JOGADOR_O) {
+        personagem2.src = '../../img/site/PersonagemFeliz.png'
+       
+        var transicaoDePersonagem = setTimeout(() => {
+            personagem2.src = '../../img/site/PersonagemParado.png' 
+        }, 1000);
+    }
     celula.textContent = turno; //se for do jogador x irá escrever na tela X se for do O ira escrever O
     celula.classList.add(turno);// adicionará a celula uma classe chamada turno
     checarVencedor(turno); //checa 
@@ -77,7 +94,7 @@ function encerrarJogo(vencedor = null) { //função que encerra o jogo
         if (vencedor === 'X') {
             h2.innerHTML = `O player 1 <span>${vencedor}</span> venceu` ; //nome do usuário X vencedor
         } else {
-            h2.innerHTML = `O player 2 <span>${vencedor}</span> venceu` ; //nome do usuário O vencedor
+            h2.innerHTML = `O player 2 <span>${vencedor}</span> venceu` ; //nome do usuário O vencedor           
         }
         
     } else { //se houver empate

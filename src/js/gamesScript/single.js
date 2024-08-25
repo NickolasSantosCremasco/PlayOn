@@ -1,6 +1,7 @@
 const celulas = document.querySelectorAll(".celula");
 let fimDeJogo = false;
 
+
 const JOGADOR_X = "X";
 const JOGADOR_O = "O";
 
