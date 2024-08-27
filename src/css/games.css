@@ -86,6 +86,9 @@ section.LinkGames {
 }
 
 .mainGame {
+    background: url(../img/site/JogoRPG.png) no-repeat;
+    background-position: center;
+    background-size: cover;
     position: absolute;
     top: 99%;
     background-color: white;
@@ -96,8 +99,41 @@ section.LinkGames {
 }
 
 .mainGame:hover {
-   
     transform: scale(1.1);
+}
+
+.mainGame div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 20px;
+    border: 3px solid white;
+}
+
+.game div {
+    width: 100%;
+    height: 100%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+     
+}
+
+.game div:hover {
+    transition: all 1s;
+    opacity: .3;
+    background-color: black;
+}
+
+.mainGame div:hover :not(h1) {
+    transition: all 1s;
+    background-color: black;
+    opacity: .3;
 }
 
 .gameDown {
