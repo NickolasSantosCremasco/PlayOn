@@ -50,17 +50,17 @@ function stopMovement() {
 
 //movimento do personagem
 var dy;
-var dx; //Direction x
-var px; //position x
-var py;
-var vel; //speed
-var obj; // Which obj will move
-var tmp; //timer
+var dx; 
+var px; 
+var py; 
+var vel;
+var obj;
+var tmp; 
 
 obj = document.querySelector('#dv1')
 obj.style.backgroundImage ='url("../../img/assets/AssetsPersonagemJogo/ParadoFrente.jpg")';
 
-// OBJETOS INTERAGÍVEIS
+// Tamanhos e Posições dos Objetos
 //Lixo 
 const lixoPos = {x:(window.innerWidth*75)/100, y:(window.innerHeight*30)/100}
 const lixoSize = {width:100, height: 100}
@@ -70,13 +70,16 @@ const camaSize = {width:80, height:130}
 // tapete
 const tapetePos = {x:(window.innerWidth*10)/100, y:(window.innerHeight*18)/100}
 const tapeteSize = {width:250, height:250}
-//porta
+// porta
 const portaPos = {x:(window.innerWidth*42)/100, y:(canvas.height*58)/100}
 const portaSize = {width:240, height:240}
-
-const lixeiraPos = {x:(window.innerWidth*53)/100, y:(canvas.height*72)/100}
+// lixeira
+const lixeiraPos = {x:(window.innerWidth*53)/100, y:(window.innerHeight*72)/100}
 const lixeiraSize = {width:150, height:150}
 let currentObject = null
+// mãe
+const motherPos = {x:(window.innerWidth*40)/100, y:(canvas.height*75)/100}
+const motherSize = {width:60, height:100}
 
 function drawLixeira () {
     const lixeiraImage = new Image();
@@ -103,7 +106,7 @@ function drawLixo() {
 }
 function drawCama() {
     const camaImage = new Image();
-    camaImage.src = '../../img/assets/AssetsObjetosJogo/CamaDesarrumada.jpg'
+    camaImage.src = '../../img/assets/AssetsObjetosJogo/CamaDesarrumada.jpg';
     camaImage.onload = () => {
         ctx.drawImage(camaImage, camaPos.x, camaPos.y, camaSize.width, camaSize.height)
     };
@@ -111,11 +114,21 @@ function drawCama() {
 
 function drawTapete () {
     const tapeteImage = new Image();
-    tapeteImage.src = '../../img/assets/AssetsObjetosJogo/Tapete.png'
+    tapeteImage.src = '../../img/assets/AssetsObjetosJogo/Tapete.png';
     tapeteImage.onload = () => {
         ctx.drawImage(tapeteImage, tapetePos.x, tapetePos.y, tapeteSize.width, tapeteSize.height)
     };
 }
+
+function drawMother () {
+    const motherImage = new Image();
+    motherImage.src = '../../img/assets/AssetsMae/maeParada.png';
+    motherImage.onload = () => {
+        ctx.drawImage(motherImage, motherPos.x, motherPos.y, motherSize.width, motherSize.height);
+
+    }
+}
+
 
 function drawObjects() {
     drawTapete();
@@ -123,16 +136,15 @@ function drawObjects() {
     drawCama();
     drawLixeira();
     drawPorta();
-
-   
+    drawMother();   
 }
 
 
 function begin() {
     dx=0;
     dy=0;
-    px=50;
-    py=500;
+    px=60;
+    py=490;
     vel=8;
     document.addEventListener('keydown', keyDown) // Acontece quando a tecla é pressionada
     document.addEventListener('keyup', keyUp) // Acontece quando a tecla é solta

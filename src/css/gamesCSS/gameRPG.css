@@ -33,3 +33,13 @@ div.barraCheia {
     width: 0%;
     height: 100%;
 }
+
+div.timer {
+    position: absolute;
+   background-color: white;
+   border-radius: 10px;
+   padding: 5px 10px;
+    top: 0;
+    left: 90%;
+    transform: translate(-50%);
+}
