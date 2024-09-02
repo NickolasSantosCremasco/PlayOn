@@ -71,10 +71,10 @@ const camaSize = {width:80, height:130}
 const tapetePos = {x:(window.innerWidth*10)/100, y:(window.innerHeight*18)/100}
 const tapeteSize = {width:250, height:250}
 //porta
-const portaPos = {x:(window.innerWidth*42)/100, y:(window.innerHeight*64)/100}
+const portaPos = {x:(window.innerWidth*42)/100, y:(canvas.height*58)/100}
 const portaSize = {width:240, height:240}
 
-const lixeiraPos = {x:(window.innerWidth*53)/100, y:(window.innerHeight*77)/100}
+const lixeiraPos = {x:(window.innerWidth*53)/100, y:(canvas.height*72)/100}
 const lixeiraSize = {width:150, height:150}
 let currentObject = null
 
@@ -228,6 +228,15 @@ function enterFrame() {
 //Desenhando o mapa do jogo
 function drawMap() {
     //Sprite do mapa
+    const WallSprite = new Image()
+    WallSprite.src = '../../img/assets/gameRPG/parede.png'
+    WallSprite.onload = () => {
+        for (let i = -100; i < canvas.width; i+=50 ) {
+            for(let j = 0; j < canvas.height; j+=50) {
+                ctx.drawImage (WallSprite,i,j,50,50)
+            }
+        }
+    }
     const WoodSprite = new Image()
     WoodSprite.src = '../../img/assets/gameRPG/spriteChao.jpeg'
     //Desenhando o jogo
@@ -238,7 +247,7 @@ function drawMap() {
                 ctx.drawImage(WoodSprite, i, j, 50, 50)
             }
         }     
-    }
+    } 
     drawObjects()
 }
 
