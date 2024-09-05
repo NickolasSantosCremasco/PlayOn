@@ -10,6 +10,8 @@ body {
  
 }
 
+/*Slider Inicial*/
+
 section.slider {
   position: absolute;
   width: 90%;
@@ -95,7 +97,7 @@ section.slider {
   background-color: #ff0054;
 }
 
-/*~ = when happen this will happen this*/
+
 
 #radio1:checked ~ .first {
   margin-left: 0%;
@@ -290,7 +292,7 @@ div.race #littleCar {
 }
 
 
-/* content below */
+/* 2 camada de conteúdo, video e asset do fliperama */
 
 div.content-below {
   position: relative;
@@ -357,8 +359,8 @@ div.arcade img {
   width: 580px;
   bottom: 20%;
 }
-
-/*content_2 */
+/*Fim do video e do fliperama*/
+/* Cards dos personagens */
 
 div.content_2 {
   position: relative;
