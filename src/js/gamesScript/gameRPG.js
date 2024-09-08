@@ -83,7 +83,7 @@ const motherSize = {width:60, height:100}
 
 function drawLixeira () {
     const lixeiraImage = new Image();
-    lixeiraImage.src = '../../img/assets/AssetsObjetosJogo/lixeira.png'
+    lixeiraImage.src = '../../img/assets/AssetsObjetosJogo/lixeiraSuja.png'
     lixeiraImage.onload = () => {
         ctx.drawImage(lixeiraImage, lixeiraPos.x, lixeiraPos.y, lixeiraSize.width, lixeiraSize.height);
     }
@@ -297,7 +297,7 @@ function startLoading() {
                 } else if (currentObject === 'lixeira') {
                     drawLixeira = () => {
                         const lixeiraImage = new Image();
-                        lixeiraImage.src = '../../img/assets/AssetsObjetosJogo/lixeiraSuja.png'
+                        lixeiraImage.src = '../../img/assets/AssetsObjetosJogo/lixeira.png'
                         lixeiraImage.onload = () => {
                             ctx.drawImage(lixeiraImage, lixeiraPos.x, lixeiraPos.y-15, lixeiraSize.width-10, lixeiraSize.height-10)
                         }
