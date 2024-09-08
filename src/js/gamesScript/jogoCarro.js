@@ -55,7 +55,6 @@ function init() {
     document.addEventListener('keyup', keyUp); // eventos de teclas soltas
     StartPunctuation();
     setInterval(enterFrame, 20); 
-    // initialize the enterframe, all game
     // inicializando o jogo
     TryAgainButton.addEventListener('click', () => { // botão de reiniciar
         gameOver = false
@@ -67,8 +66,7 @@ function init() {
         dy = 0;
         obstacles.length = 0;
         game.point = 0;
-        highscore.innerHTML = `Pontuação: ${game.point}`
-        StartPunctuation();
+        restartPunctuation();
 
     }) 
 }
@@ -86,6 +84,14 @@ function StartPunctuation () {
 function stopPunctuation() {
     clearInterval(scoreInterval)
     FinalScore.innerHTML = `Pontuação Final: ${game.point}`
+}
+
+//reinicia a pontua
+function restartPunctuation() {
+  stopPunctuation(); // para o intervalo antigo
+  score.innerHTML = `Pontuação: 0`
+  game.point = 0
+  StartPunctuation(); // inicia um novo intervalo
 }
 
 
@@ -109,7 +115,8 @@ function drawScene() {
     }
 }
 
-const treeImages = treesSprites.map(sprite => {
+// Coloca as imagens de arvores que passarão na tela de cima para baixo
+const treeImages = treesSprites.map(sprite => { // fara com que as imagens não fiquem piscando e reutilize apenas uma imagem que ficara se movendo de cima para baixo
     const img = new Image();
     img.src = sprite.src
     return img;
@@ -251,7 +258,7 @@ function enterFrame() {
         drawScene(); // desenha o mapa
         updateObstacles(); // faz os obstaculos se mexerem
         addObstacles(); /// adiciona os obstaculos
-        updateTrees()
+        updateTrees(); // atualização das posições das arvores
         drawTrees(); // desenhar arvores
         gameOverScreen.style.display = 'none'; // a tela de game over fica invisivel
         if (checkCollision()) { // caso haja colisão
