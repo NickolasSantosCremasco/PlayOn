@@ -206,22 +206,27 @@ function moveLine() {
     }
 }
 
+
+let carLimit = 6; // limite de carros que serão gerados na tela 
+let CarNumber = 0; // número de carros atualmente na tela
 //adicionar obstaculos aleatoriamente
-function addObstacles (){  
-    if(Math.random() < 0.045) { // chance de adicionar um obstaculo aleatoriamente para a tela
+function addObstacles (){ 
+    if(Math.random() < 0.045 && CarNumber <= carLimit) { // chance de adicionar um obstaculo aleatoriamente para a tela e verifica se o número de carros não ultrapassou o limite na tela
         let obstacleWidth = 50;
         let obstacleHeight = 90;
         let obstacleX = Math.random() * (window.innerWidth -1000 - obstacleWidth) + 500;
         let obstacleY = -obstacleHeight;
         let obstacleSpeed = Math.random() * 5 + 1; //velocidade do obstaculo entre 1 a 6 px/s
-        obstacles.src = '../../img/assets/imgJogoCarro/carroAzul.png' 
+        obstacles.src = '' 
         obstacles.push({
             x:obstacleX,
             y: obstacleY, 
             width: obstacleWidth, 
             height: obstacleHeight, 
-            speed: obstacleSpeed
+            speed: obstacleSpeed,
+            image: '../../img/assets/imgJogoCarro/carroAzul.png'
         });
+        CarNumber++
     }
 }
 
@@ -230,12 +235,23 @@ function updateObstacles() {
     //obstaculos se movendo do Px Maximo até o Px mínimo
     for(let i = 0; i < obstacles.length; i++) {
         obstacles[i].y += obstacles[i].speed;
+
+        //remover o carro após ele sair da tela
         if (obstacles[i].y > canvas.height) {
             obstacles.splice(i, 1);
-            i--;
+            CarNumber--; // Diminui o número de carros
+            i--; //ajusta o índice de carros
         }
     }
 
+}
+let lastScoreIncrease = 0; // armazena a ultima vez que a pontuação fez com que aumentasse o limite de carros
+function checkScore() {
+    if (game.point % 500 === 0 && game.point !== 0 && game.point > lastScoreIncrease) { //verifica se game.point divido por 500 for igual a zero quer dizer que estamos no momento de aumentar o limite de carros
+        carLimit+=1 // o limite de carros aumenta em mais 1
+        lastScoreIncrease = game.point // marca quando esse limite foi aumentado, e aumentará apenas uma vez
+        console.log(carLimit)
+    }
 }
 
 // checando colisão entre personagem e obstaculo
@@ -251,6 +267,7 @@ function checkCollision() {
     }
     return false
 }
+
 // função central do jogo
 function enterFrame() {
     if (!gameOver) { // verifica se a variável game over é diferente de true
@@ -260,6 +277,7 @@ function enterFrame() {
         addObstacles(); /// adiciona os obstaculos
         updateTrees(); // atualização das posições das arvores
         drawTrees(); // desenhar arvores
+        checkScore(); // aumenta 1 carro a mais na tela a cada 500 de score batido
         gameOverScreen.style.display = 'none'; // a tela de game over fica invisivel
         if (checkCollision()) { // caso haja colisão
             gameOverScreen.style.display = 'flex'; // game over aparecerá
