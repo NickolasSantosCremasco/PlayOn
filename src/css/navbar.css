@@ -24,7 +24,7 @@ header.navbar {
   transform: translate(-50%);
   padding: 33px 9%;
   background: transparent;
-  background-color: rgb(04, 16, 36);
+  background-color: rgb(26,26,26);
   border-radius: 20px;
 }
 
@@ -79,7 +79,7 @@ header.navbar {
     width: 200px;
     height: 250px;
     display: flex;
-    background-color: rgb(26, 26, 26);
+    background-color: rgb(04, 16, 36);
     align-items: center;
     justify-content: center;
     flex-direction: column;
