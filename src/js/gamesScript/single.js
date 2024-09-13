@@ -16,6 +16,7 @@ const COMBINACOES = [
     [2,4,6]
 ];
 
+
 document.addEventListener("click", (event) => {
     if(event.target.matches(".celula")) {
         jogar(event.target.id, JOGADOR_X);

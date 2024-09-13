@@ -116,7 +116,7 @@ function drawTapete () {
     const tapeteImage = new Image();
     tapeteImage.src = '../../img/assets/AssetsObjetosJogo/Tapete.png';
     tapeteImage.onload = () => {
-        ctx.drawImage(tapeteImage, tapetePos.x, tapetePos.y, tapeteSize.width, tapeteSize.height)
+        ctx.drawImage(tapeteImage, tapetePos.x, tapetePos.y, tapeteSize.width, tapeteSize.height);
     };
 }
 
@@ -128,23 +128,26 @@ function drawMother () {
 
     }
 }
+ 
 
 
+// função que é responsável por todos os objetos interagívei que aparecem na tela
 function drawObjects() {
     drawTapete();
     drawLixo();
     drawCama();
     drawLixeira();
+    drawMother();  
     drawPorta();
-    drawMother();   
+   
 }
 
-
+// função que predefine movimento do personagem e inicia todo o jogo
 function begin() {
     dx=0;
     dy=0;
-    px=60;
-    py=490;
+    px=60; // posiçao X inicial do Personagem
+    py=490; // posição Y inicial do Personagem
     vel=8;
     document.addEventListener('keydown', keyDown) // Acontece quando a tecla é pressionada
     document.addEventListener('keyup', keyUp) // Acontece quando a tecla é solta
@@ -191,7 +194,7 @@ function keyUp() {
     }
 }
 
-//  barra de loading
+//  barra de loading 
 let loadingInterval = null;
 let loadingProgress = 0
 
