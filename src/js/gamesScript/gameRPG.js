@@ -153,6 +153,7 @@ function begin() {
     document.addEventListener('keyup', keyUp) // Acontece quando a tecla é solta
     tmp=setInterval(enterFrame, 20); //20 milésimos de intervalo para cada execução do código
     drawMap();
+    motherConversation(firstSpeech, secondSpeech, elementHtml, lettersInterval);
 }
 
 function keyDown() {
@@ -213,7 +214,6 @@ function enterFrame() {
         nextPy = 50;
     } else if (nextPy + obj.offsetWidth > window.innerHeight-90) {
         nextPy = (window.innerHeight - obj.offsetWidth) - 90;
-
     }
 
     py = nextPy
@@ -225,20 +225,95 @@ function enterFrame() {
       
     // se existir colisão com os objetos faça:
     const collidedObject = checkColissionWithObjects(); // procura se tem colisão com objetos
-   if (collidedObject) {
-    if (currentObject !== collidedObject) { // se o objeto atual for diferente do objeto colidido
-        currentObject = collidedObject; // faça o objeto colidido virar o atual
-        loadingProgress = 0;
-    }
+    if (collidedObject) {
+        if (currentObject !== collidedObject) { // se o objeto atual for diferente do objeto colidido
+            currentObject = collidedObject; // faça o objeto colidido virar o atual
+            loadingProgress = 0;
+        }
     document.querySelector('.barra').style.display = 'block'   // barra de loading irá aparecer na tela
     startLoading();
     console.log(checkColissionWithObjects())
    } else {
-   currentObject = null; 
+    currentObject = null; 
     stopLoading(); // se não houver colisão o loading para de ocorrer
    }
     // Verifica a proximidade com objetos
+
+    //função da fala da mãe
+    
 }
+
+
+
+//elemento HTML em que as falas da Mãe aparecerão na tela
+const elementHtml = document.querySelector('#mothersDialogue');
+//falas da mãe
+const firstSpeech = 'Filho, eu vou dar uma saída para ir no mercado...'
+const secondSpeech = 'Então quando eu voltar eu quero essa casa LIMPA!'
+
+
+const lettersInterval = 50 //tempo em que as letras aparecerão na tela
+
+//FUNÇÃO QUE EXECUTARÁ O DIALOGO DA MÃE COM O FILHO.
+function motherConversation(text,text2, el, Interval) {
+    const char = text.split("");// Divide o Texto em letras
+    el.innerHTML = ''; // limpa o texto anterior
+    let index = 0; //controla o índice atual da letra
+
+    const typer = setInterval(() => {
+        if (index < char.length) {
+            el.innerHTML += char[index]; //adiciona uma letra de cada vez na frase
+            index++ //Index é Incrementando
+        } else { // quando o index for do tamanho de char
+            clearInterval(typer); //limpa o intervalo para não ser executado desnecessariamente
+            setTimeout(() => { /// cria um evento que acontecera depois de 3 segundos
+                const parentElement = document.querySelector('.conversationBubble'); // seleciona o elemento pai da conversa, onde esta aparecendo o dialogo
+                const pressEnter = new Image(); // press enterEnter é definido como uma imagem
+                pressEnter.src = '../../img/assets/AssetsObjetosJogo/pressEnter.png' ; // pressEnter recebe uma imagem
+                pressEnter.classList = 'pressEnter' // a classe pressEnter é adicionada a variável pressEnter
+                parentElement.appendChild(pressEnter) // e por fim press Enter é criado na tela
+
+                const firstEnter = (event) => { // cria um evento que identificará qual tecla foi clicada no teclado
+                    if (event.key === "Enter") { // se a tecla clicada for enter executa a função abaixo
+                        document.removeEventListener('keydown', firstEnter); // o evento de escuta da tecla funciona uma vez depois é descartado para reutilizações abaixo
+                        el.innerHTML = ''; // limpa o dialogo anterior
+                        pressEnter.src = '' ; // limpa a imagem de pressEnter anterior
+                        index = 0; // index do dialogo volta a zero
+                        const char2 = text2.split(""); // divide o texto 2 em letras
+                        const typer2 = setInterval(() => { // repete as funções anteriores
+                            if (index < char2.length) {
+                                el.innerHTML += char2[index];
+                                index++
+                            } else {
+                                clearInterval(typer2);
+                                setTimeout(() =>{
+                                    pressEnter.src = '../../img/assets/AssetsObjetosJogo/pressEnter.png' ;
+                                    pressEnter.classList = 'pressEnter'
+                                    parentElement.appendChild(pressEnter)
+                                    const secondEnter = (event) => { // cria um segundo evento que identificará qual tecla foi clicada no teclado
+                                        if (event.key === "Enter") { // se a tecla for Enter
+                                            document.removeEventListener('keydown', secondEnter); // descarta mais uma vez o evento de escuta da tecla
+                                            parentElement.style.display = 'none' 
+
+                                            //CONTINUAR DAQUI
+
+                                        }
+                                    };
+
+                                    document.addEventListener('keydown', secondEnter)
+                                }, 1000);
+                            }
+                        }, Interval);
+                       };
+                    
+                }
+                document.addEventListener('keydown', firstEnter)
+            }, 1000);
+        };
+    }, Interval);
+    
+};
+
 
 //Desenhando o mapa do jogo
 function drawMap() {
@@ -263,7 +338,7 @@ function drawMap() {
             }
         }     
     } 
-    drawObjects()
+    drawObjects();
 }
 
 // checar colisão com objetos do mapa

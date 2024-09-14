@@ -6,7 +6,8 @@ const Interval = 300;
 
 //função que fará o texto aparecer na tela
 function showText(el, text, Interval) {
-    const char = text.split("").reverse(); //esta função dividirá
+    const char = text.split("").reverse(); //esta função diviria as frases em apenas letras
+    
 
     const typer = setInterval(() => { //cria um intervalo que se o cumprimento de char não for verdadeiro
         if (!char.length) {

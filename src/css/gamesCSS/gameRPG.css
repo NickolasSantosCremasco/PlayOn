@@ -66,3 +66,19 @@ img.maeDialogo {
     width: 80px;
     left: 200px;
 }
+
+.pressEnter {
+    position: absolute;
+    width: 100px;
+    right: 100px;
+    animation: fadeIn 1s linear;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
