@@ -26,6 +26,8 @@ const PersonagemAndandoDir = [
     'url("../../img/assets/AssetsPersonagemJogo/AndandoDir2.jpg")' 
 ]
 
+
+
 let isMoving = false
 let currentFrame = 0
 let moveInterval;
@@ -77,9 +79,7 @@ const portaSize = {width:240, height:240}
 const lixeiraPos = {x:(window.innerWidth*53)/100, y:(window.innerHeight*72)/100}
 const lixeiraSize = {width:150, height:150}
 let currentObject = null
-// mãe
-const motherPos = {x:(window.innerWidth*40)/100, y:(canvas.height*75)/100}
-const motherSize = {width:60, height:100}
+
 
 function drawLixeira () {
     const lixeiraImage = new Image();
@@ -119,15 +119,6 @@ function drawTapete () {
         ctx.drawImage(tapeteImage, tapetePos.x, tapetePos.y, tapeteSize.width, tapeteSize.height);
     };
 }
-
-function drawMother () {
-    const motherImage = new Image();
-    motherImage.src = '../../img/assets/AssetsMae/maeParada.png';
-    motherImage.onload = () => {
-        ctx.drawImage(motherImage, motherPos.x, motherPos.y, motherSize.width, motherSize.height);
-
-    }
-}
  
 
 
@@ -137,23 +128,8 @@ function drawObjects() {
     drawLixo();
     drawCama();
     drawLixeira();
-    drawMother();  
     drawPorta();
-   
-}
-
-// função que predefine movimento do personagem e inicia todo o jogo
-function begin() {
-    dx=0;
-    dy=0;
-    px=60; // posiçao X inicial do Personagem
-    py=490; // posição Y inicial do Personagem
-    vel=8;
-    document.addEventListener('keydown', keyDown) // Acontece quando a tecla é pressionada
-    document.addEventListener('keyup', keyUp) // Acontece quando a tecla é solta
-    tmp=setInterval(enterFrame, 20); //20 milésimos de intervalo para cada execução do código
-    drawMap();
-    motherConversation(firstSpeech, secondSpeech, elementHtml, lettersInterval);
+    
 }
 
 function keyDown() {
@@ -256,6 +232,7 @@ const lettersInterval = 50 //tempo em que as letras aparecerão na tela
 
 //FUNÇÃO QUE EXECUTARÁ O DIALOGO DA MÃE COM O FILHO.
 function motherConversation(text,text2, el, Interval) {
+    
     const char = text.split("");// Divide o Texto em letras
     el.innerHTML = ''; // limpa o texto anterior
     let index = 0; //controla o índice atual da letra
@@ -294,26 +271,77 @@ function motherConversation(text,text2, el, Interval) {
                                         if (event.key === "Enter") { // se a tecla for Enter
                                             document.removeEventListener('keydown', secondEnter); // descarta mais uma vez o evento de escuta da tecla
                                             parentElement.style.display = 'none' 
-
-                                            //CONTINUAR DAQUI
+                                            moveMotherToTheDoor();
 
                                         }
                                     };
 
-                                    document.addEventListener('keydown', secondEnter)
+                                    document.addEventListener('keydown', secondEnter) // realiza um evento para quando o usuário clicar no enter pela segunda vez
                                 }, 1000);
                             }
                         }, Interval);
                        };
                     
                 }
-                document.addEventListener('keydown', firstEnter)
+                document.addEventListener('keydown', firstEnter) // realiza um evento para quando o usuário clicar no enter pela primeira vez
             }, 1000);
         };
     }, Interval);
     
 };
 
+//função do movimento da mãe até a porta
+
+let motherMoving = false
+function moveMotherToTheDoor(){
+    // sprites mãe 
+    const motherWalking = [
+        '../../img/assets/AssetsMae/maeParadaDir.png',
+        '../../img/assets/AssetsMae/maeAndandoDir1.png',
+        '../../img/assets/AssetsMae/maeParadaDir.png',
+        '../../img/assets/AssetsMae/maeAndandoDir2.png',
+    ]
+    const motherElement = document.querySelector('.mother')
+    const motherFrame = document.querySelector('.motherCharacter')
+    let motherX = parseInt(motherElement.style.left) || portaPos.x - 10
+
+    const targetX = portaPos.x + 60
+    let motherMoving = true;
+    let motherSpeed = 5;
+    let currentSprite = 0
+
+    if (motherMoving) {
+        const moveInterval = setInterval(() => {
+            if (motherX < targetX) {
+                motherX += motherSpeed;
+                motherElement.style.left = `${motherX}px`;
+                currentSprite = (currentSprite + 1) % motherWalking.length;
+                motherFrame.src = `${motherWalking[currentSprite]}`;
+            } else {
+                clearInterval(moveInterval);
+                motherMoving = false
+                setTimeout(() => {
+                    motherFrame.src = ''
+                    startTimer();
+                }, 500);
+                
+            }
+        }, 200);
+    }
+}
+
+
+function startTimer () {
+    const timer = document.querySelector('#time');
+    let time = 10
+    setInterval(() => {
+        timer.innerText = `${time}`
+        time--
+        if(time == 0 ) {
+
+        }
+    }, 1000);
+}
 
 //Desenhando o mapa do jogo
 function drawMap() {
@@ -338,7 +366,10 @@ function drawMap() {
             }
         }     
     } 
-    drawObjects();
+    setTimeout(() => { // tera um intervalo de 100 centésimos para carregar os objetos no mapa para não haver nenhum problema de renderização
+        drawObjects();
+    }, 100);
+    
 }
 
 // checar colisão com objetos do mapa
@@ -394,6 +425,21 @@ function stopLoading () {
     loadingProgress = 0;
     document.querySelector('.barraCheia').style.width = '0%'
     document.querySelector('.barra').style.display = 'none';
+}
+
+// função que predefine movimento do personagem e inicia todo o jogo
+function begin() {
+    dx=0;
+    dy=0;
+    px=60; // posiçao X inicial do Personagem
+    py=490; // posição Y inicial do Personagem
+    vel=8;
+    document.addEventListener('keydown', keyDown) // Acontece quando a tecla é pressionada
+    document.addEventListener('keyup', keyUp) // Acontece quando a tecla é solta
+    tmp=setInterval(enterFrame, 20); //20 milésimos de intervalo para cada execução do código
+    drawMap();
+    
+    motherConversation(firstSpeech, secondSpeech, elementHtml, lettersInterval);
 }
 
 //Quando a tela for carregada o jogo se inicia
