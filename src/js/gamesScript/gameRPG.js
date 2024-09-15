@@ -26,6 +26,13 @@ const PersonagemAndandoDir = [
     'url("../../img/assets/AssetsPersonagemJogo/AndandoDir2.jpg")' 
 ]
 
+// sprites mãe
+const motherWalking = [ 
+    '../../img/assets/AssetsMae/maeParadaDir.png',
+    '../../img/assets/AssetsMae/maeAndandoDir1.png',
+    '../../img/assets/AssetsMae/maeParadaDir.png',
+    '../../img/assets/AssetsMae/maeAndandoDir2.png',
+]
 
 
 let isMoving = false
@@ -271,6 +278,7 @@ function motherConversation(text,text2, el, Interval) {
                                         if (event.key === "Enter") { // se a tecla for Enter
                                             document.removeEventListener('keydown', secondEnter); // descarta mais uma vez o evento de escuta da tecla
                                             parentElement.style.display = 'none' 
+                                            pressEnter.src = '';
                                             moveMotherToTheDoor();
 
                                         }
@@ -292,37 +300,30 @@ function motherConversation(text,text2, el, Interval) {
 
 //função do movimento da mãe até a porta
 
-let motherMoving = false
+let motherMoving = false; // movimento da mãe é false antes de terminar o dialogo
 function moveMotherToTheDoor(){
-    // sprites mãe 
-    const motherWalking = [
-        '../../img/assets/AssetsMae/maeParadaDir.png',
-        '../../img/assets/AssetsMae/maeAndandoDir1.png',
-        '../../img/assets/AssetsMae/maeParadaDir.png',
-        '../../img/assets/AssetsMae/maeAndandoDir2.png',
-    ]
-    const motherElement = document.querySelector('.mother')
-    const motherFrame = document.querySelector('.motherCharacter')
-    let motherX = parseInt(motherElement.style.left) || portaPos.x - 10
+    const motherElement = document.querySelector('.mother'); //seleciona a estrutura onde esta a imagem da mãe
+    const motherFrame = document.querySelector('.motherCharacter'); //seleciona o elemento html que tem a imagem da mãe
+    let motherX = portaPos.x - 10 //define a posição da mãe no momento em que os sprites da mãe começam a aparecer
 
-    const targetX = portaPos.x + 60
-    let motherMoving = true;
-    let motherSpeed = 5;
-    let currentSprite = 0
+    const targetX = portaPos.x + 60 // define até que ponto a imagem percorrerá até que os sprites parem de aparecer
+    let motherMoving = true; // define que o movimento da mãe é verdadeiro
+    let motherSpeed = 5; // velocidade em que a mãe ira percorrer a tela
+    let currentSprite = 0 // sprite atual que esta aparecendo na tela
 
-    if (motherMoving) {
-        const moveInterval = setInterval(() => {
-            if (motherX < targetX) {
-                motherX += motherSpeed;
-                motherElement.style.left = `${motherX}px`;
-                currentSprite = (currentSprite + 1) % motherWalking.length;
-                motherFrame.src = `${motherWalking[currentSprite]}`;
-            } else {
-                clearInterval(moveInterval);
-                motherMoving = false
-                setTimeout(() => {
-                    motherFrame.src = ''
-                    startTimer();
+    if (motherMoving) { // se a mãe estiver se movendo
+        const moveInterval = setInterval(() => { // um intervalo de movimento é criado
+            if (motherX < targetX) { // onde se a posição da imagem da mãe for menor que a posição do alvo 
+                motherX += motherSpeed; // a posição vertical da mãe ira somar com velocidade
+                motherElement.style.left = `${motherX}px`; //a posição vertical sera definida na tela
+                currentSprite = (currentSprite + 1) % motherWalking.length; // o sprite atual que aparecerá na tela 
+                motherFrame.src = `${motherWalking[currentSprite]}`; // define o sprite atual que aparecerá na tela  a cada 0.2 décimos
+            } else { 
+                clearInterval(moveInterval); // cessa o intervalo dos sprites
+                motherMoving = false //movimento para se tornando falso
+                setTimeout(() => { // após 0.5 décimos
+                    motherFrame.src = '' // a mãe desaparece da tela
+                    startTimer(motherFrame, motherElement); // timer se inicia e guarda dois parâmetros para serem reutilizados
                 }, 500);
                 
             }
@@ -330,19 +331,54 @@ function moveMotherToTheDoor(){
     }
 }
 
-
-function startTimer () {
-    const timer = document.querySelector('#time');
-    let time = 10
-    setInterval(() => {
-        timer.innerText = `${time}`
-        time--
-        if(time == 0 ) {
-
+// TIMER
+function startTimer (mother, motherPos ) {
+    const timer = document.querySelector('#time'); // guarda o elemento HTML onde passará o tempo
+    let time = 2; // define o tempo como 59 segundos
+    const timePassing = setInterval(() => { // cria um intervalo para o tempo passar cada segundo
+        timer.innerText = `${time}`; // atualizará o tempo na tela
+        time--; // diminui segundo no timer
+        if(time == 0 ) { // quando o tempo for igual a -
+            clearInterval(timePassing); // intervalo cessará
+            timer.innerText = `0`; // o timer parará no 0 e não irá para números negativos
+            gameOver(mother, motherPos); // guarda mais uma vez os mesmos parâmetros para serem reutilizados
         }
     }, 1000);
 }
 
+function gameOver(mother, motherPos) {
+    const parentElement = document.querySelector('.conversationBubble');
+    const dialogue = document.querySelector('#mothersDialogue');
+    const pressEnter = new Image();
+    dialogue.innerHTML = '';
+    mother.src = '../../img/assets/AssetsMae/maeParada.png';
+    motherPos.style.left = `${45}%`;
+    parentElement.style.display = 'block';
+
+    let firstPhrase = 'Voltei Filho! Perai... O QUE É AQUILO SUJO ALI!';
+    let index = 0;
+    const charGameOver = firstPhrase.split("");
+    const TyperGameOver = setInterval(() => {
+        if (index < charGameOver.length) {
+            dialogue.innerHTML += charGameOver[index];
+            parentElement.style.display = 'flex'
+            parentElement.style.justifyContent = 'center'
+            parentElement.style.alignItems = 'center'
+            index++
+        } else {
+            clearInterval(TyperGameOver);
+            setTimeout(() => {
+                pressEnter.src = '../../img/assets/AssetsObjetosJogo/pressEnter.png';
+                pressEnter.classList = 'pressEnter';
+                parentElement.appendChild(pressEnter)
+
+                // CONTINUAR DAQUI
+            }, 1000);
+        }
+    }, 100);
+    
+   
+}
 //Desenhando o mapa do jogo
 function drawMap() {
     //Sprite do mapa

@@ -66,7 +66,7 @@ div.conversationBubble {
 
 }
 
-img.maeDialogo {
+img.motherImage {
     position:absolute;
     width: 80px;
     left: 200px;
@@ -75,7 +75,7 @@ img.maeDialogo {
 .pressEnter {
     position: absolute;
     width: 100px;
-    right: 100px;
+    right: 11%;
     animation: fadeIn 1s linear;
 }
 
@@ -94,6 +94,7 @@ img.maeDialogo {
 .motherCharacter {
     width: 70px;
 }
+
 
 @keyframes fadeIn {
     from {
