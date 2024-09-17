@@ -215,7 +215,7 @@ function enterFrame() {
         }
     document.querySelector('.barra').style.display = 'block'   // barra de loading irá aparecer na tela
     startLoading();
-    console.log(checkColissionWithObjects())
+   
    } else {
     currentObject = null; 
     stopLoading(); // se não houver colisão o loading para de ocorrer
@@ -230,10 +230,10 @@ function enterFrame() {
 
 //elemento HTML em que as falas da Mãe aparecerão na tela
 const elementHtml = document.querySelector('#mothersDialogue');
+
 //falas da mãe
 const firstSpeech = 'Filho, eu vou dar uma saída para ir ao mercado...'
 const secondSpeech = 'Então quando eu voltar eu quero essa casa LIMPA!'
-
 
 const lettersInterval = 50 //tempo em que as letras aparecerão na tela
 
@@ -334,17 +334,25 @@ function moveMotherToTheDoor(){
 // TIMER
 function startTimer (mother, motherPos ) {
     const timer = document.querySelector('#time'); // guarda o elemento HTML onde passará o tempo
-    let time = 59; // define o tempo como 59 segundos
+    let time = 5; // define o tempo como 59 segundos
     const timePassing = setInterval(() => { // cria um intervalo para o tempo passar cada segundo
         timer.innerText = `${time}`; // atualizará o tempo na tela
         time--; // diminui segundo no timer
-        if(time == 0 ) { // quando o tempo for igual a -
+        if(time === 0 ) { // quando o tempo for igual a -
             clearInterval(timePassing); // intervalo cessará
             timer.innerText = `0`; // o timer parará no 0 e não irá para números negativos
-            gameOver(mother, motherPos); // guarda mais uma vez os mesmos parâmetros para serem reutilizados
+            if (cleanObjets == 3) {
+                console.log('a casa foi limpa')
+                 // guarda mais uma vez os mesmos parâmetros para serem reutilizados e chama a função gameOver
+            } else {
+            
+                gameOver(mother, motherPos);
+            }
+            
         }
     }, 1000);
 }
+
 
 function gameOver(mother, motherPos) {
     const gameOverScreen = document.querySelector('.gameOverScreen'); // guardará a tela de gameOver
@@ -402,7 +410,7 @@ function gameOver(mother, motherPos) {
                     }
                 }
                 document.addEventListener('keydown', secondGameOverSpeech); // escuta se o usuário clicou no botão enter do teclado
-                // CONTINUAR DAQUI
+             
             }, 1000);
         }
     }, 100);
@@ -440,23 +448,25 @@ function drawMap() {
 
 // checar colisão com objetos do mapa
 function checkColissionWithObjects() {
-    if (px < lixoPos.x + lixoSize.width && px + obj.offsetWidth > lixoPos.x && py < lixoPos.y + lixoSize.height && py + obj.offsetHeight > lixoPos.y) { 
+    //se o objeto ja foi limpo não deve haver mais colisão, o restante define onde o objeto esta na tela para causa colisão
+    if (!cleanedObjects.includes('lixo') && px < lixoPos.x + lixoSize.width && px + obj.offsetWidth > lixoPos.x && py < lixoPos.y + lixoSize.height && py + obj.offsetHeight > lixoPos.y) { 
         return 'lixo'
-    } else if (px < camaPos.x + camaSize.width && px + obj.offsetWidth > camaPos.x && py < camaPos.y + camaSize.height && py + obj.offsetHeight > camaPos.y) {
+
+    // se dentro de cleanedObjects não houver 'cama' a função criará colisão se encontar no elemento, se sim não irá mais
+    } else if (!cleanedObjects.includes('cama')&& px < camaPos.x + camaSize.width && px + obj.offsetWidth > camaPos.x && py < camaPos.y + camaSize.height && py + obj.offsetHeight > camaPos.y) {
         return 'cama'
-    } else if (px < lixeiraPos.x + lixeiraSize.width && px + obj.offsetWidth > lixeiraPos.x && py < lixeiraPos.y + lixeiraSize.height && py + obj.offsetHeight > lixeiraPos.y) {
+    } else if (!cleanedObjects.includes('lixeira') && px < lixeiraPos.x + lixeiraSize.width && px + obj.offsetWidth > lixeiraPos.x && py < lixeiraPos.y + lixeiraSize.height && py + obj.offsetHeight > lixeiraPos.y) {
         return 'lixeira'
     }
     return null
 }
 
 
-//após sumir deve ter algo que guarde qual objeto sumiu para a colisão não funcionar quando passar por cima de novo do mesmo local
-//e armazenar quantos objetos foram limpos para o jogo identificar se você conseguiu ou não limpar a casa
 
+let cleanObjets = 0; // conta quantos objetos foram limpos
+let cleanedObjects = []; //Armazena quais objetos foram limpos
 // começa o loading para remover o objeto da tela
-function startLoading() {
-    let cleanObjets = 0
+function startLoading() {   
     if (loadingInterval) return; // evitar múltiplas execuções enquanto uma ja estiver em andamento
     loadingInterval = setInterval(() => {
         loadingProgress += 10 // barra de progresso
@@ -466,7 +476,8 @@ function startLoading() {
                 //remover o objeto colidido
                 if (currentObject === 'lixo') {
                     drawLixo = () => {} // o lixo desaparece
-                    cleanObjets+=1
+                    cleanedObjects.push('lixo') // adiciona o lixo para os objetos limpos
+                    cleanObjets+=1 // conta mais 1 para objetos limpos
                 } else if (currentObject === 'cama') {
                     drawCama = () => {
                         const camaImage = new Image();
@@ -475,7 +486,8 @@ function startLoading() {
                             ctx.drawImage(camaImage, camaPos.x, camaPos.y, camaSize.width, camaSize.height)
                         };
                     } // a Cama é limpa
-                    cleanObjets+=1
+                    cleanedObjects.push('cama'); //adiciona a cama para os objetos limpos
+                    cleanObjets+=1; // conta mais 1 para objetos limpos
                 } else if (currentObject === 'lixeira') {
                     drawLixeira = () => {
                         const lixeiraImage = new Image();
@@ -484,13 +496,17 @@ function startLoading() {
                             ctx.drawImage(lixeiraImage, lixeiraPos.x, lixeiraPos.y-15, lixeiraSize.width-10, lixeiraSize.height-10)
                         }
                     }
-                    cleanObjets+=1
+                    cleanedObjects.push('lixeira'); //adiciona a lixeira para os objetos limpos
+                    cleanObjets+=1; //conta mais um para objetos limpos
                 }
                 drawMap() // redesenha o mapa acima do lixo desaparecido
+            
             }
         }, 200
     );
-}
+};
+
+
 
 // o loading reseta
 function stopLoading () {
@@ -499,7 +515,7 @@ function stopLoading () {
     loadingProgress = 0;
     document.querySelector('.barraCheia').style.width = '0%'
     document.querySelector('.barra').style.display = 'none';
-}
+};
 
 // função que predefine movimento do personagem e inicia todo o jogo
 function begin() {
@@ -512,9 +528,8 @@ function begin() {
     document.addEventListener('keyup', keyUp) // Acontece quando a tecla é solta
     tmp=setInterval(enterFrame, 20); //20 milésimos de intervalo para cada execução do código
     drawMap();
-    
     motherConversation(firstSpeech, secondSpeech, elementHtml, lettersInterval);
-}
+};
 
 //Quando a tela for carregada o jogo se inicia
 window.addEventListener('load',begin);
