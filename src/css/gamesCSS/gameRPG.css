@@ -95,6 +95,33 @@ img.motherImage {
     width: 70px;
 }
 
+/*Game Over Screen*/
+
+.gameOverScreen {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px black;
+    width: 400px;
+    height: 300px;
+    background-color: white;
+
+}
+
+#tryAgainButton {
+    width: 200px;
+    height: 80px;
+    font-size: 15pt;
+}
+
+
 
 @keyframes fadeIn {
     from {

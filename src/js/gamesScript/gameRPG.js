@@ -231,7 +231,7 @@ function enterFrame() {
 //elemento HTML em que as falas da Mãe aparecerão na tela
 const elementHtml = document.querySelector('#mothersDialogue');
 //falas da mãe
-const firstSpeech = 'Filho, eu vou dar uma saída para ir no mercado...'
+const firstSpeech = 'Filho, eu vou dar uma saída para ir ao mercado...'
 const secondSpeech = 'Então quando eu voltar eu quero essa casa LIMPA!'
 
 
@@ -347,16 +347,21 @@ function startTimer (mother, motherPos ) {
 }
 
 function gameOver(mother, motherPos) {
+    const gameOverScreen = document.querySelector('.gameOverScreen');
+    const tryAgainButton = document.querySelector('#tryAgainButton');
     const parentElement = document.querySelector('.conversationBubble');
     const dialogue = document.querySelector('#mothersDialogue');
     const pressEnter = new Image();
+    gameOver = true;
     dialogue.innerHTML = '';
     mother.src = '../../img/assets/AssetsMae/maeParada.png';
     motherPos.style.left = `${45}%`;
     parentElement.style.display = 'block';
 
     let firstPhrase = 'Voltei Filho! Perai... O QUE É AQUILO SUJO ALI!';
+    let secondPharse = `Ta de castigo muleque! `
     let index = 0;
+   
     const charGameOver = firstPhrase.split("");
     const TyperGameOver = setInterval(() => {
         if (index < charGameOver.length) {
@@ -372,6 +377,30 @@ function gameOver(mother, motherPos) {
                 pressEnter.classList = 'pressEnter';
                 parentElement.appendChild(pressEnter)
 
+                const secondGameOverSpeech = (event) => {
+                    if (event.key == 'Enter') {
+                        dialogue.innerHTML = '';
+                        pressEnter.src = ''
+                        index = 0;
+                        const charGameOver2 = secondPharse.split("");
+                        const TyperGameOver2 = setInterval(() => {
+                            if (index < charGameOver2.length) {
+                                dialogue.innerHTML += charGameOver2[index];
+                                index++
+                            } else {
+                                clearInterval(TyperGameOver2);
+                                document.removeEventListener('keydown', secondGameOverSpeech);
+                                setTimeout(() => {
+                                    gameOverScreen.style.display = 'flex'
+                                    tryAgainButton.addEventListener('click', function retartGame() {
+                                        document.location.reload();
+                                    })
+                                }, 1000);
+                            }
+                        }, 100);
+                    }
+                }
+                document.addEventListener('keydown', secondGameOverSpeech);
                 // CONTINUAR DAQUI
             }, 1000);
         }
