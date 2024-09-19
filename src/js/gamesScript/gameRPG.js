@@ -338,82 +338,156 @@ function startTimer (mother, motherPos ) {
     const timePassing = setInterval(() => { // cria um intervalo para o tempo passar cada segundo
         timer.innerText = `${time}`; // atualizará o tempo na tela
         time--; // diminui segundo no timer
-        if(time === 0 ) { // quando o tempo for igual a -
+        if(cleanObjets == 3) { // quando o tempo for igual a -
             clearInterval(timePassing); // intervalo cessará
             timer.innerText = `0`; // o timer parará no 0 e não irá para números negativos
-            if (cleanObjets == 3) {
-                console.log('a casa foi limpa')
-                 // guarda mais uma vez os mesmos parâmetros para serem reutilizados e chama a função gameOver
-            } else {
-            
-                gameOver(mother, motherPos);
-            }
-            
+              //FUNÇÃO DE VITÓRIA
+            victory(mother, motherPos, time);// Guarda mais uma vez os mesmos parâmetros para serem reutilizados e chama a função de Vitória
+        } else if (time == 0) {
+            clearInterval(timePassing);
+            timer.innerText = `0`;
+            //FUNÇÃO DE DERROTA
+            gameOver(mother, motherPos);// Guarda mais uma vez os mesmos parâmetros para serem reutilizados e chama a função de gameOver 
+             
         }
     }, 1000);
 }
 
+//FUNÇÃO DE VITÓRIA
+function victory(mother, motherPos, time) {
+    
+        const victoryScreen = document.querySelector('.victoryScreen');
+        const playAgainScreen = document.querySelector('#playAgainButton');
+        const timeToDoTheTask = document.querySelector('#TimeToDoTheTasks');
+        const parentElement = document.querySelector('.conversationBubble'); // guardará a caixa de dialogo
+        const dialogue = document.querySelector('#mothersDialogue');
+        const pressEnter = new Image(); // cria um  elemento img chamado pressEnter
+        
+        dialogue.innerHTML = '';
+        mother.src = '../../img/assets/AssetMae/maeParada.png'
+        motherPos.style.left = `${45}%`; // coloca a posição da mãe com um left de 45%
+        parentElement.style.display = 'block'; // a caixa de dialogo aparece na tela
 
-function gameOver(mother, motherPos) {
-    const gameOverScreen = document.querySelector('.gameOverScreen'); // guardará a tela de gameOver
-    const tryAgainButton = document.querySelector('#tryAgainButton'); // guardará o botão de reiniciar
-    const parentElement = document.querySelector('.conversationBubble'); // guardará a caixa de dialogo
-    const dialogue = document.querySelector('#mothersDialogue'); // guardará o local em que as falas da mãe aparecerão
-    const pressEnter = new Image(); // guarda a imagem do pressEnter
-    dialogue.innerHTML = ''; // dialogo reinicia 
-    mother.src = '../../img/assets/AssetsMae/maeParada.png'; // Localiza a imagem do botão pressEnter
-    motherPos.style.left = `${45}%`; // coloca a posição da mãe com um left de 45%
-    parentElement.style.display = 'block'; // a caixa de dialogo aparece na tela
+        //frases que serão utilizadas
+        let firstPhrase = 'Cheguei Filho, olha só em... fez exatamente o que eu pedi! :)';
+        let secondPharse = `Não fez mais que a obrigação.`;
+        let index = 0;
 
-    //frases que serão utilizadas
-    let firstPhrase = 'Voltei Filho! Perai... O QUE É AQUILO SUJO ALI!';
-    let secondPharse = `Ta de castigo muleque! `
-    let index = 0;
-   
+        const charVictory = firstPhrase.split("");
+        const TyperVictory = setInterval(() => {
+            if (index < charVictory.length) {
+                dialogue.innerHTML += charVictory[index];
+                parentElement.style.display = 'flex'; // a conversa ficará visivel
+                parentElement.style.justifyContent = 'center'; // colocará dialogo no centro do balão de conversa digitalmente
+                parentElement.style.alignItems = 'center'; // colocará o dialogo no centro  do balão de conversa verticalmente
+                index += 1;
 
-    const charGameOver = firstPhrase.split(""); //primeira frase sera dividida em letras
-    const TyperGameOver = setInterval(() => { // cria um intervalo que mostrará a digitação das frases na tela
-        if (index < charGameOver.length) { // se o index (o número de letras que ja passaram) for menor que o tamanho da frase de gameOver a função a baixo será executada
-            dialogue.innerHTML += charGameOver[index]; // aparecerá letra a letra dentro do local dialogue do HTML
-            parentElement.style.display = 'flex' // a conversa ficará visivel
-            parentElement.style.justifyContent = 'center' // colocará dialogo no centro do balão de conversa digitalmente
-            parentElement.style.alignItems = 'center' // colocará o dialogo no centro  do balão de conversa verticalmente
-            index++ // somará o index para a próxima letra
-        } else { // se index for maior ou igual ao tamanho de charGameOver
-            clearInterval(TyperGameOver); //limpará o intervalo anterior
-            setTimeout(() => { // cria um timeOut para aparecer depois de 1 segundo o botão de pressEnter na tela
-                pressEnter.src = '../../img/assets/AssetsObjetosJogo/pressEnter.png'; // relocaliza a imagem de pressEnter
-                pressEnter.classList = 'pressEnter'; //coloca a classe pressEnter no elemento pressEnter
-                parentElement.appendChild(pressEnter) //E coloca pressEnter dentro do balão de conversa
 
-                const secondGameOverSpeech = (event) => { // cria um novo intervalo de fala
-                    if (event.key == 'Enter') { // se  botão clicado for Enter mais uma vez
-                        dialogue.innerHTML = ''; // limpará o dialogo anterior
-                        pressEnter.src = '' // a imagem de pressEnter desaparecerá
-                        index = 0; // index volta a zero
-                        const charGameOver2 = secondPharse.split(""); // dividirá a frase 2 em letras
-                        const TyperGameOver2 = setInterval(() => { // cria uma um intervalo de digitação para as palavras a aparecerem na tela depois de 0.1s décimo
-                            if (index < charGameOver2.length) {
-                                dialogue.innerHTML += charGameOver2[index];
-                                index++
-                            } else {
-                                clearInterval(TyperGameOver2); 
-                                document.removeEventListener('keydown', secondGameOverSpeech); // remove o escutador keydown anterior para ser utilizado apenas uma vez
-                                setTimeout(() => {
-                                    gameOverScreen.style.display = 'flex'
-                                    tryAgainButton.addEventListener('click', function retartGame() { // o gameOver aparéce na tela 
-                                        document.location.reload(); // ao clicar no tryAgainButton o site restaurará
-                                    })
-                                }, 1000);
-                            }
-                        }, 100);
+            } else {
+                clearInterval(TyperVictory);
+                setTimeout(() => {
+                    pressEnter.src = '../../img/assets/AssetsObjetosJogo/pressEnter.png'; // relocaliza a imagem de pressEnter
+                    pressEnter.classList = 'pressEnter'; //coloca a classe pressEnter no elemento pressEnter
+                    parentElement.appendChild(pressEnter); //E coloca pressEnter dentro do balão de conversa
+                    
+                    const secondVictorySpeech = (event) => {
+                        if (event.key == 'Enter') {
+                            dialogue.innerHTML = ''; // limpará o dialogo anterior
+                            pressEnter.src = ''; // a imagem de pressEnter desaparecerá
+                            index = 0; // index volta a zero
+                            const charVictory2 = secondPharse.split(""); // dividirá a frase 2 em letras
+                            const TyperVictory2 = setInterval(() => {
+                                if(index < charVictory2.length) {
+                                    dialogue.innerHTML = charVictory2[index];
+                                    index += 1;
+                                } else {
+                                    clearInterval(TyperVictory2);
+                                    document.removeEventListener('keydown', secondVictorySpeech);
+                                    setTimeout(() => {
+                                        victoryScreen.style.display = 'flex' // a tela de vitória aparece aparéce na tela
+                                        timeToCleanTheHouse = 60 - time
+                                        timeToDoTheTask.innerHTML = `Parabéns! Você limpou a casa em ${timeToCleanTheHouse}`
+                                        playAgainScreen.addEventListener('click', function retartGame() {  //se clicar no playAgainButton o jogador jogará o jogo de novo
+                                            document.location.reload(); 
+                                        })
+                                    }, 1000);
+                                }
+                            }, 100);
+                        }
                     }
-                }
-                document.addEventListener('keydown', secondGameOverSpeech); // escuta se o usuário clicou no botão enter do teclado
-             
-            }, 1000);
-        }
-    }, 100);
+                    document.addEventListener('keydown', secondVictorySpeech);
+
+                }, 1000);
+            }
+        }, 100);
+    
+    
+}
+
+//FUNÇÃO DE GAME OVER
+function gameOver(mother, motherPos) {
+
+        const gameOverScreen = document.querySelector('.gameOverScreen'); // guardará a tela de gameOver
+        const tryAgainButton = document.querySelector('#tryAgainButton'); // guardará o botão de reiniciar
+        const parentElement = document.querySelector('.conversationBubble'); // guardará a caixa de dialogo
+        const dialogue = document.querySelector('#mothersDialogue'); // guardará o local em que as falas da mãe aparecerão
+        const pressEnter = new Image(); // cria um elemento img chamado pressEnter
+        dialogue.innerHTML = ''; // Limpa o dialogo anterior
+        mother.src = '../../img/assets/AssetsMae/maeParada.png'; // Localiza a imagem do botão pressEnter
+        motherPos.style.left = `${45}%`; // coloca a posição da mãe com um left de 45%
+        parentElement.style.display = 'block'; // a caixa de dialogo aparece na tela
+
+        //frases que serão utilizadas
+        let firstPhrase = 'Voltei Filho! Perai... O QUE É AQUILO SUJO ALI!';
+        let secondPharse = `Ta de castigo muleque!`;
+        let index = 0;
+    
+
+        const charGameOver = firstPhrase.split(""); //primeira frase sera dividida em letras
+        const TyperGameOver = setInterval(() => { // cria um intervalo que mostrará a digitação das frases na tela
+            if (index < charGameOver.length) { // se o index (o número de letras que ja passaram) for menor que o tamanho da frase de gameOver a função a baixo será executada
+                dialogue.innerHTML += charGameOver[index]; // aparecerá letra a letra dentro do local dialogue do HTML
+                parentElement.style.display = 'flex'; // a conversa ficará visivel
+                parentElement.style.justifyContent = 'center'; // colocará dialogo no centro do balão de conversa digitalmente
+                parentElement.style.alignItems = 'center'; // colocará o dialogo no centro  do balão de conversa verticalmente
+                index++ // somará o index para a próxima letra
+            } else { // se index for maior ou igual ao tamanho de charGameOver
+                clearInterval(TyperGameOver); //limpará o intervalo anterior
+                setTimeout(() => { // cria um timeOut para aparecer depois de 1 segundo o botão de pressEnter na tela
+                    pressEnter.src = '../../img/assets/AssetsObjetosJogo/pressEnter.png'; // relocaliza a imagem de pressEnter
+                    pressEnter.classList = 'pressEnter'; //coloca a classe pressEnter no elemento pressEnter
+                    parentElement.appendChild(pressEnter) //E coloca pressEnter dentro do balão de conversa
+
+                    const secondGameOverSpeech = (event) => { // cria um novo intervalo de fala
+                        if (event.key == 'Enter') { // se  botão clicado for Enter mais uma vez
+                            dialogue.innerHTML = ''; // limpará o dialogo anterior
+                            pressEnter.src = '' // a imagem de pressEnter desaparecerá
+                            index = 0; // index volta a zero
+                            const charGameOver2 = secondPharse.split(""); // dividirá a frase 2 em letras
+                            const TyperGameOver2 = setInterval(() => { // cria uma um intervalo de digitação para as palavras a aparecerem na tela depois de 0.1s décimo
+                                if (index < charGameOver2.length) {
+                                    dialogue.innerHTML += charGameOver2[index];
+                                    index++
+                                } else {
+                                    clearInterval(TyperGameOver2); 
+                                    document.removeEventListener('keydown', secondGameOverSpeech); // remove o escutador keydown anterior para ser utilizado apenas uma vez
+                                    setTimeout(() => {
+                                        gameOverScreen.style.display = 'flex'
+                                        tryAgainButton.addEventListener('click', function retartGame() { // o gameOver aparéce na tela 
+                                            document.location.reload(); // ao clicar no tryAgainButton o site restaurará
+                                        })
+                                    }, 1000);
+                                }
+                            }, 100);
+                        }
+                    }
+                    document.addEventListener('keydown', secondGameOverSpeech); // escuta se o usuário clicou no botão enter do teclado
+                
+                }, 1000);
+            }
+        }, 100);
+    
+    
     
    
 }
@@ -533,3 +607,4 @@ function begin() {
 
 //Quando a tela for carregada o jogo se inicia
 window.addEventListener('load',begin);
+

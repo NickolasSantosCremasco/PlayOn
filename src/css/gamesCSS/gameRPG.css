@@ -115,12 +115,44 @@ img.motherImage {
 
 }
 
+.gameOverScreen h1 {
+    font-size: 30pt;
+}
+
 #tryAgainButton {
     width: 200px;
     height: 80px;
     font-size: 15pt;
 }
 
+/*Victory Screen*/
+
+.victoryScreen {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width:400px;
+    height: 300px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px black;
+    gap: 50px;
+}
+
+.victoryScreen h1 {
+    font-size: 30pt;
+}
+
+#playAgainButton {
+    width: 200px;
+    height: 80px;
+    font-size: 15pt;
+}
 
 
 @keyframes fadeIn {
