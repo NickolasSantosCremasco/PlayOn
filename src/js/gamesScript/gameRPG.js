@@ -405,8 +405,7 @@ function victory(mother, motherPos, time) {
                                     document.removeEventListener('keydown', secondVictorySpeech);
                                     setTimeout(() => {
                                         victoryScreen.style.display = 'flex' // a tela de vitória aparece aparéce na tela
-                                        timeToCleanTheHouse = 60 - time
-                                        timeToDoTheTask.innerHTML = `Parabéns! Você limpou a casa em ${timeToCleanTheHouse}`
+                                        timeToDoTheTask.innerHTML = `Parabéns! Você limpou a casa em ${time}`
                                         playAgainScreen.addEventListener('click', function retartGame() {  //se clicar no playAgainButton o jogador jogará o jogo de novo
                                             document.location.reload(); 
                                         })
