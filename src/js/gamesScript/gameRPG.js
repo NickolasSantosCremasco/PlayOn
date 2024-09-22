@@ -66,7 +66,10 @@ var vel;
 var obj;
 var tmp; 
 
-obj = document.querySelector('#dv1')
+//Efeitos Sonoros
+const audio = new Audio('../../audio/pickupCoin.wav'); //Efeito ao limpar os objetos
+
+obj = document.querySelector('#dv1');
 obj.style.backgroundImage ='url("../../img/assets/AssetsPersonagemJogo/ParadoFrente.jpg")';
 
 // Tamanhos e Posições dos Objetos
@@ -416,7 +419,7 @@ function victory(mother, motherPos, time) {
                 parentElement.style.display = 'flex'; // a conversa ficará visivel
                 parentElement.style.justifyContent = 'center'; // colocará dialogo no centro do balão de conversa digitalmente
                 parentElement.style.alignItems = 'center'; // colocará o dialogo no centro  do balão de conversa verticalmente
-                index += 1;
+                index++;
 
             } else {
                 clearInterval(TyperVictory);
@@ -427,14 +430,15 @@ function victory(mother, motherPos, time) {
                     
                     const secondVictorySpeech = (event) => {
                         if (event.key == 'Enter') {
+                            index = 0; // index volta a zero
                             dialogue.innerHTML = ''; // limpará o dialogo anterior
                             pressEnter.src = ''; // a imagem de pressEnter desaparecerá
-                            index = 0; // index volta a zero
+
                             const charVictory2 = secondPharse.split(""); // dividirá a frase 2 em letras
                             const TyperVictory2 = setInterval(() => {
                                 if(index < charVictory2.length) {
-                                    dialogue.innerHTML = charVictory2[index];
-                                    index += 1;
+                                    dialogue.innerHTML += charVictory2[index];
+                                    index++;    
                                 } else {
                                     clearInterval(TyperVictory2);
                                     document.removeEventListener('keydown', secondVictorySpeech);
@@ -486,7 +490,7 @@ function gameOver(mother, motherPos) {
                 parentElement.style.display = 'flex'; // a conversa ficará visivel
                 parentElement.style.justifyContent = 'center'; // colocará dialogo no centro do balão de conversa digitalmente
                 parentElement.style.alignItems = 'center'; // colocará o dialogo no centro  do balão de conversa verticalmente
-                index++ // somará o index para a próxima letra
+                index++; // somará o index para a próxima letra
             } else { // se index for maior ou igual ao tamanho de charGameOver
                 clearInterval(TyperGameOver); //limpará o intervalo anterior
                 setTimeout(() => { // cria um timeOut para aparecer depois de 1 segundo o botão de pressEnter na tela
@@ -503,7 +507,7 @@ function gameOver(mother, motherPos) {
                             const TyperGameOver2 = setInterval(() => { // cria uma um intervalo de digitação para as palavras a aparecerem na tela depois de 0.1s décimo
                                 if (index < charGameOver2.length) {
                                     dialogue.innerHTML += charGameOver2[index];
-                                    index++
+                                    index++;
                                 } else {
                                     clearInterval(TyperGameOver2); 
                                     document.removeEventListener('keydown', secondGameOverSpeech); // remove o escutador keydown anterior para ser utilizado apenas uma vez
@@ -588,6 +592,7 @@ function startLoading() {
                     drawLixo = () => {} // o lixo desaparece
                     cleanedObjects.push('lixo') // adiciona o lixo para os objetos limpos
                     cleanObjets+=1 // conta mais 1 para objetos limpos
+                    audio.play()
                 } else if (currentObject === 'cama') {
                     drawCama = () => {
                         const camaImage = new Image();
@@ -598,6 +603,7 @@ function startLoading() {
                     } // a Cama é limpa
                     cleanedObjects.push('cama'); //adiciona a cama para os objetos limpos
                     cleanObjets+=1; // conta mais 1 para objetos limpos
+                    audio.play()
                 } else if (currentObject === 'lixeira') {
                     drawLixeira = () => {
                         const lixeiraImage = new Image();
@@ -608,6 +614,7 @@ function startLoading() {
                     }
                     cleanedObjects.push('lixeira'); //adiciona a lixeira para os objetos limpos
                     cleanObjets+=1; //conta mais um para objetos limpos
+                    audio.play()
                 }
                 drawMap() // redesenha o mapa acima do lixo desaparecido
             
