@@ -139,7 +139,10 @@ function drawObjects() {
     
 }
 
+let isMovementDisabled = false
 function keyDown() {
+    if (isMovementDisabled) return; // se o movimento estiver desativado não faz nada
+
     var tecla = event.key; // Pega o valor de qual tecla foi apertada
     if (tecla== "ArrowLeft" ) { // se for esquerda ela diminui a posição em 1 para esquerda, segue-se o mesmo raciocínio abaixo
         dx=-1; 
@@ -158,6 +161,8 @@ function keyDown() {
 
 
 function keyUp() {
+    if (isMovementDisabled) return; // se o movimento estiver desabilitado não faz nada
+
     var tecla = event.key; 
     if (tecla=="ArrowLeft" ) { //se soltar a tecla ela irá ficar em 0 e não se moverá, segue-se o mesmo raciocínio abaixo
         dx=0;
@@ -177,22 +182,54 @@ function keyUp() {
         obj.style.backgroundImage ='url("../../img/assets/AssetsPersonagemJogo/ParadoCima.jpg")';
     }
 }
+//FUNÇÃO QUE DESATIVA O EVENTO DE MOVIMENTAÇÃO DO PERSONAGEM
+function disableMovement() {
+    isMovementDisabled = true; // Define que o movimento está desabilitado
+    dx = 0; // Impede qualquer movimento no eixo X
+    dy = 0; // Impede qualquer movimento no eixo Y
+    stopMovement(); // Para a animação de movimento
+    obj.style.backgroundImage = 'url("../../img/assets/AssetsPersonagemJogo/ParadoFrente.jpg")'; 
+    document.removeEventListener('keyup', keyUp); //Remove o escutador para quando solta a tecla
+    document.removeEventListener('keydown', keyDown); // Remove o escutador para quando a tecla é segurada
 
+}
+
+//FUNÇÃO QUE ATIVA O EVENTO DE MOVIMENTAÇÃO DO PERSONAGEM
+function enableMovement() {
+    isMovementDisabled = false;
+    document.addEventListener('keyup', keyUp); // Recoloca o escutador de evento para quando a tecla for solta
+    document.addEventListener('keydown', keyDown); // Recoloca o escutador de evento para quando a tecla for segurada
+}
 //  barra de loading 
 let loadingInterval = null;
 let loadingProgress = 0
 
+function initializeGame() { //
+    px = 100; // Defina a posição inicial X do personagem
+    py = 500; // Defina a posição inicial Y do personagem
+    obj.style.left = px + 'px'; // Atualiza a posição inicial
+    obj.style.top = py + 'px'; // Atualiza a posição inicial
+
+    // Define a imagem inicial do personagem como parado
+    obj.style.backgroundImage = 'url("../../img/assets/AssetsPersonagemJogo/ParadoFrente.jpg")';
+
+    // Ativa ou desativa o movimento conforme necessário (pode deixar desativado inicialmente)
+    disableMovement();
+}
+
+
+
 //atualiza os frames do jogo, atualizações das posições e tamanho do mapa
 function enterFrame() {
+    if (isMovementDisabled) return; // se o movimento estiver desabilitado não atualiza posições
     var nextPx = px + dx * vel; //positionX + directionX * Speed
-    var nextPy = py + dy * vel
+    var nextPy = py + dy * vel;
    
     if (nextPx < 50) {
         nextPx = 50;
     } else if (nextPx + obj.offsetWidth > window.innerWidth-38) {
         nextPx = (window.innerWidth - obj.offsetWidth) -38; // page width - element width
     }
-
     if (nextPy < 50) {
         nextPy = 50;
     } else if (nextPy + obj.offsetWidth > window.innerHeight-90) {
@@ -215,15 +252,11 @@ function enterFrame() {
         }
     document.querySelector('.barra').style.display = 'block'   // barra de loading irá aparecer na tela
     startLoading();
-   
+  
    } else {
     currentObject = null; 
     stopLoading(); // se não houver colisão o loading para de ocorrer
    }
-    // Verifica a proximidade com objetos
-
-    //função da fala da mãe
-    
 }
 
 
@@ -232,14 +265,14 @@ function enterFrame() {
 const elementHtml = document.querySelector('#mothersDialogue');
 
 //falas da mãe
-const firstSpeech = 'Filho, eu vou dar uma saída para ir ao mercado...'
-const secondSpeech = 'Então quando eu voltar eu quero essa casa LIMPA!'
+const firstSpeech = 'Filho, eu vou dar uma saída para ir ao mercado...';
+const secondSpeech = 'Então quando eu voltar eu quero essa casa LIMPA!';
 
-const lettersInterval = 50 //tempo em que as letras aparecerão na tela
+const lettersInterval = 50; //tempo em que as letras aparecerão na tela
 
 //FUNÇÃO QUE EXECUTARÁ O DIALOGO DA MÃE COM O FILHO.
 function motherConversation(text,text2, el, Interval) {
-    
+    disableMovement();
     const char = text.split("");// Divide o Texto em letras
     el.innerHTML = ''; // limpa o texto anterior
     let index = 0; //controla o índice atual da letra
@@ -333,10 +366,11 @@ function moveMotherToTheDoor(){
 
 // TIMER
 function startTimer (mother, motherPos ) {
+    enableMovement();
     const timer = document.querySelector('#time'); // guarda o elemento HTML onde passará o tempo
-    let time = 5; // define o tempo como 59 segundos
+    let time = 59; // define o tempo como 59 segundos
     const timePassing = setInterval(() => { // cria um intervalo para o tempo passar cada segundo
-        timer.innerText = `${time}`; // atualizará o tempo na tela
+        timer.innerText = `0:${time}`; // atualizará o tempo na tela
         time--; // diminui segundo no timer
         if(cleanObjets == 3) { // quando o tempo for igual a -
             clearInterval(timePassing); // intervalo cessará
@@ -355,33 +389,34 @@ function startTimer (mother, motherPos ) {
 
 //FUNÇÃO DE VITÓRIA
 function victory(mother, motherPos, time) {
+
+    disableMovement();
     
-        const victoryScreen = document.querySelector('.victoryScreen');
-        const playAgainScreen = document.querySelector('#playAgainButton');
-        const timeToDoTheTask = document.querySelector('#TimeToDoTheTasks');
-        const parentElement = document.querySelector('.conversationBubble'); // guardará a caixa de dialogo
-        const dialogue = document.querySelector('#mothersDialogue');
-        const pressEnter = new Image(); // cria um  elemento img chamado pressEnter
+    const victoryScreen = document.querySelector('.victoryScreen');
+    const playAgainScreen = document.querySelector('#playAgainButton');
+    const timeToDoTheTask = document.querySelector('#TimeToDoTheTasks');
+    const parentElement = document.querySelector('.conversationBubble'); // guardará a caixa de dialogo
+    const dialogue = document.querySelector('#mothersDialogue');
+    const pressEnter = new Image(); // cria um  elemento img chamado pressEnter
         
-        dialogue.innerHTML = '';
-        mother.src = '../../img/assets/AssetMae/maeParada.png'
-        motherPos.style.left = `${45}%`; // coloca a posição da mãe com um left de 45%
-        parentElement.style.display = 'block'; // a caixa de dialogo aparece na tela
+    dialogue.innerHTML = '';
+    mother.src = '../../img/assets/AssetMae/maeParada.png'
+    motherPos.style.left = `${45}%`; // coloca a posição da mãe com um left de 45%
+    parentElement.style.display = 'block'; // a caixa de dialogo aparece na tela
 
         //frases que serão utilizadas
-        let firstPhrase = 'Cheguei Filho, olha só em... fez exatamente o que eu pedi! :)';
-        let secondPharse = `Não fez mais que a obrigação.`;
-        let index = 0;
-
-        const charVictory = firstPhrase.split("");
-        const TyperVictory = setInterval(() => {
+    let firstPhrase = 'Cheguei Filho, olha só em... fez exatamente o que eu pedi! :)';
+    let secondPharse = `Não fez mais que a obrigação.`;
+    let index = 0;
+        
+    const charVictory = firstPhrase.split("");
+    const TyperVictory = setInterval(() => {
             if (index < charVictory.length) {
                 dialogue.innerHTML += charVictory[index];
                 parentElement.style.display = 'flex'; // a conversa ficará visivel
                 parentElement.style.justifyContent = 'center'; // colocará dialogo no centro do balão de conversa digitalmente
                 parentElement.style.alignItems = 'center'; // colocará o dialogo no centro  do balão de conversa verticalmente
                 index += 1;
-
 
             } else {
                 clearInterval(TyperVictory);
@@ -427,6 +462,8 @@ function victory(mother, motherPos, time) {
 //FUNÇÃO DE GAME OVER
 function gameOver(mother, motherPos) {
 
+        disableMovement();
+        
         const gameOverScreen = document.querySelector('.gameOverScreen'); // guardará a tela de gameOver
         const tryAgainButton = document.querySelector('#tryAgainButton'); // guardará o botão de reiniciar
         const parentElement = document.querySelector('.conversationBubble'); // guardará a caixa de dialogo
@@ -603,6 +640,7 @@ function begin() {
     tmp=setInterval(enterFrame, 20); //20 milésimos de intervalo para cada execução do código
     drawMap();
     motherConversation(firstSpeech, secondSpeech, elementHtml, lettersInterval);
+    initializeGame();
 };
 
 //Quando a tela for carregada o jogo se inicia
