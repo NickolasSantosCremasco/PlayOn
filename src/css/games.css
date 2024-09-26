@@ -119,3 +119,18 @@ section.LinkGames {
     width: 100%;
     height: 100%;
 }
+
+
+footer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: black;
+    top: 100%;
+    width: 100%;
+    height: 100px;
+    color: white;
+    gap: 600px;
+    font-size: 18pt;
+}
