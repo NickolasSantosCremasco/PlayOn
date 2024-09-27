@@ -7,23 +7,31 @@ ctx = canvas.getContext('2d');
 //sprites do personagem principal
 
 const PersonagemAndandoEsq = [
-    'url("../../img/assets/AssetsPersonagemJogo/AndandoEsq1.jpg")',
-    'url("../../img/assets/AssetsPersonagemJogo/AndandoEsq2.jpg")' 
+    'url("../../img/assets/AssetsFilho/AndandoEsq1.png")',
+    'url("../../img/assets/AssetsFilho/paradoEsq.png")',
+    'url("../../img/assets/AssetsFilho/AndandoEsq2.png")',
+    'url("../../img/assets/AssetsFilho/paradoEsq.png")',
 ]
 
 const PersonagemAndandoCima = [
-    'url("../../img/assets/AssetsPersonagemJogo/AndandoCima1.jpg")',
-    'url("../../img/assets/AssetsPersonagemJogo/AndandoCima2.jpg")'  
+    'url("../../img/assets/AssetsFilho/AndandoCima1.png")',
+    'url("../../img/assets/AssetsFilho/paradoCima.png")',
+    'url("../../img/assets/AssetsFilho/AndandoCima2.png")', 
+    'url("../../img/assets/AssetsFilho/paradoCima.png")',
 ]
 
 const PersonagemAndandoBaixo = [
-    'url("../../img/assets/AssetsPersonagemJogo/AndandoParaBaixo1.jpg")',
-    'url("../../img/assets/AssetsPersonagemJogo/AndandoParaBaixo2.jpg")' 
+    'url("../../img/assets/AssetsFilho/AndandoBaixo1.png")',
+    'url("../../img/assets/AssetsFilho/paradoBaixo.png")',
+    'url("../../img/assets/AssetsFilho/AndandoBaixo2.png")',
+    'url("../../img/assets/AssetsFilho/paradoBaixo.png")',
 ]
 
 const PersonagemAndandoDir = [
-    'url("../../img/assets/AssetsPersonagemJogo/AndandoDir1.jpg")',
-    'url("../../img/assets/AssetsPersonagemJogo/AndandoDir2.jpg")' 
+    'url("../../img/assets/AssetsFilho/AndandoDir1.png")',
+    'url("../../img/assets/AssetsFilho/paradoDir.png")',
+    'url("../../img/assets/AssetsFilho/AndandoDir2.png")',
+    'url("../../img/assets/AssetsFilho/paradoDir.png")', 
 ]
 
 // sprites mãe
@@ -70,7 +78,7 @@ var tmp;
 const audio = new Audio('../../audio/pickupCoin.wav'); //Efeito ao limpar os objetos
 
 obj = document.querySelector('#dv1');
-obj.style.backgroundImage ='url("../../img/assets/AssetsPersonagemJogo/ParadoFrente.jpg")';
+obj.style.backgroundImage ='url("../../img/assets/AssetsFilho/paradoBaixo.png")';
 
 // Tamanhos e Posições dos Objetos
 //Lixo 
@@ -88,6 +96,9 @@ const portaSize = {width:240, height:240}
 // lixeira
 const lixeiraPos = {x:(window.innerWidth*53)/100, y:(window.innerHeight*72)/100}
 const lixeiraSize = {width:150, height:150}
+
+const closetPos = {x:(window.innerWidth*30)/100, y:(window.innerHeight*8)/100}
+const closetSize = {width:100, height:150}
 let currentObject = null
 
 
@@ -97,7 +108,7 @@ function drawLixeira () {
     lixeiraImage.onload = () => {
         ctx.drawImage(lixeiraImage, lixeiraPos.x, lixeiraPos.y, lixeiraSize.width, lixeiraSize.height);
     }
-}
+};
 
 function drawPorta () {
     const portaImage = new Image();
@@ -105,7 +116,7 @@ function drawPorta () {
     portaImage.onload = () => {
         ctx.drawImage(portaImage, portaPos.x, portaPos.y, portaSize.width, portaSize.height);
     }
-}
+};
 
 function drawLixo() {
     const lixoImage = new Image();
@@ -113,14 +124,14 @@ function drawLixo() {
     lixoImage.onload = () => {
         ctx.drawImage(lixoImage,lixoPos.x, lixoPos.y, lixoSize.width, lixoSize.height )
     };
-}
+};
 function drawCama() {
     const camaImage = new Image();
     camaImage.src = '../../img/assets/AssetsObjetosJogo/CamaDesarrumada.jpg';
     camaImage.onload = () => {
         ctx.drawImage(camaImage, camaPos.x, camaPos.y, camaSize.width, camaSize.height)
     };
-} 
+} ;
 
 function drawTapete () {
     const tapeteImage = new Image();
@@ -128,8 +139,15 @@ function drawTapete () {
     tapeteImage.onload = () => {
         ctx.drawImage(tapeteImage, tapetePos.x, tapetePos.y, tapeteSize.width, tapeteSize.height);
     };
-}
+};
  
+function drawCloset () {
+    const closetImage = new Image();
+    closetImage.src = '../../img/assets/AssetsObjetosJogo/ArmarioQuebrado.jpg';
+    closetImage.onload = () => {
+        ctx.drawImage(closetImage, closetPos.x, closetPos.y, closetSize.width, closetSize.height);
+    };
+};
 
 
 // função que é responsável por todos os objetos interagívei que aparecem na tela
@@ -138,9 +156,10 @@ function drawObjects() {
     drawLixo();
     drawCama();
     drawLixeira();
+    drawCloset();
     drawPorta();
     
-}
+};
 
 let isMovementDisabled = false
 function keyDown() {
@@ -160,7 +179,7 @@ function keyDown() {
         dy=1
         toggleMovement(PersonagemAndandoBaixo)
     }
-}
+};
 
 
 function keyUp() {
@@ -170,42 +189,42 @@ function keyUp() {
     if (tecla=="ArrowLeft" ) { //se soltar a tecla ela irá ficar em 0 e não se moverá, segue-se o mesmo raciocínio abaixo
         dx=0;
         stopMovement()
-        obj.style.backgroundImage ='url("../../img/assets/AssetsPersonagemJogo/ParadoEsq.jpg")';
+        obj.style.backgroundImage ='url("../../img/assets/AssetsFilho/paradoEsq.png")';
     }  else if (tecla == "ArrowRight" ) { 
         dx=0;
         stopMovement()
-        obj.style.backgroundImage ='url("../../img/assets/AssetsPersonagemJogo/ParadoDir.jpg")';
+        obj.style.backgroundImage ='url("../../img/assets/AssetsFilho/paradoDir.png")';
     }  else if (tecla == "ArrowDown") {
         dy=0
         stopMovement()
-        obj.style.backgroundImage ='url("../../img/assets/AssetsPersonagemJogo/ParadoFrente.jpg")';
+        obj.style.backgroundImage ='url("../../img/assets/AssetsFilho/paradoBaixo.png")';
     } else if (tecla == "ArrowUp") {
         dy=0
         stopMovement()
-        obj.style.backgroundImage ='url("../../img/assets/AssetsPersonagemJogo/ParadoCima.jpg")';
+        obj.style.backgroundImage ='url("../../img/assets/AssetsFilho/paradoCima.png")';
     }
-}
+};
 //FUNÇÃO QUE DESATIVA O EVENTO DE MOVIMENTAÇÃO DO PERSONAGEM
 function disableMovement() {
     isMovementDisabled = true; // Define que o movimento está desabilitado
     dx = 0; // Impede qualquer movimento no eixo X
     dy = 0; // Impede qualquer movimento no eixo Y
     stopMovement(); // Para a animação de movimento
-    obj.style.backgroundImage = 'url("../../img/assets/AssetsPersonagemJogo/ParadoFrente.jpg")'; 
+    obj.style.backgroundImage = 'url("../../img/assets/AssetsFilho/paradoBaixo.png")'; 
     document.removeEventListener('keyup', keyUp); //Remove o escutador para quando solta a tecla
     document.removeEventListener('keydown', keyDown); // Remove o escutador para quando a tecla é segurada
 
-}
+};
 
 //FUNÇÃO QUE ATIVA O EVENTO DE MOVIMENTAÇÃO DO PERSONAGEM
 function enableMovement() {
     isMovementDisabled = false;
     document.addEventListener('keyup', keyUp); // Recoloca o escutador de evento para quando a tecla for solta
     document.addEventListener('keydown', keyDown); // Recoloca o escutador de evento para quando a tecla for segurada
-}
+};
 //  barra de loading 
 let loadingInterval = null;
-let loadingProgress = 0
+let loadingProgress = 0;
 
 function initializeGame() { //
     px = 100; // Defina a posição inicial X do personagem
@@ -214,7 +233,7 @@ function initializeGame() { //
     obj.style.top = py + 'px'; // Atualiza a posição inicial
 
     // Define a imagem inicial do personagem como parado
-    obj.style.backgroundImage = 'url("../../img/assets/AssetsPersonagemJogo/ParadoFrente.jpg")';
+    obj.style.backgroundImage = 'url("../../img/assets/AssetsFilho/paradoBaixo.png")';
 
     // Ativa ou desativa o movimento conforme necessário (pode deixar desativado inicialmente)
     disableMovement();
