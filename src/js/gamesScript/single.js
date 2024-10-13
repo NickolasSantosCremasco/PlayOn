@@ -24,6 +24,7 @@ document.addEventListener("click", (event) => {
     }
 });
 
+//Função que Cria o bot que jogará contra o usuário
 function bot() {
     const posicoesDisponiveis = [];
     for (index in celulas) {
@@ -46,6 +47,7 @@ function bot() {
     }
 }
 
+//Função do jogador marcar a célula e passar o turno para o bot
 function jogar(id, turno) {
     const celula = document.getElementById(id);
     celula.textContent = turno;
@@ -53,6 +55,7 @@ function jogar(id, turno) {
     checarVencedor(turno);
 }
 
+//Verifica se após cada célula marcada existe um vencedor
 function checarVencedor(turno) {
     const vencedor = COMBINACOES.some((comb) => {
         return comb.every((index) => {
@@ -67,6 +70,7 @@ function checarVencedor(turno) {
     } 
 }
 
+//Verifica se há empate após a celula marcada
 function checarEmpate() {
     let x = 0;
     let o = 0;
@@ -85,6 +89,9 @@ function checarEmpate() {
 
     return x + o === 9 ? true : false;
 }
+//Encerra o jogo 
+//Se existe vencedor o mostra na tela
+//se houver empate mostra "Empatou" na tela e reinicia o jogo
 function encerrarJogo(vencedor = null) {
     fimDeJogo = true;
     const telaEscura = document.getElementById("tela-escura");

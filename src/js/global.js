@@ -1,3 +1,4 @@
+//Animação dos elementos aparecerem de acordo com o campo de visão do usuário
 const Observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {

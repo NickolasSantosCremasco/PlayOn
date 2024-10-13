@@ -5,11 +5,7 @@ canvas.width = window.innerWidth;
 ctx = canvas.getContext('2d');
 
 /* 
-Definição dos sprites para o personagem principal em várias direções:
-- PersonagemAndandoEsq: sprites para o personagem andando para a esquerda.
-- PersonagemAndandoCima: sprites para o personagem andando para cima.
-- PersonagemAndandoBaixo: sprites para o personagem andando para baixo.
-- PersonagemAndandoDir: sprites para o personagem andando para a direita.
+Definição dos sprites para o personagem principal em várias direções
 */
 const PersonagemAndandoEsq = [
     'url("../../img/assets/AssetsFilho/AndandoEsq1.png")',
@@ -41,7 +37,6 @@ const PersonagemAndandoDir = [
 
 /* 
 Sprites da mãe:
-- motherWalking: sprites para o movimento da mãe.
 */
 const motherWalking = [ 
     '../../img/assets/AssetsMae/maeParadaDir.png',
@@ -88,11 +83,6 @@ function stopMovement() {
 
 /* 
 Variáveis adicionais para o controle de movimento:
-- dx, dy: deslocamento do personagem no eixo X e Y.
-- px, py: posição do personagem.
-- vel: velocidade de movimento.
-- obj: representa o elemento HTML que contém o personagem.
-- tmp: temporizador auxiliar.
 */
 var dy;
 var dx; 
@@ -103,13 +93,12 @@ var obj;
 var tmp;
 
 /* 
-Efeitos sonoros:
-- audio: carrega o som de coleta de moeda.
+Efeito sonoros ao limpar um objeto
 */
 const audio = new Audio('../../audio/pickupCoin.wav');
 
 /* 
-Seleciona o elemento HTML do personagem e define seu sprite inicial (parado para baixo).
+Seleciona o elemento HTML do personagem e define seu sprite inicial 
 */
 obj = document.querySelector('#dv1');
 obj.style.backgroundImage = 'url("../../img/assets/AssetsFilho/paradoBaixo.png")';
@@ -141,7 +130,7 @@ let currentObject = null;
 const ClosetDoorPos = {x:(window.innerWidth*30)/100, y:(window.innerHeight*30)/100};
 const ClosetDoorSize = {width:60, height:120};
 
-//FUNÇÃO QUE DESENHARÃO OS OBJETOS UNITARIAMENTE NA TELA
+//Funções que desenharão os objetos unitariamente na tela
 function drawLixeira () {
     const lixeiraImage = new Image();
     lixeiraImage.src = '../../img/assets/AssetsObjetosJogo/lixeiraSuja.png'
@@ -154,9 +143,7 @@ function drawPorta () {
     const portaImage = new Image();
     portaImage.src = '../../img/assets/AssetsObjetosJogo/porta.png'
     portaImage.onload = () => {
-        
         ctx.drawImage(portaImage, portaPos.x, portaPos.y, portaSize.width, portaSize.height);
-        
     }
 };
 
@@ -198,8 +185,6 @@ function drawClosetDoor () {
         ctx.drawImage(ClosetDoorImage, ClosetDoorPos.x, ClosetDoorPos.y, ClosetDoorSize.width, ClosetDoorSize.height);
     }
 }
-
-
 // função que é responsável por todos os objetos interagíveiS que aparecem na tela
 function drawObjects() {
     drawTapete();
@@ -213,7 +198,6 @@ function drawObjects() {
 };
 
 // FUNÇÃO DE MOVIMENTO DO PERSONAGEM PRINCIPAL
-
 let isMovementDisabled = false
 function keyDown() {
     if (isMovementDisabled) return; 
@@ -237,7 +221,6 @@ function keyDown() {
 //FUNÇÃO DE PARADA DO PERSONAGEM PRINCIPAL
 function keyUp() {
     if (isMovementDisabled) return;
-
     var tecla = event.key; 
     if (tecla=="ArrowLeft" ) { 
         stopMovement()
@@ -310,12 +293,10 @@ function enterFrame() {
     } else if (nextPy + obj.offsetWidth > window.innerHeight-90) {
         nextPy = (window.innerHeight - obj.offsetWidth) - 90;
     }
-
     py = nextPy
     px = nextPx;
     obj.style.left=px+'px'
     obj.style.top=py+'px' 
-      
     // se existir colisão com os objetos
     /*
     o objeto atual se tornará um objeto com colisão e a barra de progresso começara a rodar e aparecer na tela
@@ -334,10 +315,6 @@ function enterFrame() {
     stopLoading(); 
    }
 }
-
-
-
-
 const elementHtml = document.querySelector('#mothersDialogue');
 
 const firstSpeech = 'Filho, eu vou dar uma saída para ir ao mercado...';
@@ -456,7 +433,7 @@ function moveMotherToTheDoor() {
 
 // Função TIMER
 /*
-Quando o timer começar a corre o personagem poderá andar pela tela
+Quando o timer começar a correr o personagem poderá andar pela tela
 */
 function startTimer(mother, motherPos) {
     enableMovement();
@@ -467,7 +444,7 @@ function startTimer(mother, motherPos) {
         timer.innerText = `0:${time}`;
         time--;
 
-        // Condição de vitória (coleta de 3 objetos).
+        // Condição de vitória (Limpeza de 3 objetos).
         if (cleanObjets == 3) {
             clearInterval(timePassing);
             timer.innerText = `0`;
@@ -627,10 +604,6 @@ function gameOver(mother, motherPos) {
                 }, 1000);
             }
         }, 100);
-    
-    
-    
-   
 }
 //Desenhando o mapa do jogo
 /*
@@ -649,8 +622,7 @@ function drawMap() {
     const WoodSprite = new Image()
     WoodSprite.src = '../../img/assets/gameRPG/spriteChao.jpeg'
     
-    WoodSprite.onload = () => {
-       
+    WoodSprite.onload = () => { 
         for( let i=50; i < canvas.width - 80; i+=50) {
             for(let j= 50; j < canvas.height -90; j+=50) {
                 ctx.drawImage(WoodSprite, i, j, 50, 50)
@@ -660,13 +632,11 @@ function drawMap() {
     setTimeout(() => { 
         drawObjects();
     }, 100);
-    
 }
 
 // FUNÇÃO DE CHECAR COLISÃO
 /*Verifica se ha colisão coms os objetos no mapa e se houver identifica qual é o objeto em colisão */
-function checkColissionWithObjects() {
-    
+function checkColissionWithObjects() {   
     if (!cleanedObjects.includes('lixo') && px < lixoPos.x + lixoSize.width && px + obj.offsetWidth > lixoPos.x && py < lixoPos.y + lixoSize.height && py + obj.offsetHeight > lixoPos.y) { 
         return 'lixo'
     } else if (!cleanedObjects.includes('cama')&& px < camaPos.x + camaSize.width && px + obj.offsetWidth > camaPos.x && py < camaPos.y + camaSize.height && py + obj.offsetHeight > camaPos.y) {
@@ -677,14 +647,12 @@ function checkColissionWithObjects() {
     return null
 }
 
-
-
 let cleanObjets = 0; 
-let cleanedObjects = [];s
+let cleanedObjects = [];
 //FUNÇÃO PARA LIMPAR O OBJETO
 /*
-Ao identificar qual objeto foi limpo ele não tera mais colisão
-e mudará de skin ou sumirá do mapa
+Ao identificar qual objeto foi limpo ele não tera mais colisão,
+mudará de skin ou sumirá do mapa
 */
 function startLoading() {   
     if (loadingInterval) return; 
@@ -729,8 +697,6 @@ function startLoading() {
     );
 };
 
-
-
 // o loading reseta
 function stopLoading () {
     clearInterval(loadingInterval);
@@ -740,7 +706,7 @@ function stopLoading () {
     document.querySelector('.barra').style.display = 'none';
 };
 
-// FUNÇÕA DE COMEÇO DO JOGO
+// FUNÇÃO DE COMEÇO DO JOGO
 /*
 Define a posição inicial
 desenha o mapa, eventos de conversa e tecla
@@ -761,4 +727,3 @@ function begin() {
 
 //Quando a tela for carregada o jogo se inicia
 window.addEventListener('load',begin);
-

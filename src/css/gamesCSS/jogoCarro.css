@@ -19,7 +19,6 @@ canvas {
     width: 50px;
     height: 100px; 
     position: absolute;
-    background-color: white;
 }
 
 .gameOver {
@@ -30,6 +29,7 @@ canvas {
     width: 500px;
     height: 500px;
     background-color: white;
+    
     border: 1px solid black;
     align-items: center;
     justify-content: space-evenly;

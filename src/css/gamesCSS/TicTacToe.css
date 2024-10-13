@@ -27,6 +27,9 @@ h2{
     box-shadow: 0px 0px 15px 0px black;
 }
 
+/*
+container das células
+*/
 .grid{
     display: flex;
     flex-flow: row wrap;
@@ -55,15 +58,11 @@ h2{
     height: 100px;
     display: flex;
     justify-content:center;
-    align-content: center;
-    
+    align-content: center;  
 }
 
 button .single, .multiplayer {
     text-decoration: none;
-    
-    
-  
 }
 
 .voltar {

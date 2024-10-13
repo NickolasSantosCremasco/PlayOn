@@ -7,6 +7,7 @@ const JOGADOR_O = "O";
 let personagem1 = document.querySelector('#personagem1')
 let personagem2 = document.querySelector('#personagem2')
 
+//todas as combinações possíveis de um jogo vitorioso
 const COMBINACOES = [
     [0,1,2],
     [3,4,5],
@@ -16,17 +17,19 @@ const COMBINACOES = [
     [2,5,8],
     [0,4,8],
     [2,4,6]
-]; //todas as combinações possíveis do jogo da velha
+]; 
 
-document.addEventListener("click", (event) => { //quando o clique acontecer no document
-    if(event.target.matches(".celula")) { //se o alvo for determinada celula das quais ele apertou
-        jogar(event.target.id); // jogar recebe o id da célula clicada
+//Quando o clique do mouse acontecer na tela verifica em qual celula foi e a marca
+document.addEventListener("click", (event) => { 
+    if(event.target.matches(".celula")) { 
+        jogar(event.target.id); 
     }
 });
 
-function jogar(id) { //função para o jogo ocorrer, ou seja marcar a célula clicada
-    const celula = document.getElementById(id); //ira pegar o id da célula que foi clicada
-    turno = checarTurno ? JOGADOR_X : JOGADOR_O; // verifica de quem é o turno do Jogador X ou do O
+//Função para mudar a vez e fazer o torcedor vibrar
+function jogar(id) { 
+    const celula = document.getElementById(id); 
+    turno = checarTurno ? JOGADOR_X : JOGADOR_O; 
     if (turno === JOGADOR_X) {
         personagem1.src = '../../img/site/PersonagemFeliz.png' 
         var transicaoDePersonagem1 = setTimeout(() => {
@@ -41,72 +44,70 @@ function jogar(id) { //função para o jogo ocorrer, ou seja marcar a célula cl
             personagem2.src = '../../img/site/PersonagemParado.png' 
         }, 1000);
     }
-    celula.textContent = turno; //se for do jogador x irá escrever na tela X se for do O ira escrever O
-    celula.classList.add(turno);// adicionará a celula uma classe chamada turno
-    checarVencedor(turno); //checa 
+    celula.textContent = turno;
+    celula.classList.add(turno);
+    checarVencedor(turno); 
 }
-
-function checarVencedor(turno) { // função para verificar se houve ganhador após a celula ser marcada
-    const vencedor = COMBINACOES.some((comb) => { // colocará como vencedor aquele que as satisfaça uma das combinações
-        return comb.every((index) => { //para cada index
-            return celulas[index].classList.contains(turno); //retorne aquelas que tem classe turno
+// função para verificar se houve ganhador após cada célula marcada
+//caso exista o jogo termina mostrando o vencedor ou declarando o empate
+function checarVencedor(turno) { 
+    const vencedor = COMBINACOES.some((comb) => {
+        return comb.every((index) => {
+            return celulas[index].classList.contains(turno); 
         })
     });
 
-    if (vencedor){ //se existir vencedor o jogo encerra
+    if (vencedor){ 
         encerrarJogo(turno);
-    } else if (checarEmpate()) { //se não, verifica se há empate no jogo
-        encerrarJogo(); // se sim encerra.
-    } else { //se não, ele passa a vez para o outro usuário
+    } else if (checarEmpate()) { 
+        encerrarJogo(); 
+    } else { 
         checarTurno = !checarTurno;
     }
 }
 
-function checarEmpate() { //função que verifica se há empate
+//função que verifica se há empate no jogo
+function checarEmpate() { 
     let x = 0;
     let o = 0;
 
-    for (index in celulas) { //para cada celula dentro de celulas faça
-        if(!isNaN(index)) { //se index for diferente de not a number
-            if(celulas[index].classList.contains(JOGADOR_X)) { //se o index dentro da célula for igual ao 'jogador X' o x++ sera realizado
+    for (index in celulas) { 
+        if(!isNaN(index)) { 
+            if(celulas[index].classList.contains(JOGADOR_X)) { 
                 x++;
             }
-    
-            if(celulas[index].classList.contains(JOGADOR_O)) { //se o index dentro de célula for igual ao 'jogador O' o o++ sera realizado
+            if(celulas[index].classList.contains(JOGADOR_O)) { 
                 o++;
             }
         }
     }
-
-    return x + o === 9 ? true : false; //se o número de incrementações no O junto do número de incrementações no X for igual a 9 significa que temos um empate
+    return x + o === 9 ? true : false; 
 }
-function encerrarJogo(vencedor = null) { //função que encerra o jogo
-    const telaEscura = document.getElementById("tela-escura"); // seleciona a tag que tiver tela-escura no id
-    const h2 = document.createElement("h2"); //cria um elemento h2
-    const h3 = document.createElement("h3"); //cria um elemento h3
+//função que encerra o jogo
+//após encerrar reinicia e caso haja vencedor mostra o nome do usuário na tela e caso seja empate mostra empatou na tela
+function encerrarJogo(vencedor = null) { 
+    const telaEscura = document.getElementById("tela-escura"); 
+    const h2 = document.createElement("h2");
+    const h3 = document.createElement("h3");
     let menssagem = null; 
 
-    telaEscura.style.display = "block"; //display block na tela escura que aparecerá na tela
-    telaEscura.appendChild(h2); //h2 será adicionado como filho/dentro da telaEscura
-    telaEscura.appendChild(h3); //h3 será adicionado como filho/dentro da telaEscura
-
-    if (vencedor) { // se houver vencedor no jogo
+    telaEscura.style.display = "block"; 
+    telaEscura.appendChild(h2); 
+    telaEscura.appendChild(h3); 
+    if (vencedor) { 
         if (vencedor === 'X') {
-            h2.innerHTML = `O player 1 <span>${vencedor}</span> venceu` ; //nome do usuário X vencedor
+            h2.innerHTML = `O player 1 <span>${vencedor}</span> venceu` ;
         } else {
-            h2.innerHTML = `O player 2 <span>${vencedor}</span> venceu` ; //nome do usuário O vencedor           
+            h2.innerHTML = `O player 2 <span>${vencedor}</span> venceu` ;           
         }
         
-    } else { //se houver empate
-        h2.innerHTML = "Empatou"; //exibe "empatou" na tela
+    } else { 
+        h2.innerHTML = "Empatou"; 
     }
-
-    let contador = 3; // contador para reiniciar o jogo
+    let contador = 3; 
     setInterval(() => {
-        h3.innerHTML = `Reiniciando em ${contador--}`; //contador iniciará para reiniciar o jogo
+        h3.innerHTML = `Reiniciando em ${contador--}`;
     }, 1000);
-
-    setTimeout(() => location.reload(), 4000); //o site recarregará após 4 segundos
-
+    setTimeout(() => location.reload(), 4000); 
 }
 

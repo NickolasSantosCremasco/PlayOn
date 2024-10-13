@@ -1,17 +1,13 @@
-/* Navbar */
-
-
-
-/* End Navbar */
-
-/* Slider */
-
+//Animação do Slider
+//Repetirá sempre que chegar ao ultimo fazendo um loop infinito
+//É possível clicar no botão correspondente ao slide que deseja ver
 var radio = document.querySelector(".manual-btn");
 let slider = document.querySelector(".slider");
 
 var cont = 1;
 
 document.getElementById("radio1").checked = true;
+
 
 function nextImg() {
   cont++;
@@ -26,8 +22,10 @@ setInterval(() => {
   nextImg();
 }, 10000);
 
+//FIM DA ANIMAÇÃO DO SLIDER
 
-/* Plane animation */
+// Animação do Avião
+//Feita com a biblioteca anime JS faz ele fazer um movimento circular na tela
 
 function plane() {
   let spaceship = document.getElementById("plane");
@@ -55,9 +53,9 @@ function plane() {
 
 plane();
 
-/* End Animation Plane */
+// Fim da animação do Avião 
 
-/* Star Animation Slide-Car */
+// Animação do Slide do Carro 
 
 function animationCar() {
   let littleCar = document.querySelector('#littleCar');
@@ -84,7 +82,9 @@ function animationCar() {
 
 animationCar();
 
-/* Start Container Video  */
+//Fim da animação do Slide do Carro
+
+//Animação do Bloco giratório do Vídeo
 
 function block() {
   var line = document.querySelector(".line");
@@ -112,7 +112,8 @@ function block() {
 
 block();
 
-/* Start Frame animation Arcade */
+//ANIMAÇÃO DO ARCADE
+//Frame a frame serão passados na tela fazendo o arcade parecer animado
 
 function animationArcade() {
   let currentFrame = 0;
@@ -139,12 +140,13 @@ function animationArcade() {
 }
 animationArcade();
 
-/* Content 2 */
-
-/* Cards */
-/* Animation Cards Assets */
+//ANIMAÇÃO DOS JOGOS ARCADE ANTIGOS
+//Executarão ao passar o mouse em cima das imagens dos personagens
+//frame a frame serão executados fazendo uma animação continua
 
 function backgroundCards() {
+
+  //Selecionando os elementos HTML das imagens
   let mario = document.querySelector("#marioHd");
   let sonic = document.querySelector("#sonic");
   let kong = document.querySelector("#kong");
@@ -153,6 +155,7 @@ function backgroundCards() {
   let pacMan = document.querySelector("#pacMan");
   let topGear = document.querySelector("#topGear");
 
+  //Colocando uma evento ao mouse passar por cima desse elementos
   mario.addEventListener("mouseover", backgroundMario);
   sonic.addEventListener("mouseover", backgroundSonic);
   kong.addEventListener("mouseover", backgroundKong);
@@ -163,6 +166,8 @@ function backgroundCards() {
 
   const background = document.querySelector("#backgroundVideo");
 
+  //O fundo quando mouse sair de cima do elemento deverá voltar ao normal
+  //Se o mouse ficar em cima um vídeo aparecera ao fundo do jogo correspondente e o personagem cujo a animação de frames foi feita se moverá
   function resetBackground() {
     background.style.transform = "translateX(-100%)";
     background.style.opacity = "0";

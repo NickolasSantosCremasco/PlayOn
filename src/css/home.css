@@ -313,7 +313,6 @@ div.container-video {
   margin-top: 50px;
   justify-content: center;
   align-items: center;
-  
   border-radius: 20px;
   overflow: hidden;
   border: 5px solid rgb(241, 241, 241);
@@ -340,6 +339,7 @@ div.container-video .left {
 
 div.container-video .right {
   font-size: 15pt;
+  text-align: justify;
 }
 
 div.container-video .right,

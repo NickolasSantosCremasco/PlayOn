@@ -10,14 +10,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Permanent+Marker&family=Press+Start+2P&display=swap"
-        rel="stylesheet">
-    <!--Boxicons-->
-    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-
-    <!--Remixicons-->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Permanent+Marker&family=Press+Start+2P&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/global.css">
@@ -28,6 +21,7 @@
 </head>
 
 <body>
+    <!--Barra de navegação-->
     <header class="navbar">
         <a href="../../index.html">
             <img src="../img/site/Logo.png" class="logo" alt="">
@@ -43,7 +37,7 @@
         <div class="bx bx-menu" id="menu-icon" onclick="menuShow()"></div>
 
     </header>
-
+    <!--Sessão onde aparecerão os jogos do site-->
     <main class="main-container">
         <section class="animationGamer">
 
@@ -62,11 +56,8 @@
                 <div><h1>JOGO DE LIMPAR CASA</h1></div>
             </a>
         </section>
-      
-        
     </main>
-
-
+    <!--Rodapé-->
     <footer>
         <div>
             <h4>Play On</h4>
@@ -74,12 +65,7 @@
         <div>
             <h4>Produzido por Playon &copy;</h4>
         </div>
-
     </footer>
-    
-    
-
-
     <script src="../js/games.js"></script>
     <script src="../js/global.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
@@ -87,6 +73,7 @@
         const textGames = document.querySelector('#textGames');
         textGames.innerHTML = textGames.textContent.replace(/\S/g, "<span>$&</span>");
 
+        //Animação do letreiro com a biblioteca do AnimeJS
         anime.timeline({
             loop:true
         })
@@ -99,7 +86,6 @@
             easing: "easeOutExpo",
             duration:2500,
             delay:anime.stagger(100)
-             //Delay em cada elemento span
         })
 
         .add({
@@ -109,7 +95,7 @@
             opacity:[1,0],
             easing: "easeOutExpo",
             duration:3500,
-            delay:anime.stagger(100) //Delay em cada elemento span
+            delay:anime.stagger(100) 
         })
 
         .add({
@@ -119,7 +105,7 @@
             opacity:[0,1],
             easing: "easeOutExpo",
             duration:2000,
-            delay:anime.stagger(100) //Delay em cada elemento span
+            delay:anime.stagger(100) 
         })
 
         .add({
@@ -129,7 +115,7 @@
             opacity:[1,1],
             easing: "easeOutExpo",
             duration:1000,
-            delay:anime.stagger(100) //Delay em cada elemento span
+            delay:anime.stagger(100) 
         })
     </script>
 </body>

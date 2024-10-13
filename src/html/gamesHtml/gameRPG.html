@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GameRPG</title>
+    <title>Jogo de Limpar a Casa</title>
     <link rel="stylesheet" href="../../css/gamesCSS/gameRPG.css">
     <link rel="stylesheet" href="../../css/global.css">
     <link rel="shortcut icon" href="../../img/site/vassoura.png" type="image/x-icon">
@@ -11,30 +11,37 @@
 <body>
 
     <canvas id="canvas"></canvas>
+
+    <!--Barra de carragamento-->
     <div id="dv1">
         <div class="barra">
             <div class="barraCheia"></div>
         </div>
     </div>
    
+    <!--Tempo-->
     <div class="timer">
         <h1 id="time">1:00</h1>
     </div>
 
+    <!--Personagem Mãe-->
     <div class="mother">
         <img src="../../img/assets/AssetsMae/maeParada.png" class="motherCharacter" alt="">
     </div>
 
+    <!--Bolha de conversa-->
     <div class="conversationBubble">
         <img src="../../img/assets/AssetsMae/maeParada.png" class="motherImage" alt="">
         <h1 id="mothersDialogue"></h1>
     </div>
 
+    <!--Tela de gameOver-->
     <div class="gameOverScreen">
         <h1>Game Over</h1>
         <button id="tryAgainButton">Tente de Novo</button>
     </div>
 
+     <!--Tela de Vitória-->
     <div class="victoryScreen">
         <h1>Vitória</h1>
         <h2 id="TimeToDoTheTasks"></h2>

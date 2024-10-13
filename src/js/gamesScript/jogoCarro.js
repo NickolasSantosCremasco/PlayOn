@@ -20,18 +20,18 @@ var dy = 0;
 var vel = 5;
 var px = 743;
 var py = window.innerHeight / 2;
-let movementOffset = 0; // variavel do movimento da linha
+let movementOffset = 0; 
 let gameOver = false;
 let speed = 50
 const maxSpeed = 100
 const minSpeed = 4
 const speedIncrement = 1;
-const game = new Game(); // inicializando a classe Game
+const game = new Game(); 
 
 // Elementos HTML
 const TryAgainButton = document.querySelector('#tryAgain');
 const gameOverScreen = document.querySelector('.gameOver');
-const obj = document.querySelector('#hero'); //personagem/carro
+const obj = document.querySelector('#hero'); 
 const point = document.querySelector('#score');
 const obstacles = [];
 const highscore = document.querySelector('#highscore');
@@ -51,15 +51,15 @@ const treesSprites = [
 
 // jogo sendo inicializado
 function init() {
-    document.addEventListener('keydown', keyDown); // eventos de teclas apertadas
-    document.addEventListener('keyup', keyUp); // eventos de teclas soltas
+    document.addEventListener('keydown', keyDown); 
+    document.addEventListener('keyup', keyUp); 
     StartPunctuation();
     setInterval(enterFrame, 20); 
-    // inicializando o jogo
-    TryAgainButton.addEventListener('click', () => { // botão de reiniciar
+    // Botão de reiniciar caso tenha acontecido uma derrota
+    //personagem volta a sua posição inicial e a pontuação volta a 0
+    TryAgainButton.addEventListener('click', () => { 
         gameOver = false
         gameOverScreen.style.display = 'none'
-        // restaurando a posição do personagem para a inicial
         px = 743;
         py = window.innerHeight / 2
         dx = 0;
@@ -86,12 +86,12 @@ function stopPunctuation() {
     FinalScore.innerHTML = `Pontuação Final: ${game.point}`
 }
 
-//reinicia a pontua
+//reinicia a pontuação quando é clicado em reiniciar jogo
 function restartPunctuation() {
-  stopPunctuation(); // para o intervalo antigo
+  stopPunctuation(); 
   score.innerHTML = `Pontuação: 0`
   game.point = 0
-  StartPunctuation(); // inicia um novo intervalo
+  StartPunctuation(); 
 }
 
 
@@ -116,15 +116,16 @@ function drawScene() {
 }
 
 // Coloca as imagens de arvores que passarão na tela de cima para baixo
-const treeImages = treesSprites.map(sprite => { // fara com que as imagens não fiquem piscando e reutilize apenas uma imagem que ficara se movendo de cima para baixo
-    const img = new Image();
+// fara com que as imagens não fiquem piscando e reutilize apenas uma imagem que ficara se movendo de cima para baixo
+const img = new Image();
+const treeImages = treesSprites.map(sprite => { 
     img.src = sprite.src
     return img;
 })
 
 function drawTrees () {
     treesSprites.forEach((tree, index) => {
-        const treeImage = treeImages[index]; // usar a imagem carregada
+        const treeImage = treeImages[index];
         ctx.drawImage(treeImage, tree.x, tree.y, tree.width, tree.height);
     })
 }
@@ -147,12 +148,15 @@ function keyDown(event) {
         dx = 1;
     } else if (tecla === 'ArrowUp') {
         dy = -1;
-        if (speed < maxSpeed && !gameOver) { // velocímetro aumenta quando ArrowUp é pressionado
+        // velocímetro aumenta quando ArrowUp é pressionado
+        if (speed < maxSpeed && !gameOver) { 
             speed += speedIncrement
             updateSpeedometer();
         }
-    } else if (tecla === 'ArrowDown') { // velocímetro diminuiu quando ArrowDown é pressionado
+        
+    } else if (tecla === 'ArrowDown') { 
         dy = 1;
+        // velocímetro diminuiu quando ArrowDown é pressionado
         if (speed > minSpeed && !gameOver) {
             speed -= speedIncrement
             updateSpeedometer();
@@ -177,18 +181,23 @@ function updateSpeedometer (){
 }
 // posição do personagem
 function updatePosition() {
-    var nextPx = px + dx * vel; // posição sendo atualizada de acordo com a velocidade para a horizontal
-    var nextPy = py + dy * vel; // posição sendo atualizada de acordo com a velocidade para a vertical
+    var nextPx = px + dx * vel; 
+    var nextPy = py + dy * vel; 
 
-    if (nextPx < 500) { // definido borda lateral esquerda
+    // definido borda lateral esquerda
+    if (nextPx < 500) { 
         nextPx = 500;
-    } else if (nextPx + obj.offsetWidth > window.innerWidth - 500) { //definindo borda lateral direita
+
+    //definindo borda lateral direita
+    } else if (nextPx + obj.offsetWidth > window.innerWidth - 500) { 
         nextPx = window.innerWidth - 500 - obj.offsetWidth;
     }
 
-    if (nextPy < 10) { // definindo borda vertical de cima
+    // definindo borda vertical de cima
+    if (nextPy < 10) { 
         nextPy = 10;
-    } else if (nextPy + obj.offsetHeight > window.innerHeight - 10) { // definindo borda lateral de baixo
+    // definindo borda Vertical de baixo
+    } else if (nextPy + obj.offsetHeight > window.innerHeight - 10) { 
         nextPy = window.innerHeight - 10 - obj.offsetHeight;
     }
     px = nextPx;
@@ -211,12 +220,12 @@ let carLimit = 6; // limite de carros que serão gerados na tela
 let CarNumber = 0; // número de carros atualmente na tela
 //adicionar obstaculos aleatoriamente
 function addObstacles (){ 
-    if(Math.random() < 0.045 && CarNumber <= carLimit) { // chance de adicionar um obstaculo aleatoriamente para a tela e verifica se o número de carros não ultrapassou o limite na tela
+    if(Math.random() < 0.045 && CarNumber <= carLimit) { 
         let obstacleWidth = 50;
         let obstacleHeight = 90;
         let obstacleX = Math.random() * (window.innerWidth -1000 - obstacleWidth) + 500;
         let obstacleY = -obstacleHeight;
-        let obstacleSpeed = Math.random() * 5 + 1; //velocidade do obstaculo entre 1 a 6 px/s
+        let obstacleSpeed = Math.random() * 5 + 1; 
         obstacles.src = '' 
         obstacles.push({
             x:obstacleX,
@@ -230,68 +239,67 @@ function addObstacles (){
     }
 }
 
-//Movimento dos obstaculos
+//Movimento dos obstaculos de cima até em baixo na tela
 function updateObstacles() {
-    //obstaculos se movendo do Px Maximo até o Px mínimo
+    
     for(let i = 0; i < obstacles.length; i++) {
         obstacles[i].y += obstacles[i].speed;
-
-        //remover o carro após ele sair da tela
         if (obstacles[i].y > canvas.height) {
             obstacles.splice(i, 1);
-            CarNumber--; // Diminui o número de carros
-            i--; //ajusta o índice de carros
+            CarNumber--; 
+            i--; 
         }
     }
 
 }
-let lastScoreIncrease = 0; // armazena a ultima vez que a pontuação fez com que aumentasse o limite de carros
+
+//Função que verifica a pontuação e caso seja multipla de 500 adiciona mais um carro na tela
+let lastScoreIncrease = 0; 
 function checkScore() {
-    if (game.point % 500 === 0 && game.point !== 0 && game.point > lastScoreIncrease) { //verifica se game.point divido por 500 for igual a zero quer dizer que estamos no momento de aumentar o limite de carros
-        carLimit+=1 // o limite de carros aumenta em mais 1
-        lastScoreIncrease = game.point // marca quando esse limite foi aumentado, e aumentará apenas uma vez
+    if (game.point % 500 === 0 && game.point !== 0 && game.point > lastScoreIncrease) { 
+        carLimit+=1 
+        lastScoreIncrease = game.point 
         console.log(carLimit)
     }
 }
 
-// checando colisão entre personagem e obstaculo
+// checando colisão entre personagem e obstaculo e se sim retorna verdadeiro
 function checkCollision() {
-    for (let i = 0; i < obstacles.length; i++) { // para cada obstaculo criado faça
-        if (px < obstacles[i].x + obstacles[i].width && // se a posição do personagem for menor que a posição horizontal do obstaculo
-            px + obj.offsetWidth > obstacles[i].x && // se a posição horizontal + a largura do objeto for maior que a posição horizontal do objeto
-            py < obstacles[i].y + obstacles[i].height && // se a posição do personagem for menor que a posição vertical do obstaculo
-            py + obj.offsetHeight > obstacles[i].y)  // e a posição vertical + o tamanho do objeto for maior que a posição horizontal do objeto
+    for (let i = 0; i < obstacles.length; i++) { 
+        if (px < obstacles[i].x + obstacles[i].width && 
+            px + obj.offsetWidth > obstacles[i].x && 
+            py < obstacles[i].y + obstacles[i].height && 
+            py + obj.offsetHeight > obstacles[i].y)  
             { 
-                return true // retornará verdadeiro para colisão
+                return true 
             }
     }
     return false
 }
 
-// função central do jogo
+// Função que executará todas as outras do jogo
 function enterFrame() {
-    if (!gameOver) { // verifica se a variável game over é diferente de true
-        updatePosition(); // muda a posição do personagem
-        drawScene(); // desenha o mapa
-        updateObstacles(); // faz os obstaculos se mexerem
-        addObstacles(); /// adiciona os obstaculos
-        updateTrees(); // atualização das posições das arvores
-        drawTrees(); // desenhar arvores
-        checkScore(); // aumenta 1 carro a mais na tela a cada 500 de score batido
-        gameOverScreen.style.display = 'none'; // a tela de game over fica invisivel
-        if (checkCollision()) { // caso haja colisão
-            gameOverScreen.style.display = 'flex'; // game over aparecerá
-            gameOver = true; // game over voltará true e as funções acima pararão de serem executadas
-            stopPunctuation(); // pontuação para de incrementar
+    if (!gameOver) { 
+        updatePosition(); 
+        drawScene(); 
+        updateObstacles(); 
+        addObstacles(); 
+        updateTrees(); 
+        drawTrees(); 
+        checkScore();
+        gameOverScreen.style.display = 'none'; 
+        if (checkCollision()) { 
+            gameOverScreen.style.display = 'flex'; 
+            gameOver = true; 
+            stopPunctuation(); 
         }
       
     }
 }
-// reiniciando o jogo depois do game over
 
-// chamando a função mover a linha para ser realizada em um intervalo de tempo
-setInterval(moveLine, 20); // intervalo de 20 centésimos para cada linha central se movimentar
 
-setInterval(updateObstacles, 20) // intervalo de 20 centésimos para cada obstaculo se movimentar
+setInterval(moveLine, 20); 
 
-window.addEventListener('load', init); // quando a tela for iniciada no navegador o jogo inicializará  
+setInterval(updateObstacles, 20) 
+
+window.addEventListener('load', init); 
