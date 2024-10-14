@@ -43,9 +43,13 @@ div.timer {
    background-color: transparent;
    border-radius: 10px;
    padding: 5px 10px;
-    top: 0;
+    top:5px;
     left: 90%;
     transform: translate(-50%);
+}
+
+#time {
+    font-family: 'Press Start 2P';
 }
 
 /*Caixa de Diálogo*/
@@ -62,8 +66,7 @@ div.conversationBubble {
     top: 90%;
     left: 0px;
     transform:translate(0,-50%);
-  
-
+    
 }
 
 img.motherImage {
@@ -116,6 +119,10 @@ img.motherImage {
 }
 
 .gameOverScreen h1 {
+    font-family: 'Press Start 2P';
+    position: relative;
+    top: 20px;
+    color: red;
     font-size: 30pt;
 }
 
@@ -145,7 +152,17 @@ img.motherImage {
 }
 
 .victoryScreen h1 {
-    font-size: 30pt;
+    position: relative;
+    top: 20px;
+    font-family: 'Press Start 2P';
+    color: green;
+    font-size: 20pt;
+}
+.victoryScreen h2 {
+    position: relative;
+    top: 15px;
+    text-align: center;
+    
 }
 
 #playAgainButton {

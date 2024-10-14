@@ -455,7 +455,7 @@ Quando o timer começar a correr o personagem poderá andar pela tela
 function startTimer(mother, motherPos) {
     enableMovement();
     const timer = document.querySelector('#time');
-    let time = 59;
+    let time = 30;
 
     const timePassing = setInterval(() => {
         timer.innerText = `0:${time}`;
@@ -534,7 +534,8 @@ function victory(mother, motherPos, time) {
                                     document.removeEventListener('keydown', secondVictorySpeech);
                                     setTimeout(() => {
                                         victoryScreen.style.display = 'flex' 
-                                        timeToDoTheTask.innerHTML = `Parabéns! Você limpou a casa em ${time}`
+                                        result = 30 - time
+                                        timeToDoTheTask.innerHTML = `Parabéns! Você limpou a casa em ${result} <br> segundos`
                                         playAgainScreen.addEventListener('click', function retartGame() {  
                                             document.location.reload(); 
                                         })
