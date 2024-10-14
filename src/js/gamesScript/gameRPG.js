@@ -127,8 +127,8 @@ const closetPos = {x:(window.innerWidth*30)/100, y:(window.innerHeight*8)/100};
 const closetSize = {width:100, height:150};
 let currentObject = null;
 //portaParaTrocar
-const ClosetDoorPos = {x:(window.innerWidth*30)/100, y:(window.innerHeight*30)/100};
-const ClosetDoorSize = {width:60, height:120};
+const ClosetDoorPos = {x:(window.innerWidth*38)/100, y:(window.innerHeight*11)/100};
+const ClosetDoorSize = {width:55, height:125};
 
 //Funções que desenharão os objetos unitariamente na tela
 function drawLixeira () {
@@ -180,9 +180,26 @@ function drawCloset () {
 
 function drawClosetDoor () {
     const ClosetDoorImage = new Image();
-    ClosetDoorImage.src = '../../img/assets/AssetsObjetosJogo/portaArrumada.jpg'
+    ClosetDoorImage.src = '../../img/assets/AssetsObjetosJogo/portaArrumada.jpg';
     ClosetDoorImage.onload = () => {
-        ctx.drawImage(ClosetDoorImage, ClosetDoorPos.x, ClosetDoorPos.y, ClosetDoorSize.width, ClosetDoorSize.height);
+        // Salva o estado atual do contexto
+        ctx.save();
+        // Move a origem para o centro da porta (para rotacionar em torno do centro)
+        ctx.translate(ClosetDoorPos.x + ClosetDoorSize.width / 2, ClosetDoorPos.y + ClosetDoorSize.height / 2);
+        // Rotaciona o canvas em radianos (ângulo negativo gira para a esquerda)
+        const rotationAngle = -Math.PI / 8; // Gira 22.5 graus para a esquerda (ajuste conforme necessário)
+        ctx.rotate(rotationAngle);
+        // Desenha a imagem no novo sistema de coordenadas com origem e rotação
+        ctx.drawImage(
+            ClosetDoorImage,
+            -ClosetDoorSize.width / 2, 
+            -ClosetDoorSize.height / 2,
+            ClosetDoorSize.width,
+            ClosetDoorSize.height
+        );
+
+        // Restaura o estado original do contexto (sem a rotação)
+        ctx.restore();
     }
 }
 // função que é responsável por todos os objetos interagíveiS que aparecem na tela
@@ -445,7 +462,7 @@ function startTimer(mother, motherPos) {
         time--;
 
         // Condição de vitória (Limpeza de 3 objetos).
-        if (cleanObjets == 3) {
+        if (cleanObjets == 4) {
             clearInterval(timePassing);
             timer.innerText = `0`;
             victory(mother, motherPos, time); 
@@ -643,6 +660,8 @@ function checkColissionWithObjects() {
         return 'cama'
     } else if (!cleanedObjects.includes('lixeira') && px < lixeiraPos.x + lixeiraSize.width && px + obj.offsetWidth > lixeiraPos.x && py < lixeiraPos.y + lixeiraSize.height && py + obj.offsetHeight > lixeiraPos.y) {
         return 'lixeira'
+    } else if (!cleanedObjects.includes('closet') && px < closetPos.x + closetSize.width && px + obj.offsetWidth > closetPos.x && py < closetPos.y + closetSize.height && py + obj.offsetHeight > closetPos.y) {
+        return 'closet'
     }
     return null
 }
@@ -689,6 +708,18 @@ function startLoading() {
                     cleanedObjects.push('lixeira'); 
                     cleanObjets+=1; 
                     audio.play()
+                } else if (currentObject === 'closet') {
+                    drawCloset = () => {
+                        const closetImage = new Image();
+                        closetImage.src = '../../img/assets/AssetsObjetosJogo/armarioConcertado.png';
+                        closetImage.onload = () => {
+                            ctx.drawImage(closetImage, closetPos.x, closetPos.y, closetSize.width, closetSize.height)
+                        }
+                    }
+                    drawClosetDoor = () => {}
+                    cleanedObjects.push('closet')
+                    cleanObjets+=1;
+                    audio.play();
                 }
                 drawMap() 
             
