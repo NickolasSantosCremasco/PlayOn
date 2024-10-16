@@ -129,7 +129,9 @@ let currentObject = null;
 //portaParaTrocar
 const ClosetDoorPos = {x:(window.innerWidth*38)/100, y:(window.innerHeight*11)/100};
 const ClosetDoorSize = {width:55, height:125};
-
+//mesaSuja
+const tablePos = {x:(window.innerWidth*80)/100, y:(window.innerHeight*55)/100};
+const tableSize = {width:85, height:180}
 //Funções que desenharão os objetos unitariamente na tela
 function drawLixeira () {
     const lixeiraImage = new Image();
@@ -178,6 +180,14 @@ function drawCloset () {
     };
 };
 
+function drawTable() {
+    const tableImage = new Image();
+    tableImage.src = '../../img/assets/AssetsObjetosJogo/mesaDesarrumada.png';
+    tableImage.onload = () => {
+        ctx.drawImage(tableImage, tablePos.x, tablePos.y, tableSize.width, tableSize.height);
+    };
+}
+
 function drawClosetDoor () {
     const ClosetDoorImage = new Image();
     ClosetDoorImage.src = '../../img/assets/AssetsObjetosJogo/portaArrumada.jpg';
@@ -202,6 +212,8 @@ function drawClosetDoor () {
         ctx.restore();
     }
 }
+
+
 // função que é responsável por todos os objetos interagíveiS que aparecem na tela
 function drawObjects() {
     drawTapete();
@@ -211,6 +223,7 @@ function drawObjects() {
     drawCloset();
     drawClosetDoor();
     drawPorta();
+    drawTable();
     
 };
 
@@ -461,8 +474,8 @@ function startTimer(mother, motherPos) {
         timer.innerText = `0:${time}`;
         time--;
 
-        // Condição de vitória (Limpeza de 3 objetos).
-        if (cleanObjets == 4) {
+        // Condição de vitória (Limpeza de 5 objetos).
+        if (cleanObjets == 5) {
             clearInterval(timePassing);
             timer.innerText = `0`;
             victory(mother, motherPos, time); 
@@ -663,6 +676,8 @@ function checkColissionWithObjects() {
         return 'lixeira'
     } else if (!cleanedObjects.includes('closet') && px < closetPos.x + closetSize.width && px + obj.offsetWidth > closetPos.x && py < closetPos.y + closetSize.height && py + obj.offsetHeight > closetPos.y) {
         return 'closet'
+    } else if (!cleanedObjects.includes('mesa') && px < tablePos.x + tableSize.width && px + obj.offsetWidth > tablePos.x && py < tablePos.y + tableSize.height && py + obj.offsetHeight > tablePos.y) {
+        return 'mesa'
     }
     return null
 }
@@ -701,9 +716,9 @@ function startLoading() {
                 } else if (currentObject === 'lixeira') {
                     drawLixeira = () => {
                         const lixeiraImage = new Image();
-                        lixeiraImage.src = '../../img/assets/AssetsObjetosJogo/lixeira.png'
+                        lixeiraImage.src = '../../img/assets/AssetsObjetosJogo/lixeira.png';
                         lixeiraImage.onload = () => {
-                            ctx.drawImage(lixeiraImage, lixeiraPos.x, lixeiraPos.y-15, lixeiraSize.width-10, lixeiraSize.height-10)
+                            ctx.drawImage(lixeiraImage, lixeiraPos.x, lixeiraPos.y-15, lixeiraSize.width-10, lixeiraSize.height-10);
                         }
                     }
                     cleanedObjects.push('lixeira'); 
@@ -714,12 +729,22 @@ function startLoading() {
                         const closetImage = new Image();
                         closetImage.src = '../../img/assets/AssetsObjetosJogo/armarioConcertado.png';
                         closetImage.onload = () => {
-                            ctx.drawImage(closetImage, closetPos.x, closetPos.y, closetSize.width, closetSize.height)
+                            ctx.drawImage(closetImage, closetPos.x, closetPos.y, closetSize.width, closetSize.height);
                         }
                     }
                     drawClosetDoor = () => {}
                     cleanedObjects.push('closet')
                     cleanObjets+=1;
+                    audio.play();
+                } else if (currentObject = 'mesa') {
+                    drawTable = () => {
+                        const tableImage = new Image();
+                        tableImage.src = '../../img/assets/AssetsObjetosJogo/mesaLimpa.png';
+                        tableImage.onload = () => {
+                            ctx.drawImage(tableImage, tablePos.x, tablePos.y, tableSize.width, tableSize.height)
+                        }
+                    }
+                    cleanObjets += 1;
                     audio.play();
                 }
                 drawMap() 
@@ -734,7 +759,7 @@ function stopLoading () {
     clearInterval(loadingInterval);
     loadingInterval = null;
     loadingProgress = 0;
-    document.querySelector('.barraCheia').style.width = '0%'
+    document.querySelector('.barraCheia').style.width = '0%';
     document.querySelector('.barra').style.display = 'none';
 };
 
@@ -749,8 +774,8 @@ function begin() {
     px=60; 
     py=490; 
     vel=8;
-    document.addEventListener('keydown', keyDown)
-    document.addEventListener('keyup', keyUp) 
+    document.addEventListener('keydown', keyDown);
+    document.addEventListener('keyup', keyUp);
     tmp=setInterval(enterFrame, 20); 
     drawMap();
     motherConversation(firstSpeech, secondSpeech, elementHtml, lettersInterval);
