@@ -2,7 +2,7 @@
 
 body{
     font-family: "Pixelify Sans", sans-serif;
-    background: rgba(128, 19, 7, 0.911);
+    background: rgba(75, 71, 71, 0.911);
 text-decoration: none;
 }
 
@@ -89,5 +89,6 @@ button .single, .multiplayer {
 }
 
 .img img {
+    width: 30%;
     margin: 40px;
 }
