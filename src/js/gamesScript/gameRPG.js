@@ -143,7 +143,7 @@ function drawLixeira () {
 
 function drawPorta () {
     const portaImage = new Image();
-    portaImage.src = '../../img/assets/AssetsObjetosJogo/porta.png'
+    portaImage.src = '../../img/assets/gameRPG/porta.PNG'
     portaImage.onload = () => {
         ctx.drawImage(portaImage, portaPos.x, portaPos.y, portaSize.width, portaSize.height);
     }
