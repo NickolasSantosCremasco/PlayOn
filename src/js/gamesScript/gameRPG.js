@@ -118,7 +118,7 @@ const tapetePos = {x:(window.innerWidth*10)/100, y:(window.innerHeight*18)/100};
 const tapeteSize = {width:250, height:250};
 // porta
 const portaPos = {x:(window.innerWidth*42)/100, y:(canvas.height*58)/100};
-const portaSize = {width:240, height:240};
+const portaSize = {width:150, height:100};
 // lixeira
 const lixeiraPos = {x:(window.innerWidth*53)/100, y:(window.innerHeight*72)/100};
 const lixeiraSize = {width:150, height:150};
