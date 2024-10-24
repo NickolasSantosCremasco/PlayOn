@@ -113,8 +113,13 @@
 
 }
 
-@media (max-width:660px) {
+@media (max-height:660px) {
     div.card {
         width: 130px;
+    }
+
+    .box-container {
+        width: 70%;
+        height: 90%;
     }
 }

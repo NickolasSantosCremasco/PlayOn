@@ -1,15 +1,23 @@
 footer {
-  position: relative;
-  top: 80vh;
+  position: absolute;
+  top: 280vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: black;
   height: 100px;
+  width: 100%;
 }
 
 footer div {
   color: white;
   padding: 10px;
   margin: 50px;
+}
+
+@media (max-height:900px) {
+  
+  footer {
+    top:310vh
+  }
 }

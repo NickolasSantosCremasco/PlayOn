@@ -117,10 +117,10 @@ const camaSize = {width:80, height:130};
 const tapetePos = {x:(window.innerWidth*10)/100, y:(window.innerHeight*18)/100};
 const tapeteSize = {width:250, height:250};
 // porta
-const portaPos = {x:(window.innerWidth*42)/100, y:(canvas.height*58)/100};
-const portaSize = {width:150, height:100};
+const portaPos = {x:(window.innerWidth*46)/100, y:(canvas.height*65)/100};
+const portaSize = {width:90, height:170};
 // lixeira
-const lixeiraPos = {x:(window.innerWidth*53)/100, y:(window.innerHeight*72)/100};
+const lixeiraPos = {x:(window.innerWidth*53)/100, y:(window.innerHeight*70)/100};
 const lixeiraSize = {width:150, height:150};
 //closet
 const closetPos = {x:(window.innerWidth*30)/100, y:(window.innerHeight*8)/100};
