@@ -58,6 +58,7 @@ function init() {
     // Botão de reiniciar caso tenha acontecido uma derrota
     //personagem volta a sua posição inicial e a pontuação volta a 0
     TryAgainButton.addEventListener('click', () => { 
+        document.location.reload()
         gameOver = false
         gameOverScreen.style.display = 'none'
         px = 743;
@@ -216,7 +217,7 @@ function moveLine() {
 }
 
 
-let carLimit = 6; // limite de carros que serão gerados na tela 
+let carLimit = 3; // limite de carros que serão gerados na tela 
 let CarNumber = 0; // número de carros atualmente na tela
 //adicionar obstaculos aleatoriamente
 function addObstacles (){ 

@@ -375,7 +375,24 @@ margin-top: -10px;
     overflow-y: scroll;
 }
 
+.members {
+    position: relative;
+    font-family: 'gamer';
+    top: 40px;
+    color: white;
+    left: 10%;
+    font-size: 70pt;
+}
 
+.members2 {
+    position: relative;
+    color: white;
+    top: 20px;
+    right: 10%;
+    font-family: 'Press Start 2P';
+    font-size: 10pt;
+    float: right;
+}
 
 .card-container {
     overflow-y: scroll;
