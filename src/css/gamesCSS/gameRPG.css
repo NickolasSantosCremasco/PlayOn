@@ -132,6 +132,15 @@ img.motherImage {
     font-size: 15pt;
 }
 
+.punishment {
+    text-align: center;
+    font-family: 'Press Start 2P' ;
+    font-size: 10pt;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
 /*Victory Screen*/
 
 .victoryScreen {

@@ -468,7 +468,7 @@ Quando o timer começar a correr o personagem poderá andar pela tela
 function startTimer(mother, motherPos) {
     enableMovement();
     const timer = document.querySelector('#time');
-    let time = 30;
+    let time = 25;
 
     const timePassing = setInterval(() => {
         timer.innerText = `0:${time}`;
